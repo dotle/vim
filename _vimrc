@@ -199,6 +199,9 @@ else
 
   set nonu
 endif
+
+set lines=48 columns=150
+
 " ------------------------------------------------------------------
 " splite windows
 " ------------------------------------------------------------------
@@ -237,7 +240,7 @@ func! CompileRunGcc()
         exec "!time ./%<"
     elseif &filetype == 'cpp'
         exec "!g++ % -o %<"
-        exec "!time ./%<"
+        exec " ./%<"
     elseif &filetype == 'java'
         exec "!javac %"
         exec "!time java %<"
@@ -346,6 +349,7 @@ let Tlist_Exit_OnlyWindow = 1          "如果taglist是最后一个窗口，则
 let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist
 let Tlist_GainFocus_On_ToggleOpen = 1  "打开taglist时，光标保留在taglist窗口
 let Tlist_Ctags_Cmd='d:/tools/ctags.exe'  "设置ctags命令的位置
+let Tlist_WinWidth = 40
 nnoremap <leader>tl : Tlist<CR>        "设置关闭和打开taglist窗口的快捷键
 
 " ------------------------------------------------------------------
