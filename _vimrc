@@ -324,6 +324,22 @@ inoremap <unique> <c-]> <C-X><C-]>
 map  <leader>bc :bot cw<cr>
 map  <leader>f :vim /<c-r><c-w>/*.cpp *.h *.py<cr>
 map  <C-F5> :vim /<c-r><c-w>/*.cpp *.h *.py <cr>
+
+"  cscope
+nmap <leader>csa :cs add
+nmap <leader>cfa :cs find a <c-r><c-w> <CR>
+nmap <leader>cfc :cs find c <c-r><c-w> <CR>
+nmap <leader>cfd :cs find d <c-r><c-w> <CR>
+nmap <leader>cfe :cs find e <c-r><c-w> <CR>
+nmap <leader>cff :cs find f <c-r><c-w> <CR>
+nmap <leader>cfg :cs find g <c-r><c-w> <CR>
+nmap <leader>cfi :cs find i <c-r><c-w> <CR>
+nmap <leader>cfs :cs find s <c-r><c-w> <CR>
+nmap <leader>cft :cs find t <c-r><c-w> <CR>
+
+"  run python
+autocmd BufRead *.py nmap <leader>cp :w <cr>:!python %<cr>
+
 " ------------------------------------------------------------------
 " NERDTree
 " ------------------------------------------------------------------
@@ -400,13 +416,3 @@ au BufNewFile,BufRead *.ino set filetype=c
 " cscope
 "------------------------------------------------------------
 
-nmap <leader>csa :cs add
-nmap <leader>cfa :cs find a <c-r><c-w> <CR>
-nmap <leader>cfc :cs find c <c-r><c-w> <CR>
-nmap <leader>cfd :cs find d <c-r><c-w> <CR>
-nmap <leader>cfe :cs find e <c-r><c-w> <CR>
-nmap <leader>cff :cs find f <c-r><c-w> <CR>
-nmap <leader>cfg :cs find g <c-r><c-w> <CR>
-nmap <leader>cfi :cs find i <c-r><c-w> <CR>
-nmap <leader>cfs :cs find s <c-r><c-w> <CR>
-nmap <leader>cft :cs find t <c-r><c-w> <CR>
