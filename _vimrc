@@ -107,11 +107,12 @@ filetype plugin indent on    " required
 " chinese
 " ------------------------------------------------------------------
 "set fenc=chinese
-set fenc=gbk
+set fenc=utf-8
+set encoding=utf-8
 filetype plugin on
-set fileencodings=utf-8,chinese,latin-1
+set fileencodings=utf-8,gbk,chinese,latin-1
 if has("win32")
- set fileencoding=chinese
+ set fileencoding=utf-8
 else
  set fileencoding=utf-8
 endif
@@ -165,7 +166,7 @@ set shiftwidth=4        "同上"
 set showmatch    "显示匹配的括号"
 set scrolloff=5        "距离顶部和底部5行"
 set laststatus=2    "命令行为两行"
-set fenc=utf-8      "文件编码"
+"set fenc=utf-8      "文件编码"
 set backspace=2
 set mouse=a        "启用鼠标"
 set selection=exclusive
@@ -200,7 +201,7 @@ else
   set nonu
 endif
 
-set lines=48 columns=150
+set lines=42 columns=128
 
 " ------------------------------------------------------------------
 " splite windows
@@ -320,7 +321,9 @@ map <S-F> <ESC>:%!astyle --style=ansi -U -p -f<CR>
 inoremap <unique> <c-]> <C-X><C-]>
 " search in current files, preview first. remove the original c-p
 "inoremap <un<c-p> <C-X><C-P>ique>
-
+map  <leader>bc :bot cw<cr>
+map  <leader>f :vim /<c-r><c-w>/*.cpp *.h *.py<cr>
+map  <C-F5> :vim /<c-r><c-w>/*.cpp *.h *.py <cr>
 " ------------------------------------------------------------------
 " NERDTree
 " ------------------------------------------------------------------
@@ -389,3 +392,21 @@ set makeef=error.err " the errorfile for :make and :grep
 " Desc: snipMate
 " ------------------------------------------------------------------
 :filetype plugin on
+"------------------------------------------------------------ 
+" arduino
+"------------------------------------------------------------
+au BufNewFile,BufRead *.ino set filetype=c
+"------------------------------------------------------------ 
+" cscope
+"------------------------------------------------------------
+
+nmap <leader>csa :cs add
+nmap <leader>cfa :cs find a <c-r><c-w> <CR>
+nmap <leader>cfc :cs find c <c-r><c-w> <CR>
+nmap <leader>cfd :cs find d <c-r><c-w> <CR>
+nmap <leader>cfe :cs find e <c-r><c-w> <CR>
+nmap <leader>cff :cs find f <c-r><c-w> <CR>
+nmap <leader>cfg :cs find g <c-r><c-w> <CR>
+nmap <leader>cfi :cs find i <c-r><c-w> <CR>
+nmap <leader>cfs :cs find s <c-r><c-w> <CR>
+nmap <leader>cft :cs find t <c-r><c-w> <CR>
