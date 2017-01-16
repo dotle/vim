@@ -234,6 +234,7 @@ let python_highlight_all=1
 " quick run
 " ------------------------------------------------------------------
 map <F5> :call CompileRunGcc()<CR>
+map <C-m> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
@@ -296,7 +297,7 @@ endfunction
 " fast key
 " -----------------------------------------------
 
-nmap <leader>r :w!<cr>
+nmap <leader>w :w!<cr>
 nmap <leader>z :bp!<cr>
 nmap <leader>x :bn!<cr>
 " When pressing <leader>cd switch to the directory of the open buffer
@@ -338,13 +339,18 @@ nmap <leader>cfs :cs find s <c-r><c-w> <CR>
 nmap <leader>cft :cs find t <c-r><c-w> <CR>
 
 "  run python
-autocmd BufRead *.py nmap <leader>cp :w <cr>:!python %<cr>
+autocmd BufNewFile,BufRead *.py nmap <leader>cp :w <cr>:!python %<cr>
+autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
+autocmd BufNewFile,BufRead *.py nmap <C-r> :w <cr>:!python %<cr>
+autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
 
+noremap <F9> :quickfix_toggle<cr>
 " ------------------------------------------------------------------
 " NERDTree
 " ------------------------------------------------------------------
 "F2开启和关闭树"
 map <F2> :NERDTreeToggle<CR>
+map <leader>nt :NERDTreeToggle<CR>
 let NERDTreeChDirMode=1
 "显示书签"
 let NERDTreeShowBookmarks=1
@@ -412,4 +418,3 @@ set makeef=error.err " the errorfile for :make and :grep
 " arduino
 "------------------------------------------------------------
 au BufNewFile,BufRead *.ino set filetype=c
-
