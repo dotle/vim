@@ -236,7 +236,7 @@ let python_highlight_all=1
 " quick run
 " ------------------------------------------------------------------
 map <F5> :call CompileRunGcc()<CR>
-map <C-m> :call CompileRunGcc()<CR>
+map <c-s> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
