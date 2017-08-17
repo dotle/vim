@@ -312,7 +312,7 @@ map <leader>cd :cd %:p:h<cr>
 " programming related
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 nmap <leader>ts :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-nmap <leader>a :FSHere <CR>
+nmap <leader>sw :FSHere <CR>
 " Close the current buffer
 map <leader>bd :Bclose<cr>
 
