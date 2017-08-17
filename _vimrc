@@ -79,10 +79,13 @@ Plugin  'nvie/vim-flake8'
 Plugin  'vim-scripts/taglist.vim'
 
 Plugin  'jmcantrell/vim-virtualenv'
+
+Plugin 'tpope/vim-commentary'
 "-----------------
 " Fast navigation
 "-----------------
-Plugin 'Lokaltog/vim-easymotion'
+Plugin 'easymotion/vim-easymotion'
+"Plugin 'Lokaltog/vim-easymotion'
 "--------------
 " IDE features
 "--------------
@@ -146,16 +149,16 @@ set showtabline=0
 
 let font_name = ""
 if getfontname("Lucida_Console") != ""
-	set guifont=Lucida_Console:h10:cANSI
+	set guifont=Lucida_Console:h12:cANSI
 	let font_name = "Lucida_Console"
 elseif getfontname( "Bitstream_Vera_Sans_Mono" ) != ""
-	set guifont=Bitstream_Vera_Sans_Mono:h10:cANSI
+	set guifont=Bitstream_Vera_Sans_Mono:h12:cANSI
 	let font_name = "Bitstream_Vera_Sans_Mono"
 elseif getfontname( "Consolas" ) != ""
 	set guifont=Consolas:h11:cANSI " this is the default visual studio font
 	let font_name = "Consolas"
 else
-	set guifont=Lucida_Console:h10:cANSI
+	set guifont=Lucida_Console:h12:cANSI
 	let font_name = "Lucida_Console"
 endif
 syntax on    "开启语法高亮"
@@ -367,6 +370,16 @@ let g:indentLine_enabled = 1
 
 "autopep8设置"
 let g:autopep8_disable_show_diff=1
+"-------------------------------------------------------------------------------- 
+"easy mothing
+"-------------------------------------------------------------------------------- 
+let g:EasyMotion_smartcase = 1
+map <Leader><leader>h <Plug>(easymotion-linebackward)
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+map <Leader><leader>l <Plug>(easymotion-lineforward)
+" 重复上一次操作, 类似repeat插件, 很强大
+map <Leader><leader>. <Plug>(easymotion-repeat)
 
 " ------------------------------------------------------------------
 " taglist
