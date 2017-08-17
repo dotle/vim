@@ -236,7 +236,7 @@ let python_highlight_all=1
 " quick run
 " ------------------------------------------------------------------
 map <F5> :call CompileRunGcc()<CR>
-map <c-s> :call CompileRunGcc()<CR>
+map <m-m> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
@@ -343,7 +343,7 @@ nmap <leader>cft :cs find t <c-r><c-w> <CR>
 "  run python
 autocmd BufNewFile,BufRead *.py nmap <leader>cp :w <cr>:!python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
-autocmd BufNewFile,BufRead *.py nmap <C-r> :w <cr>:!python %<cr>
+"autocmd BufNewFile,BufRead *.py nmap <C-r> :w <cr>:!python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
 
 noremap <F9> :quickfix_toggle<cr>
