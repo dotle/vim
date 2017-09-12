@@ -51,10 +51,19 @@ Plugin   'gmarik/Vundle.vim'
 "--------------------
 " Code completions
 " -------------------
-Plugin  'mattn/emmet-vim'
-Plugin  'davidhalter/jedi-vim'
+Plugin  'mattn/emmet-vim'   "html 增强插件 
+"-----python 增强
+"    Completion <C-Space>
+"    Goto assignments <leader>g (typical goto function)
+"    Goto definitions <leader>d (follow identifier as far as possible, includes imports and statements)
+"    Show Documentation/Pydoc K (shows a popup with assignments)
+"    Renaming <leader>r
+"    Usages <leader>n (shows all the usages of a name)
+"    Open module, e.g. :Pyimport os (opens the os module)
+"---------
+Plugin  'davidhalter/jedi-vim'  "python增强
 
-Plugin 'ervandew/supertab'    "super tab
+Plugin 'ervandew/supertab'    "super tab tab 补全
 "snippets
 Plugin  'MarcWeber/vim-addon-mw-utils'
 Plugin  'tomtom/tlib_vim'
@@ -64,45 +73,45 @@ Plugin 'honza/vim-snippets'
 "----------------------
 " Coding
 " ---------------------
-Plugin  'Yggdroot/indentLine'
-Plugin  'tell-k/vim-autopep8'
-Plugin  'godlygeek/tabular'
-Plugin  'plasticboy/vim-markdown'
-Plugin  'vim-scripts/a.vim'
+Plugin  'Yggdroot/indentLine' "缩进对其线
+Plugin  'tell-k/vim-autopep8' "automatically formats Python code to conform to the PEP 8 style guide
+Plugin  'godlygeek/tabular'  " 输入tabular /, 则以，为分隔符
+Plugin  'plasticboy/vim-markdown' "markdown 支持
+Plugin  'vim-scripts/a.vim'   "头文件跳转
 
-Plugin  'vim-scripts/indentpython.vim'
+Plugin  'vim-scripts/indentpython.vim' "帮组python格式化代码缩进。
 
-Plugin  'scrooloose/syntastic'
+Plugin  'scrooloose/syntastic'  "检查错误
 
-Plugin  'nvie/vim-flake8'
+Plugin  'nvie/vim-flake8' "python 标准检查插件
 
-Plugin  'vim-scripts/taglist.vim'
+Plugin  'vim-scripts/taglist.vim'  "tag支持 <leader>tl
 
-Plugin  'jmcantrell/vim-virtualenv'
+Plugin  'jmcantrell/vim-virtualenv' "python virtual 支持
 
-Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-commentary' "快速注释 gc gcc
 "-----------------
 " Fast navigation
 "-----------------
-Plugin 'easymotion/vim-easymotion'
+Plugin 'easymotion/vim-easymotion'  "快速移动 使用<leader><leader>开头
 "Plugin 'Lokaltog/vim-easymotion'
-Plugin 'derekwyatt/vim-fswitch'
+Plugin 'derekwyatt/vim-fswitch' "头文件和文件切换 <leader>sw
 "--------------
 " IDE features
 "--------------
-Plugin  'tpope/vim-fugitive'
-Plugin  'bling/vim-airline'
-Plugin  'fholgado/minibufexpl.vim'
-Plugin  'kien/ctrlp.vim'
-Plugin  'scrooloose/nerdtree'
-Plugin  'terryma/vim-multiple-cursors'
+Plugin  'tpope/vim-fugitive' "git 支持
+Plugin  'bling/vim-airline' "状态栏
+Plugin  'fholgado/minibufexpl.vim'  "minibuf
+Plugin  'kien/ctrlp.vim' "c-p后调出窗口快速跳转文件及buf
+Plugin  'scrooloose/nerdtree' "文件树查看 <leader>nt F2
+Plugin  'terryma/vim-multiple-cursors'  "多光标操作 选中之后c-n  全选中c-n 则为选中头  vip为全选
 "----------------------------------------
 " Syntax/Indent for language enhancement
 "----------------------------------------
 "------- web backend ---------
-Plugin '2072/PHP-Indenting-for-VIm'
+Plugin '2072/PHP-Indenting-for-VIm' "官方php缩进
 "Bundle 'tpope/vim-rails'
-Plugin 'lepture/vim-jinja'
+Plugin 'lepture/vim-jinja'  "jinja支持
 "Bundle 'digitaltoad/vim-jade'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -184,6 +193,7 @@ set hlsearch        "高亮搜索项"
 set noexpandtab        "不允许扩展table"
 set whichwrap+=<,>,h,l
 set autoread
+set hidden                  " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
 
 let mapleader=','
 let g:Powerline_symbols='unicode'
