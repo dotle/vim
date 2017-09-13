@@ -64,12 +64,16 @@ Plugin  'mattn/emmet-vim'   "html 增强插件
 Plugin  'davidhalter/jedi-vim'  "python增强
 
 Plugin 'ervandew/supertab'    "super tab tab 补全
-"snippets
-Plugin  'MarcWeber/vim-addon-mw-utils'
-Plugin  'tomtom/tlib_vim'
+
+"-----------------
+"--snippets  "模板支持 如 输入for <tab>出现....
+"------------------
+Plugin  'MarcWeber/vim-addon-mw-utils' "应用
+Plugin  'tomtom/tlib_vim'  "应用
 Plugin  'garbas/vim-snipmate'
 " Optional:
 Plugin 'honza/vim-snippets'
+
 "----------------------
 " Coding
 " ---------------------
@@ -77,7 +81,7 @@ Plugin  'Yggdroot/indentLine' "缩进对其线
 Plugin  'tell-k/vim-autopep8' "automatically formats Python code to conform to the PEP 8 style guide
 Plugin  'godlygeek/tabular'  " 输入tabular /, 则以，为分隔符
 Plugin  'plasticboy/vim-markdown' "markdown 支持
-Plugin  'vim-scripts/a.vim'   "头文件跳转
+Plugin  'vim-scripts/a.vim'   "头文件跳转  :A or <leader>is  <leader>ih
 
 Plugin  'vim-scripts/indentpython.vim' "帮组python格式化代码缩进。
 
@@ -87,9 +91,14 @@ Plugin  'nvie/vim-flake8' "python 标准检查插件
 
 Plugin  'vim-scripts/taglist.vim'  "tag支持 <leader>tl
 
+Plugin  'majutsushi/tagbar'   "tagbar
+
 Plugin  'jmcantrell/vim-virtualenv' "python virtual 支持
 
 Plugin 'tpope/vim-commentary' "快速注释 gc gcc
+
+Plugin 'DoxygenToolkit.vim'  "生成doxygen风格注释
+
 "-----------------
 " Fast navigation
 "-----------------
@@ -366,12 +375,12 @@ noremap <F9> :quickfix_toggle<cr>
 " ------------------------------------------------------------------
 "F2开启和关闭树"
 map <F2> :NERDTreeToggle<CR>
-map <leader>nt :NERDTreeToggle<CR>
-let NERDTreeChDirMode=1
+map <leader>nt :NERDTree<CR>
+let NERDTreeChDirMode=2
 "显示书签"
 let NERDTreeShowBookmarks=1
 "设置忽略文件类型"
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$','\.git','\.svn']
 "窗口大小"
 let NERDTreeWinSize=25
 
@@ -379,7 +388,11 @@ let NERDTreeWinSize=25
 let g:indentLine_char='|'
 let g:indentLine_enabled = 1
 
+
+
+"--------------------------
 "autopep8设置"
+"----------------------------
 let g:autopep8_disable_show_diff=1
 "-------------------------------------------------------------------------------- 
 "easy mothing
@@ -402,6 +415,12 @@ let Tlist_GainFocus_On_ToggleOpen = 1  "打开taglist时，光标保留在taglis
 let Tlist_Ctags_Cmd='d:/tools/ctags.exe'  "设置ctags命令的位置
 let Tlist_WinWidth = 40
 nnoremap <leader>tl : Tlist<CR>        "设置关闭和打开taglist窗口的快捷键
+
+" ----------------------------------------
+" tagbar
+" --------------------------------------------------
+nnoremap <leader>tb :TagbarToggle<CR>        "设置关闭和打开tagbar窗口的快捷键
+let g:tagbar_autofocus = 1
 
 " ------------------------------------------------------------------
 " change backup dir
@@ -444,3 +463,15 @@ set makeef=error.err " the errorfile for :make and :grep
 " arduino
 "------------------------------------------------------------
 au BufNewFile,BufRead *.ino set filetype=c
+
+"-----------------------------------------------------------------
+" plugin - DoxygenToolkit.vim 由注释生成文档，并且能够快速生成函数标准注释
+"-----------------------------------------------------------------
+let g:DoxygenToolkit_authorName="Rhys"
+let g:DoxygenToolkit_briefTag_funcName="yes"
+let g:doxygen_enhanced_color=1
+map <leader>da :DoxAuthor<CR>
+map <leader>df :Dox<CR>
+map <leader>db :DoxBlock<CR>
+map <leader>dc a /* */<LEFT><LEFT><LEFT>
+"-----------------------------------------------------------------
