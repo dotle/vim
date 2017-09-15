@@ -89,7 +89,7 @@ Plugin  'scrooloose/syntastic'  "检查错误
 
 Plugin  'nvie/vim-flake8' "python 标准检查插件
 
-Plugin  'vim-scripts/taglist.vim'  "tag支持 <leader>tl
+"Plugin  'vim-scripts/taglist.vim'  "tag支持 <leader>tl
 
 Plugin  'majutsushi/tagbar'   "tagbar
 
@@ -114,6 +114,8 @@ Plugin  'fholgado/minibufexpl.vim'  "minibuf
 Plugin  'kien/ctrlp.vim' "c-p后调出窗口快速跳转文件及buf
 Plugin  'scrooloose/nerdtree' "文件树查看 <leader>nt F2
 Plugin  'terryma/vim-multiple-cursors'  "多光标操作 选中之后c-n  全选中c-n 则为选中头  vip为全选
+Plugin  'tpope/vim-surround'       "surround cs ds....
+Plugin  'mbbill/undotree'         "undo  操作
 "----------------------------------------
 " Syntax/Indent for language enhancement
 "----------------------------------------
@@ -369,7 +371,7 @@ autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
 "autocmd BufNewFile,BufRead *.py nmap <C-r> :w <cr>:!python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
 
-noremap <F9> :quickfix_toggle<cr>
+nnoremap <leader>u :UndotreeToggle<cr>
 " ------------------------------------------------------------------
 " NERDTree
 " ------------------------------------------------------------------
@@ -408,13 +410,13 @@ map <Leader><leader>. <Plug>(easymotion-repeat)
 " ------------------------------------------------------------------
 " taglist
 " ------------------------------------------------------------------
-let Tlist_Show_One_File = 1            "只显示当前文件的taglist，默认是显示多个
-let Tlist_Exit_OnlyWindow = 1          "如果taglist是最后一个窗口，则退出vim
-let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist
-let Tlist_GainFocus_On_ToggleOpen = 1  "打开taglist时，光标保留在taglist窗口
-let Tlist_Ctags_Cmd='d:/tools/ctags.exe'  "设置ctags命令的位置
-let Tlist_WinWidth = 40
-nnoremap <leader>tl : Tlist<CR>        "设置关闭和打开taglist窗口的快捷键
+"let Tlist_Show_One_File = 1            "只显示当前文件的taglist，默认是显示多个
+"let Tlist_Exit_OnlyWindow = 1          "如果taglist是最后一个窗口，则退出vim
+"let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist
+"let Tlist_GainFocus_On_ToggleOpen = 1  "打开taglist时，光标保留在taglist窗口
+"let Tlist_Ctags_Cmd='d:/tools/ctags.exe'  "设置ctags命令的位置
+"let Tlist_WinWidth = 40
+"nnoremap <leader>tl : Tlist<CR>        "设置关闭和打开taglist窗口的快捷键
 
 " ----------------------------------------
 " tagbar
@@ -433,6 +435,7 @@ set backup " make backup file and leave it around
 let data_dir = $HOME.'/.data/'
 let backup_dir = data_dir . 'backup'
 let swap_dir = data_dir . 'swap'
+let undo_dir = data_dir . 'undo'
 if finddir(data_dir) == ''
     silent call mkdir(data_dir)
 endif
@@ -442,11 +445,16 @@ endif
 if finddir(swap_dir) == ''
     silent call mkdir(swap_dir)
 endif
+if finddir(undo_dir) == ''
+    silent call mkdir(undo_dir)
+endif
 set backupdir=$HOME/.data/backup " where to put backup file
 set directory=$HOME/.data/swap " where to put swap file
+set undodir =$HOME/.data/undo "where to put undo file
 unlet data_dir
 unlet backup_dir
 unlet swap_dir
+unlet undo_dir
 
 " ------------------------------------------------------------------
 " tags
