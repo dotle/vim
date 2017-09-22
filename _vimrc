@@ -355,7 +355,9 @@ map  <leader>f :vim /<c-r><c-w>/*.cpp *.h *.py<cr>
 map  <C-F5> :vim /<c-r><c-w>/*.cpp *.h *.py <cr>
 
 "  cscope
-nmap <leader>csa :cs add
+nmap <leader>csa :cs add cscope.out<CR>
+nmap <leader>csr :!cscope -Rb<CR>
+nmap <leader>csk :cs kill -1 <CR>
 nmap <leader>cfa :cs find a <c-r><c-w> <CR>
 nmap <leader>cfc :cs find c <c-r><c-w> <CR>
 nmap <leader>cfd :cs find d <c-r><c-w> <CR>
