@@ -368,6 +368,16 @@ nmap <leader>cfi :cs find i <c-r><c-w> <CR>
 nmap <leader>cfs :cs find s <c-r><c-w> <CR>
 nmap <leader>cft :cs find t <c-r><c-w> <CR>
 
+nmap <C-'>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-_>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
 "  run python
 autocmd BufNewFile,BufRead *.py nmap <leader>cp :w <cr>:!python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
