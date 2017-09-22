@@ -184,7 +184,8 @@ else
 endif
 syntax on    "开启语法高亮"
 
-set nowrap    "设置不折行"
+set wrap    "设置折行"
+"set nowrap    "设置不折行"
 set fileformat=unix    "设置以unix的格式保存文件"
 set cindent        "设置C样式的缩进格式"
 set tabstop=4    "设置table长度"
