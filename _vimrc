@@ -184,8 +184,8 @@ else
 endif
 syntax on    "开启语法高亮"
 
-set wrap    "设置折行"
-"set nowrap    "设置不折行"
+"set wrap    "设置折行"
+set nowrap    "设置不折行"
 set fileformat=unix    "设置以unix的格式保存文件"
 set cindent        "设置C样式的缩进格式"
 set tabstop=4    "设置table长度"
@@ -257,6 +257,12 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 
 let python_highlight_all=1
+
+" ------------------------------------------------------------------
+" md txt tmp
+" ------------------------------------------------------------------
+au BufNewFile,BufRead *.txt,*.md,*.tmp
+\ set wrap    "设置折行"
 
 " ------------------------------------------------------------------
 " quick run
@@ -342,7 +348,7 @@ map <leader>bd :Bclose<cr>
 map <leader>ba :bd%<cr>
 
 map<leader>e :e! c:/vim/_vimrc<cr>
-autocmd! bufwritepost vimrc source c:/vim/_vimrc
+autocmd! bufwritepost _vimrc source c:/vim/_vimrc
 map <S-F> <ESC>:%!astyle --style=ansi -U -p -f<CR>
 
 " map for completion see :help ins-completion for whole completions
