@@ -215,8 +215,8 @@ set clipboard=unnamed
 " ------------------------------------------------------------------
 " code
 " ------------------------------------------------------------------
-au BufRead,BufNewFile
-			\ *.asm,*.c,*.cpp,*.java,*.cs,*.sh,*.lua,*.pl,*.pm,*.py,
+au BufRead,BufNewFile  *.asm,*.c,*.cpp,*.java,*.cs,
+			\*.sh,*.lua,*.pl,*.pm,*.py,
 			\*.rb,*.erb,*.hs,*.vim
 			\ 2match Underlined /.\%81v/
 " ------------------------------------------------------------------
