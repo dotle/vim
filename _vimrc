@@ -357,7 +357,7 @@ map <leader>bd :Bclose<cr>
 map <leader>ba :bd%<cr>
 
 map<leader>e :e! c:/vim/_vimrc<cr>
-autocmd! bufwritepost _vimrc source c:/vim/_vimrc
+"autocmd! bufwritepost _vimrc source c:/vim/_vimrc
 map <S-F> <ESC>:%!astyle --style=ansi -U -p -f<CR>
 
 " map for completion see :help ins-completion for whole completions
