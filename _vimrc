@@ -116,6 +116,7 @@ Plugin  'scrooloose/nerdtree' "文件树查看 <leader>nt F2
 Plugin  'terryma/vim-multiple-cursors'  "多光标操作 选中之后c-n  全选中c-n 则为选中头  vip为全选
 Plugin  'tpope/vim-surround'       "surround cs ds....
 Plugin  'mbbill/undotree'         "undo  操作
+Plugin  'skywind3000/asyncrun.vim'  "异步操作
 "----------------------------------------
 " Syntax/Indent for language enhancement
 "----------------------------------------
@@ -393,11 +394,12 @@ nmap <C-_>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 "  run python
-autocmd BufNewFile,BufRead *.py nmap <leader>cp :w <cr>:!python %<cr>
+"autocmd BufNewFile,BufRead *.py nmap <leader>cp :w <cr>:AsyncRun -raw python %<cr>
+autocmd BufNewFile,BufRead *.py nmap <m-p> :w <cr>:AsyncRun -raw python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
 "autocmd BufNewFile,BufRead *.py nmap <C-r> :w <cr>:!python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
-
+map <leader>cas :AsyncStop<cr>
 nnoremap <leader>u :UndotreeToggle<cr>
 " ------------------------------------------------------------------
 " NERDTree
