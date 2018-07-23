@@ -366,7 +366,7 @@ inoremap <unique> <c-]> <C-X><C-]>
 " search in current files, preview first. remove the original c-p
 "inoremap <un<c-p> <C-X><C-P>ique>
 map  <leader>bc :bot cw<cr>
-map  <leader>co:copen<cr>
+map  <leader>co :copen<cr>
 map  <leader>f :vim /<c-r><c-w>/*.cpp *.h *.py<cr>
 map  <C-F5> :vim /<c-r><c-w>/*.cpp *.h *.py <cr>
 
