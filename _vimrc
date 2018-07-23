@@ -366,6 +366,7 @@ inoremap <unique> <c-]> <C-X><C-]>
 " search in current files, preview first. remove the original c-p
 "inoremap <un<c-p> <C-X><C-P>ique>
 map  <leader>bc :bot cw<cr>
+map  <leader>co:copen<cr>
 map  <leader>f :vim /<c-r><c-w>/*.cpp *.h *.py<cr>
 map  <C-F5> :vim /<c-r><c-w>/*.cpp *.h *.py <cr>
 
@@ -383,7 +384,7 @@ nmap <leader>cfi :cs find i <c-r><c-w> <CR>
 nmap <leader>cfs :cs find s <c-r><c-w> <CR>
 nmap <leader>cft :cs find t <c-r><c-w> <CR>
 
-nmap <C-'>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
@@ -399,7 +400,7 @@ autocmd BufNewFile,BufRead *.py nmap <m-p> :w <cr>:AsyncRun -raw python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
 "autocmd BufNewFile,BufRead *.py nmap <C-r> :w <cr>:!python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
-map <leader>cas :AsyncStop<cr>
+map <leader>as :AsyncStop<cr>
 nnoremap <leader>u :UndotreeToggle<cr>
 " ------------------------------------------------------------------
 " NERDTree
