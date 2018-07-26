@@ -545,7 +545,9 @@ endif
 "------------------------------------------------------------------------------
 " F9 一键保存、编译、连接存并运行
 map <F5> :call Run()<CR>
+map <m-n> :call Run()<CR>
 imap <F5> <ESC>:call Run()<CR>
+imap <m-n> <ESC>:call Run()<CR>
 
 " Ctrl + F9 一键保存并编译
 "map <C-F9> :call CompileRunGcc()<CR>
