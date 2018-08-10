@@ -99,6 +99,10 @@ Plugin 'tpope/vim-commentary' "快速注释 gc gcc
 
 Plugin 'DoxygenToolkit.vim'  "生成doxygen风格注释
 
+Plugin 'mbbill/echofunc'  "显示函数信息
+
+Plugin 'vim-scripts/OmniCppComplete'
+
 "-----------------
 " Fast navigation
 "-----------------
@@ -720,3 +724,20 @@ func! Run()
         echohl WarningMsg | echo " running finish"
     endif
 endfunc
+
+" ------------------------------------------------------------------
+"   omnicppcomplete
+" ------------------------------------------------------------------
+filetype plugin indent on
+set completeopt=longest,menu
+let OmniCpp_NamespaceSearch = 2     " search namespaces in the current buffer   and in included files
+let OmniCpp_ShowPrototypeInAbbr = 1 " 显示函数参数列表
+let OmniCpp_MayCompleteScope = 1    " 输入 :: 后自动补全
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+
+
+" ------------------------------------------------------------------
+"   super tab
+" ------------------------------------------------------------------
+let g:SuperTabRetainCompletionType=2
+let g:SuperTabDefaultCompletionType="<C-X><C-O>"
