@@ -759,6 +759,6 @@ let g:syntastic_check_on_open = 1
 "  ----------------------------------------------------------------
 " vimwiki
 let g:vimwiki_use_mouse = 1
-let g:vimwiki_list = [{'path': 'E:/vimwiki/',
+let g:vimwiki_list = [{'path': 'd:/vimwiki/',
 \ 'path_html': 'd:/vimwiki/html/',
 \ 'html_header': 'd:/vimwiki/template/header.tpl',}] 
