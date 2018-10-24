@@ -64,7 +64,7 @@ Plugin  'mattn/emmet-vim'   "html 增强插件
 Plugin  'davidhalter/jedi-vim'  "python增强
 
 Plugin 'ervandew/supertab'    "super tab tab 补全
-
+Plugin 'vimwiki/vimwiki'
 "-----------------
 "--snippets  "模板支持 如 输入for <tab>出现....
 "------------------
@@ -274,7 +274,7 @@ let python_highlight_all=1
 " ------------------------------------------------------------------
 " md txt tmp
 " ------------------------------------------------------------------
-au BufNewFile,BufRead *.txt,*.md,*.tmp
+au BufNewFile,BufRead *.txt,*.md,*.tmp,*.wiki
 \ set wrap    "设置折行"
 
 " ------------------------------------------------------------------
@@ -350,7 +350,7 @@ endfunction
 " fast key
 " -----------------------------------------------
 
-nmap <leader>w :w!<cr>
+nmap <leader>r :w!<cr>
 nmap <leader>z :bp!<cr>
 nmap <leader>x :bn!<cr>
 " When pressing <leader>cd switch to the directory of the open buffer
@@ -753,3 +753,12 @@ let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
+
+" -----------------------------------------------------------------
+"  vimwiki
+"  ----------------------------------------------------------------
+" vimwiki
+let g:vimwiki_use_mouse = 1
+let g:vimwiki_list = [{'path': 'E:/vimwiki/',
+\ 'path_html': 'd:/vimwiki/html/',
+\ 'html_header': 'd:/vimwiki/template/header.tpl',}] 
