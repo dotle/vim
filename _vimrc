@@ -65,6 +65,7 @@ Plugin  'davidhalter/jedi-vim'  "python增强
 
 Plugin 'ervandew/supertab'    "super tab tab 补全
 Plugin 'vimwiki/vimwiki'
+Plugin 'mattn/calendar-vim'
 "-----------------
 "--snippets  "模板支持 如 输入for <tab>出现....
 "------------------
