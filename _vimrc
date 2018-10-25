@@ -368,7 +368,7 @@ map <leader>bd :Bclose<cr>
 " Close all the buffers
 map <leader>ba :bd%<cr>
 
-map<leader>e :e! c:/vim/_vimrc<cr>
+map<leader>e :e! $VIMRUNTIME/../_vimrc<cr>
 "autocmd! bufwritepost _vimrc source c:/vim/_vimrc
 map <S-F> <ESC>:%!astyle --style=ansi -U -p -f<CR>
 
@@ -760,6 +760,4 @@ let g:syntastic_check_on_open = 1
 "  ----------------------------------------------------------------
 " vimwiki
 let g:vimwiki_use_mouse = 1
-let g:vimwiki_list = [{'path': 'd:/vimwiki/',
-\ 'path_html': 'd:/vimwiki/html/',
-\ 'html_header': 'd:/vimwiki/template/header.tpl',}] 
+source $VIMRUNTIME/../wiki-list.vim
