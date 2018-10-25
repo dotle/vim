@@ -1,9 +1,7 @@
 " config vimwiki path "
 
 
-let g:vimwiki_list = [{'path': 'd:/vimwiki/01.work',
-\ 'path_html': 'd:/vimwiki/html/',
-\ 'html_header': 'd:/vimwiki/template/header.tpl'},
+let g:vimwiki_list = [{'path': 'd:/vimwiki/01.work'},
 \{'path':'d:/vimwiki/02.meeting'}, 
 \{'path':'d:/vimwiki/03.home'}, 
 \{'path':'d:/vimwiki/NULL'}, 

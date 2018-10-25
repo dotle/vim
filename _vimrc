@@ -381,6 +381,7 @@ map  <leader>bc :cclose<cr>
 map  <leader>co :copen<cr>
 map  <leader>f :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 map  <C-F5> :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
+map  <F8> :Calendar<cr>
 
 "  cscope
 nmap <leader>csa :cs add cscope.out<CR>
