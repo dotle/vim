@@ -575,11 +575,17 @@ let s:Obj_Extension = '.o'
 let s:Exe_Extension = '.exe'
 let s:Sou_Error = 0
 
-let s:windows_CFlags = 'gcc\ -std=gnu++0x\ -fexec-charset=gbk\ -Wall\ -g\ -O3\ -c\ %\ -o\ %<.o'
-let s:linux_CFlags = 'gcc\ -std=gnu++0x\ -Wall\ -g\ -O3\ -c\ %\ -o\ %<.o'
+"let s:windows_CFlags = 'gcc\ -std=gnu++0x\ -fexec-charset=gbk\ -Wall\ -g\ -O3\ -c\ %\ -o\ %<.o'
+"let s:linux_CFlags = 'gcc\ -std=gnu++0x\ -Wall\ -g\ -O3\ -c\ %\ -o\ %<.o'
 
-let s:windows_CPPFlags = 'g++\ -std=gnu++0x\ -fexec-charset=gbk\ -Wall\ -g\ -O3\ -c\ %\ -o\ %<.o'
-let s:linux_CPPFlags = 'g++\ -std=gnu++0x\ -Wall\ -g\ -O3\ -c\ %\ -o\ %<.o'
+"let s:windows_CPPFlags = 'g++\ -std=gnu++0x\ -fexec-charset=gbk\ -Wall\ -g\ -O3\ -c\ %\ -o\ %<.o'
+"let s:linux_CPPFlags = 'g++\ -std=gnu++0x\ -Wall\ -g\ -O3\ -c\ %\ -o\ %<.o'
+
+let s:windows_CFlags = 'gcc\ -fexec-charset=utf-8\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
+let s:linux_CFlags = 'gcc\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
+ 
+let s:windows_CPPFlags = 'g++\ -fexec-charset=utf-8\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
+let s:linux_CPPFlags = 'g++\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
 
 func! CompileRunGcc()
     exe ":ccl"
