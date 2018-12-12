@@ -297,21 +297,8 @@ func! Compile()
         "exec "!gcc % -o %<"
         call CompileRunGcc()
         "exec " ./%<"
-    elseif &filetype == 'java'
-        exec "!javac %"
-        exec "!time java %<"
-    elseif &filetype == 'sh'
-        :!time bash %
     elseif &filetype == 'python'
          call RunPython()
-    elseif &filetype == 'html'
-        exec "!firefox % &"
-    elseif &filetype == 'go'
-"        exec "!go build %<"
-        exec "!time go run %"
-    elseif &filetype == 'mkd'
-        exec "!~/.vim/markdown.pl % > %.html &"
-        exec "!firefox %.html &"
     endif
 endfunc
 
@@ -412,7 +399,7 @@ nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 autocmd BufNewFile,BufRead *.py nmap <m-p> :w <cr>:AsyncRun -raw python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
 "autocmd BufNewFile,BufRead *.py nmap <C-r> :w <cr>:!python %<cr>
-autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
+"autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
 map <leader>as :AsyncStop<cr>
 nnoremap <leader>u :UndotreeToggle<cr>
 " ------------------------------------------------------------------
@@ -551,10 +538,10 @@ endif
 "  < 编译、连接、运行配置 >
 "------------------------------------------------------------------------------
 " F9 一键保存、编译、连接存并运行
-map <F5> :call Run()<CR>
-map <m-n> :call Run()<CR>
-imap <F5> <ESC>:call Run()<CR>
-imap <m-n> <ESC>:call Run()<CR>
+map <F5> :call MyRun()<CR>
+map <m-r> :call MyRun()<CR>
+imap <F5> <ESC>:call MyRun()<CR>
+imap <m-r> <ESC>:call MyRun()<CR>
 
 " Ctrl + F9 一键保存并编译
 "map <C-F9> :call CompileRunGcc()<CR>
@@ -703,7 +690,7 @@ func! Link()
     setlocal makeprg=make
 endfunc
 
-func! Run()
+func! CRun()
     let s:ShowWarning = 0
     call Link()
     let s:ShowWarning = 1
@@ -734,6 +721,30 @@ func! Run()
     endif
 endfunc
 
+func! MyRun()
+    exec "w"
+    if &filetype == 'c'
+        call CRun()
+	elseif &filetype == 'cpp'
+        call CRun()
+    elseif &filetype == 'python'
+        exec "!python %"
+    elseif &filetype == 'java'
+        exec "!javac %"
+        exec "!time java %<"
+    elseif &filetype == 'sh'
+        :!time bash %
+    elseif &filetype == 'html'
+        exec "!firefox % "
+    elseif &filetype == 'go'
+"        exec "!go build %<"
+        exec "!time go run %"
+    elseif &filetype == 'mkd'
+        exec "!~/.vim/markdown.pl % > %.html &"
+        exec "!firefox %.html &"
+	endif
+"autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
+endfunc
 " ------------------------------------------------------------------
 "   omnicppcomplete
 " ------------------------------------------------------------------
