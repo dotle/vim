@@ -548,8 +548,8 @@ imap <m-r> <ESC>:call MyRun()<CR>
 "imap <C-F9> <ESC> :call CompileRunGcc()<CR>
 
 " Ctrl + F10 一键保存并连接
-map <C-F10> :call Link()<CR>
-imap <C-F10> <ESC>:call Link()<CR>
+map <F10> :call Link()<CR>
+imap <F10> <ESC>:call Link()<CR>
 
 if has('gui_running') && has("win32")
     map <F11> :call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
