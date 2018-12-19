@@ -730,15 +730,15 @@ func! MyRun()
     elseif &filetype == 'python'
         exec "!python %"
     elseif &filetype == 'java'
-        exec "!javac %"
-        exec "!time java %<"
+        exec "!javac % && java %<"
+        "exec "!java %<"
     elseif &filetype == 'sh'
         :!time bash %
     elseif &filetype == 'html'
         exec "!firefox % "
     elseif &filetype == 'go'
 "        exec "!go build %<"
-        exec "!time go run %"
+        exec "!go run %"
     elseif &filetype == 'mkd'
         exec "!~/.vim/markdown.pl % > %.html &"
         exec "!firefox %.html &"
@@ -772,6 +772,19 @@ let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
+
+""""""""""""""""""""""""""""""
+" miniBufexplorer Config
+""""""""""""""""""""""""""""""
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapCTabSwitchWindows = 1
+"let g:miniBufExplMapCTabSwitchBufs = 1 
+let g:miniBufExplModSelTarget = 1
+
+"解决FileExplorer窗口变小问题
+let g:miniBufExplForceSyntaxEnable = 1
+let g:miniBufExplorerMoreThanOne=2
 
 " -----------------------------------------------------------------
 "  vimwiki
