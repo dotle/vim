@@ -402,6 +402,8 @@ autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
 "autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
 map <leader>as :AsyncStop<cr>
 nnoremap <leader>u :UndotreeToggle<cr>
+
+map <m-c> :%!xxd -g 1<cr>
 " ------------------------------------------------------------------
 " NERDTree
 " ------------------------------------------------------------------
