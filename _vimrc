@@ -404,6 +404,7 @@ map <leader>as :AsyncStop<cr>
 nnoremap <leader>u :UndotreeToggle<cr>
 
 map <m-c> :%!xxd -g 1<cr>
+map <m-x> :%!xxd -r<cr>
 " ------------------------------------------------------------------
 " NERDTree
 " ------------------------------------------------------------------
