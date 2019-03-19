@@ -46,8 +46,12 @@ call vundle#begin()
 Plugin   'gmarik/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
-
-
+"------------
+" common plugin
+" -----------
+Plugin 'vim-scripts/mru.vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'vim-scripts/Mark--Karkat'
 "--------------------
 " Code completions
 " -------------------
@@ -338,7 +342,7 @@ endfunction
 " fast key
 " -----------------------------------------------
 
-nmap <leader>r :w!<cr>
+"nmap <leader>r :w!<cr>
 nmap <leader>z :bp!<cr>
 nmap <leader>x :bn!<cr>
 " When pressing <leader>cd switch to the directory of the open buffer
@@ -795,3 +799,14 @@ let g:miniBufExplorerMoreThanOne=2
 " vimwiki
 let g:vimwiki_use_mouse = 1
 source $VIMRUNTIME/../wiki-list.vim
+
+
+" -----------------------------------------------------------------
+" 括号补全
+"  ----------------------------------------------------------------
+"inoremap ( ()<ESC>i
+"inoremap [ []<ESC>i
+"inoremap { {}<ESC>i
+"inoremap < <><ESC>i
+"inoremap ' ''<ESC>i
+"inoremap " ""<ESC>i
