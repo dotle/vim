@@ -36,26 +36,31 @@ set nocompatible              " required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=C:/Vim/vimfiles/bundle/vundle
-call vundle#begin()
+"set rtp+=C:/Vim/vimfiles/bundle/vundle
+"call vundle#begin()
+
+source c:/vim/plug.vim
+
+call plug#begin('d:/plugged')
+
 
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin   'gmarik/Vundle.vim'
+Plug   'gmarik/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 "------------
 " common plugin
 " -----------
-Plugin 'vim-scripts/mru.vim'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'vim-scripts/Mark--Karkat'
+Plug 'vim-scripts/mru.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'vim-scripts/Mark--Karkat'
 "--------------------
 " Code completions
 " -------------------
-Plugin  'mattn/emmet-vim'   "html 增强插件 
+Plug  'mattn/emmet-vim'   "html 增强插件 
 "-----python 增强
 "    Completion <C-Space>
 "    Goto assignments <leader>g (typical goto function)
@@ -65,77 +70,77 @@ Plugin  'mattn/emmet-vim'   "html 增强插件
 "    Usages <leader>n (shows all the usages of a name)
 "    Open module, e.g. :Pyimport os (opens the os module)
 "---------
-Plugin  'davidhalter/jedi-vim'  "python增强
+Plug  'davidhalter/jedi-vim'  "python增强
 
-Plugin 'ervandew/supertab'    "super tab tab 补全
-Plugin 'vimwiki/vimwiki'
-Plugin 'mattn/calendar-vim'
+Plug 'ervandew/supertab'    "super tab tab 补全
+Plug 'vimwiki/vimwiki'
+Plug 'mattn/calendar-vim'
 "-----------------
 "--snippets  "模板支持 如 输入for <tab>出现....
 "------------------
-Plugin  'MarcWeber/vim-addon-mw-utils' "应用
-Plugin  'tomtom/tlib_vim'  "应用
-Plugin  'garbas/vim-snipmate'
+Plug  'MarcWeber/vim-addon-mw-utils' "应用
+Plug  'tomtom/tlib_vim'  "应用
+Plug  'garbas/vim-snipmate'
 " Optional:
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 
 "----------------------
 " Coding
 " ---------------------
-Plugin  'Yggdroot/indentLine' "缩进对其线
-Plugin  'tell-k/vim-autopep8' "automatically formats Python code to conform to the PEP 8 style guide
-Plugin  'godlygeek/tabular'  " 输入tabular /, 则以，为分隔符
-Plugin  'plasticboy/vim-markdown' "markdown 支持
-Plugin  'vim-scripts/a.vim'   "头文件跳转  :A or <leader>is  <leader>ih
+Plug  'Yggdroot/indentLine' "缩进对其线
+Plug  'tell-k/vim-autopep8' "automatically formats Python code to conform to the PEP 8 style guide
+Plug  'godlygeek/tabular'  " 输入tabular /, 则以，为分隔符
+Plug  'plasticboy/vim-markdown' "markdown 支持
+Plug  'vim-scripts/a.vim'   "头文件跳转  :A or <leader>is  <leader>ih
 
-Plugin  'vim-scripts/indentpython.vim' "帮组python格式化代码缩进。
+Plug  'vim-scripts/indentpython.vim' "帮组python格式化代码缩进。
 
-Plugin  'scrooloose/syntastic'  "检查错误
+Plug  'scrooloose/syntastic'  "检查错误
 
-Plugin  'nvie/vim-flake8' "python 标准检查插件
+Plug  'nvie/vim-flake8' "python 标准检查插件
 
 "Plugin  'vim-scripts/taglist.vim'  "tag支持 <leader>tl
 
-Plugin  'majutsushi/tagbar'   "tagbar
+Plug  'majutsushi/tagbar'   "tagbar
 
-Plugin  'jmcantrell/vim-virtualenv' "python virtual 支持
+Plug  'jmcantrell/vim-virtualenv' "python virtual 支持
 
-Plugin 'tpope/vim-commentary' "快速注释 gc gcc
+Plug 'tpope/vim-commentary' "快速注释 gc gcc
 
-Plugin 'DoxygenToolkit.vim'  "生成doxygen风格注释
+Plug 'vim-scripts/DoxygenToolkit.vim'  "生成doxygen风格注释
 
-Plugin 'mbbill/echofunc'  "显示函数信息
+Plug 'mbbill/echofunc'  "显示函数信息
 
-Plugin 'vim-scripts/OmniCppComplete'
+Plug 'vim-scripts/OmniCppComplete'
 
 "-----------------
 " Fast navigation
 "-----------------
-Plugin 'easymotion/vim-easymotion'  "快速移动 使用<leader><leader>开头
+Plug 'easymotion/vim-easymotion'  "快速移动 使用<leader><leader>开头
 "Plugin 'Lokaltog/vim-easymotion'
-Plugin 'derekwyatt/vim-fswitch' "头文件和文件切换 <leader>sw
+Plug 'derekwyatt/vim-fswitch' "头文件和文件切换 <leader>sw
 "--------------
 " IDE features
 "--------------
-Plugin  'tpope/vim-fugitive' "git 支持
-Plugin  'bling/vim-airline' "状态栏
-Plugin  'fholgado/minibufexpl.vim'  "minibuf
-Plugin  'kien/ctrlp.vim' "c-p后调出窗口快速跳转文件及buf
-Plugin  'scrooloose/nerdtree' "文件树查看 <leader>nt F2
-Plugin  'terryma/vim-multiple-cursors'  "多光标操作 选中之后c-n  全选中c-n 则为选中头  vip为全选
-Plugin  'tpope/vim-surround'       "surround cs ds....
-Plugin  'mbbill/undotree'         "undo  操作
-Plugin  'skywind3000/asyncrun.vim'  "异步操作
+Plug  'tpope/vim-fugitive' "git 支持
+Plug  'bling/vim-airline' "状态栏
+Plug  'fholgado/minibufexpl.vim'  "minibuf
+Plug  'kien/ctrlp.vim' "c-p后调出窗口快速跳转文件及buf
+Plug  'scrooloose/nerdtree' "文件树查看 <leader>nt F2
+Plug  'terryma/vim-multiple-cursors'  "多光标操作 选中之后c-n  全选中c-n 则为选中头  vip为全选
+Plug  'tpope/vim-surround'       "surround cs ds....
+Plug  'mbbill/undotree'         "undo  操作
+Plug  'skywind3000/asyncrun.vim'  "异步操作
 "----------------------------------------
 " Syntax/Indent for language enhancement
 "----------------------------------------
 "------- web backend ---------
-Plugin '2072/PHP-Indenting-for-VIm' "官方php缩进
+Plug '2072/PHP-Indenting-for-VIm' "官方php缩进
 "Bundle 'tpope/vim-rails'
-Plugin 'lepture/vim-jinja'  "jinja支持
+Plug 'lepture/vim-jinja'  "jinja支持
 "Bundle 'digitaltoad/vim-jade'
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()            " required
 filetype plugin indent on    " required
 
 
@@ -759,9 +764,10 @@ filetype plugin indent on
 set completeopt=longest,menu
 let OmniCpp_NamespaceSearch = 2     " search namespaces in the current buffer   and in included files
 let OmniCpp_ShowPrototypeInAbbr = 1 " 显示函数参数列表
-let OmniCpp_MayCompleteScope = 1    " 输入 :: 后自动补全
+let OmniCpp_MayCompleteDot = 1   " 输入 .  后自动补全
+let OmniCpp_MayCompleteArrow = 1 " 输入 -> 后自动补全 
+let OmniCpp_MayCompleteScope = 1 " 输入 :: 后自动补全 
 let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-
 
 " ------------------------------------------------------------------
 "   super tab
