@@ -139,6 +139,13 @@ Plug '2072/PHP-Indenting-for-VIm' "官方php缩进
 "Bundle 'tpope/vim-rails'
 Plug 'lepture/vim-jinja'  "jinja支持
 "Bundle 'digitaltoad/vim-jade'
+
+"-----------lsc----------
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -816,3 +823,25 @@ source $VIMRUNTIME/../wiki-list.vim
 "inoremap < <><ESC>i
 "inoremap ' ''<ESC>i
 "inoremap " ""<ESC>i
+" ---------------lsc----------
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+
+"autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" python pyls
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+let g:jedi#completions_enabled = 0
+" c/c++ clangd
+if executable('clangd')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd']},
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
+endif
