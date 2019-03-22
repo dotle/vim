@@ -72,7 +72,7 @@ Plug  'mattn/emmet-vim'   "html 增强插件
 "---------
 Plug  'davidhalter/jedi-vim'  "python增强
 
-Plug 'ervandew/supertab'    "super tab tab 补全
+"Plug 'ervandew/supertab'    "super tab tab 补全
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
 "-----------------
@@ -111,7 +111,7 @@ Plug 'vim-scripts/DoxygenToolkit.vim'  "生成doxygen风格注释
 
 Plug 'mbbill/echofunc'  "显示函数信息
 
-Plug 'vim-scripts/OmniCppComplete'
+"Plug 'vim-scripts/OmniCppComplete'
 
 "-----------------
 " Fast navigation
@@ -145,7 +145,7 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
+Plug 'lifepillar/vim-mucomplete'
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -845,3 +845,19 @@ if executable('clangd')
         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
         \ })
 endif
+" go
+if executable('go-langserver')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'go-langserver',
+        \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
+        \ 'whitelist': ['go'],
+        \ })
+endif
+
+"let g:lsp_async_completion = 1
+let g:lsp_use_event_queue = 1
+autocmd FileType python setlocal omnifunc=lsp#complete
+autocmd FileType c setlocal omnifunc=lsp#complete
+autocmd FileType cpp setlocal omnifunc=lsp#complete
+autocmd FileType go setlocal omnifunc=lsp#complete
+set completeopt+=noselect
