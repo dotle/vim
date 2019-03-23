@@ -41,14 +41,14 @@ filetype off                  " required
 
 source c:/vim/plug.vim
 
-call plug#begin('d:/plugged')
+call plug#begin('c:/plugged')
 
 
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plug   'gmarik/Vundle.vim'
+"Plug   'gmarik/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 "------------
@@ -588,10 +588,10 @@ let s:Sou_Error = 0
 "let s:windows_CPPFlags = 'g++\ -std=gnu++0x\ -fexec-charset=gbk\ -Wall\ -g\ -O3\ -c\ %\ -o\ %<.o'
 "let s:linux_CPPFlags = 'g++\ -std=gnu++0x\ -Wall\ -g\ -O3\ -c\ %\ -o\ %<.o'
 
-let s:windows_CFlags = 'gcc\ -fexec-charset=utf-8\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
+let s:windows_CFlags = 'clang\ -fexec-charset=utf-8\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
 let s:linux_CFlags = 'gcc\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
  
-let s:windows_CPPFlags = 'g++\ -fexec-charset=utf-8\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
+let s:windows_CPPFlags = 'clang\ -fexec-charset=utf-8\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
 let s:linux_CPPFlags = 'g++\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
 
 func! CompileRunGcc()
@@ -824,7 +824,10 @@ source $VIMRUNTIME/../wiki-list.vim
 "inoremap < <><ESC>i
 "inoremap ' ''<ESC>i
 "inoremap " ""<ESC>i
-" ---------------lsc----------
+
+" -----------------------------------------------------------------
+" lsc
+" -----------------------------------------------------------------
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 
 "autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
