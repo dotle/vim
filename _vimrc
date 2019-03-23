@@ -70,9 +70,9 @@ Plug  'mattn/emmet-vim'   "html 增强插件
 "    Usages <leader>n (shows all the usages of a name)
 "    Open module, e.g. :Pyimport os (opens the os module)
 "---------
-Plug  'davidhalter/jedi-vim'  "python增强
+"Plug  'davidhalter/jedi-vim'  "python增强
 
-"Plug 'ervandew/supertab'    "super tab tab 补全
+Plug 'ervandew/supertab'    "super tab tab 补全
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
 "-----------------
@@ -145,7 +145,7 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'lifepillar/vim-mucomplete'
+"Plug 'lifepillar/vim-mucomplete'
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -373,7 +373,8 @@ map <leader>ba :bd%<cr>
 
 map<leader>e :e! $VIMRUNTIME/../_vimrc<cr>
 "autocmd! bufwritepost _vimrc source c:/vim/_vimrc
-map <S-F> <ESC>:%!astyle --style=ansi -U -p -f<CR>
+"map <S-F> <ESC>:%!astyle --style=ansi -U -p -f<CR>
+map <S-F> <ESC>:LspDocumentFormat<CR>
 
 " map for completion see :help ins-completion for whole completions
 " search tags
@@ -769,12 +770,12 @@ endfunc
 " ------------------------------------------------------------------
 filetype plugin indent on
 set completeopt=longest,menu
-let OmniCpp_NamespaceSearch = 2     " search namespaces in the current buffer   and in included files
-let OmniCpp_ShowPrototypeInAbbr = 1 " 显示函数参数列表
-let OmniCpp_MayCompleteDot = 1   " 输入 .  后自动补全
-let OmniCpp_MayCompleteArrow = 1 " 输入 -> 后自动补全 
-let OmniCpp_MayCompleteScope = 1 " 输入 :: 后自动补全 
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+"let OmniCpp_NamespaceSearch = 2     " search namespaces in the current buffer   and in included files
+"let OmniCpp_ShowPrototypeInAbbr = 1 " 显示函数参数列表
+"let OmniCpp_MayCompleteDot = 1   " 输入 .  后自动补全
+"let OmniCpp_MayCompleteArrow = 1 " 输入 -> 后自动补全 
+"let OmniCpp_MayCompleteScope = 1 " 输入 :: 后自动补全 
+"let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 
 " ------------------------------------------------------------------
 "   super tab
@@ -854,10 +855,12 @@ if executable('go-langserver')
         \ })
 endif
 
-"let g:lsp_async_completion = 1
+let g:lsp_async_completion = 1
 let g:lsp_use_event_queue = 1
 autocmd FileType python setlocal omnifunc=lsp#complete
 autocmd FileType c setlocal omnifunc=lsp#complete
 autocmd FileType cpp setlocal omnifunc=lsp#complete
 autocmd FileType go setlocal omnifunc=lsp#complete
-set completeopt+=noselect
+"set completeopt+=noselect
+autocmd FileType python,go,c,c++ nmap gd <plug>(lsp-definition)
+autocmd FileType python,go,c,c++ nmap gh <plug>(lsp-hover)
