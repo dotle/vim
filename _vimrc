@@ -382,7 +382,7 @@ inoremap <unique> <c-]> <C-X><C-]>
 " search in current files, preview first. remove the original c-p
 "inoremap <un<c-p> <C-X><C-P>ique>
 map  <leader>bc :cclose<cr>
-map  <leader>co :copen<cr>
+map  <leader>co :bot copen<cr>
 map  <leader>f :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 map  <C-F5> :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 map  <F8> :Calendar<cr>
