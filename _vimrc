@@ -124,6 +124,7 @@ Plug 'derekwyatt/vim-fswitch' "头文件和文件切换 <leader>sw
 " IDE features
 "--------------
 Plug  'tpope/vim-fugitive' "git 支持
+Plug  'airblade/vim-gitgutter'
 Plug  'bling/vim-airline' "状态栏
 Plug  'fholgado/minibufexpl.vim'  "minibuf
 Plug  'kien/ctrlp.vim' "c-p后调出窗口快速跳转文件及buf
