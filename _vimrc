@@ -114,6 +114,7 @@ Plug 'mbbill/echofunc'  "显示函数信息
 "Plug 'vim-scripts/OmniCppComplete'
 Plug 'ludovicchabant/vim-gutentags'   "管理tags
 Plug 'skywind3000/gutentags_plus'
+Plug 'octol/vim-cpp-enhanced-highlight'
 "-----------------
 " Fast navigation
 "-----------------
