@@ -887,7 +887,7 @@ nmap sn <Plug>(ale_next_wrap)
 "<Leader>s触发/关闭语法检查
 nmap <Leader>s :ALEToggle<CR>
 "<Leader>d查看错误或警告的详细信息
-"nmap <Leader>d :ALEDetail<CR>
+nmap <Leader>d :ALEDetail<CR>
 "使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
 "
 let g:ale_linters = {
