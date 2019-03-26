@@ -381,8 +381,8 @@ map <leader>ba :bd%<cr>
 
 map<leader>e :e! $VIMRUNTIME/../_vimrc<cr>
 "autocmd! bufwritepost _vimrc source c:/vim/_vimrc
-"map <S-F> <ESC>:%!astyle --style=ansi -U -p -f<CR>
-map <S-F> <ESC>:LspDocumentFormat<CR>
+map <S-F> <ESC>:%!astyle --style=ansi -U -p -f<CR>
+"map <S-F> <ESC>:LspDocumentFormat<CR>
 
 " map for completion see :help ins-completion for whole completions
 " search tags
@@ -907,6 +907,7 @@ let g:echodoc#enable_at_startup = 1
 " ctrlp
 """"""""""""""""""""""""""""""
 nnoremap <leader>tl :CtrlPBufTag<CR>
+nnoremap <leader>p :CtrlPBufTag<CR>
 
 """"""""""""""""""""""""""""""
 " easy-align 
