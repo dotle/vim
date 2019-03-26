@@ -60,7 +60,7 @@ Plug 'vim-scripts/Mark--Karkat'
 "--------------------
 " Code completions
 " -------------------
-Plug  'mattn/emmet-vim'   "html 增强插件 
+Plug  'mattn/emmet-vim'   "html 增强插件
 "-----python 增强
 "    Completion <C-Space>
 "    Goto assignments <leader>g (typical goto function)
@@ -95,7 +95,8 @@ Plug  'vim-scripts/a.vim'   "头文件跳转  :A or <leader>is  <leader>ih
 
 Plug  'vim-scripts/indentpython.vim' "帮组python格式化代码缩进。
 
-Plug  'scrooloose/syntastic'  "检查错误
+"Plug  'scrooloose/syntastic'  "检查错误
+Plug   'w0rp/ale'
 
 Plug  'nvie/vim-flake8' "python 标准检查插件
 
@@ -109,7 +110,8 @@ Plug 'tpope/vim-commentary' "快速注释 gc gcc
 
 Plug 'vim-scripts/DoxygenToolkit.vim'  "生成doxygen风格注释
 
-Plug 'mbbill/echofunc'  "显示函数信息
+"Plug 'mbbill/echofunc'  "显示函数信息
+Plug 'Shougo/echodoc.vim'
 
 "Plug 'vim-scripts/OmniCppComplete'
 Plug 'ludovicchabant/vim-gutentags'   "管理tags
@@ -134,6 +136,7 @@ Plug  'terryma/vim-multiple-cursors'  "多光标操作 选中之后c-n  全选�
 Plug  'tpope/vim-surround'       "surround cs ds....
 Plug  'mbbill/undotree'         "undo  操作
 Plug  'skywind3000/asyncrun.vim'  "异步操作
+Plug  'junegunn/vim-easy-align'
 "----------------------------------------
 " Syntax/Indent for language enhancement
 "----------------------------------------
@@ -192,6 +195,8 @@ set showtabline=0
 "设置字体"
 "set guifont=Monaco:h13
 "set guifont=Lucida_Console:h10:cANSI
+
+set noshowmode "for echodoc show func document
 
 let font_name = ""
 if getfontname("Lucida_Console") != ""
@@ -449,9 +454,9 @@ let g:indentLine_enabled = 1
 "autopep8设置"
 "----------------------------
 let g:autopep8_disable_show_diff=1
-"-------------------------------------------------------------------------------- 
+"--------------------------------------------------------------------------------
 "easy mothing
-"-------------------------------------------------------------------------------- 
+"--------------------------------------------------------------------------------
 let g:EasyMotion_smartcase = 1
 map <Leader><leader>h <Plug>(easymotion-linebackward)
 map <Leader><Leader>j <Plug>(easymotion-j)
@@ -553,15 +558,15 @@ unlet undo_dir
 " ------------------------------------------------------------------
 " tags
 " ------------------------------------------------------------------
-
-set tags+=./tags,./../tags,./**/tags,tags " which tags files CTRL-] will find 
+set tags=./.tags;,.tags
+"set tags+=./tags,./../tags,./**/tags,tags " which tags files CTRL-] will find
 set makeef=error.err " the errorfile for :make and :grep
 
 " ------------------------------------------------------------------
 " Desc: snipMate
 " ------------------------------------------------------------------
 :filetype plugin on
-"------------------------------------------------------------ 
+"------------------------------------------------------------
 " arduino
 "------------------------------------------------------------
 au BufNewFile,BufRead *.ino set filetype=c
@@ -634,7 +639,7 @@ let s:Sou_Error = 0
 
 let s:windows_CFlags = 'clang\ -fexec-charset=utf-8\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
 let s:linux_CFlags = 'gcc\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
- 
+
 let s:windows_CPPFlags = 'clang\ -fexec-charset=utf-8\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
 let s:linux_CPPFlags = 'g++\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
 
@@ -817,8 +822,8 @@ set completeopt=longest,menu
 "let OmniCpp_NamespaceSearch = 2     " search namespaces in the current buffer   and in included files
 "let OmniCpp_ShowPrototypeInAbbr = 1 " 显示函数参数列表
 "let OmniCpp_MayCompleteDot = 1   " 输入 .  后自动补全
-"let OmniCpp_MayCompleteArrow = 1 " 输入 -> 后自动补全 
-"let OmniCpp_MayCompleteScope = 1 " 输入 :: 后自动补全 
+"let OmniCpp_MayCompleteArrow = 1 " 输入 -> 后自动补全
+"let OmniCpp_MayCompleteScope = 1 " 输入 :: 后自动补全
 "let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 
 " ------------------------------------------------------------------
@@ -838,13 +843,87 @@ let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 
+" ------------------------------------------------------------------
+"  ALE
+" ------------------------------------------------------------------
+let g:ale_sign_error = "\ue009\ue009"
+hi! clear SpellBad
+hi! clear SpellCap
+hi! clear SpellRare
+hi! SpellBad gui=undercurl guisp=red
+hi! SpellCap gui=undercurl guisp=blue
+hi! SpellRare gui=undercurl guisp=magenta
+let g:ale_set_highlights = 0
+""自定义error和warning图标
+let g:ale_sign_error = 'E'
+let g:ale_sign_warning = 'w'
+""在vim自带的状态栏中整合ale
+"let g:ale_statusline_format = ['E %d', 'W %d', 'O OK']
+""显示Linter名称,出错或警告等相关信息
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+""打开文件时不进行检查
+"let g:ale_lint_on_enter = 0
+
+let g:ale_linters_explicit = 1
+let g:ale_completion_delay = 500
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 500
+"let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:airline#extensions#ale#enabled = 1
+
+let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+"let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
+
+
+
+"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
+"<Leader>s触发/关闭语法检查
+nmap <Leader>s :ALEToggle<CR>
+"<Leader>d查看错误或警告的详细信息
+"nmap <Leader>d :ALEDetail<CR>
+"使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
+"
+let g:ale_linters = {
+\    'c':          ['clang'],
+\    'cpp':        ['clang'],
+\    'python':     ['pylint'],
+\    'javascript': ['eslint'],
+\    'css':        ['stylelint'],
+\}
+
+""""""""""""""""""""""""""""""
+" echodoc
+""""""""""""""""""""""""""""""
+let g:echodoc#enable_at_startup = 1
+
+""""""""""""""""""""""""""""""
+" ctrlp
+""""""""""""""""""""""""""""""
+nnoremap <leader>tl :CtrlPBufTag<CR>
+
+""""""""""""""""""""""""""""""
+" easy-align 
+""""""""""""""""""""""""""""""
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 """"""""""""""""""""""""""""""
 " miniBufexplorer Config
 """"""""""""""""""""""""""""""
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapCTabSwitchWindows = 1
-"let g:miniBufExplMapCTabSwitchBufs = 1 
+"let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 
 "解决FileExplorer窗口变小问题
