@@ -1,11 +1,3 @@
-# jedi-vim
-    * Completion <C-Space>
-    * Goto assignments <leader>g (typical goto function)
-    * Goto definitions <leader>d (follow identifier as far as possible, includes imports and statements)
-    * Show Documentation/Pydoc K (shows a popup with assignments)
-    * Renaming <leader>r
-    * Usages <leader>n (shows all the usages of a name)
-    * Open module, e.g. :Pyimport os (opens the os module)
 # 基本操作
 	* 行末：$
 	* 行首：^
@@ -27,7 +19,7 @@
 	* 空格删除
 		有些人认为行末的空格是无用，浪费而难看的。要删除这些每行后面多余的空格，可以
 		执行如下命令：
-		:%s/\s\+$//
+		:%s/\s\+$
 		"gf 打开文件
 # plugin
 	Plugin  'tpope/vim-fugitive' "git 支持
