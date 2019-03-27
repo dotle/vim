@@ -1,7 +1,7 @@
-# install
+* install
 - git clone https://github.com/dotle/vim.git
 
-# Dependenc
+* Dependenc
 - git
 - lsp
 	+ llvm
@@ -9,4 +9,11 @@
 	+ go
 - lint
 	+ pylint
-	+ clang(llvm)
+	+ clang(llvm) gcc and so on
+	+ golint
+	+ stylelint
+	+ eslint
+	+ shellcheck
+- tag
+  	+ ctags
+	+ gtags

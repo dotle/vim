@@ -237,7 +237,7 @@ set whichwrap+=<,>,h,l
 set autoread
 set hidden                  " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
 
-let mapleader=','
+let mapleader="\<Space>"
 let g:Powerline_symbols='unicode'
 
 set clipboard=unnamed
@@ -362,7 +362,7 @@ endfunction
 " fast key
 " -----------------------------------------------
 
-"nmap <leader>r :w!<cr>
+nmap <leader>wr :w!<cr>
 nmap <leader>z :bp!<cr>
 nmap <leader>x :bn!<cr>
 " When pressing <leader>cd switch to the directory of the open buffer
@@ -891,11 +891,13 @@ nmap <Leader>d :ALEDetail<CR>
 "使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
 "
 let g:ale_linters = {
-\    'c':          ['clang'],
-\    'cpp':        ['clang'],
-\    'python':     ['pylint'],
+\   'cpp':         ['cppcheck','clang','gcc'],
+\   'c':           ['cppcheck','clang', 'gcc'],
+\   'python':      ['pylint'],
 \    'javascript': ['eslint'],
 \    'css':        ['stylelint'],
+\   'bash':        ['shellcheck'],
+\   'go':          ['golint'],
 \}
 
 """"""""""""""""""""""""""""""
