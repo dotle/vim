@@ -1,7 +1,7 @@
-* install
+# install
 - git clone https://github.com/dotle/vim.git
 
-* Dependenc
+# Dependenc
 - git
 - lsp
 	+ llvm
