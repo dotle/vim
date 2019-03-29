@@ -362,7 +362,7 @@ endfunction
 " fast key
 " -----------------------------------------------
 
-nmap <leader>wr :w!<cr>
+nmap <leader>we :w!<cr>
 nmap <leader>z :bp!<cr>
 nmap <leader>x :bn!<cr>
 " When pressing <leader>cd switch to the directory of the open buffer
@@ -558,8 +558,8 @@ unlet undo_dir
 " ------------------------------------------------------------------
 " tags
 " ------------------------------------------------------------------
-set tags=./.tags;,.tags
-"set tags+=./tags,./../tags,./**/tags,tags " which tags files CTRL-] will find
+"set tags=./.tags;,.tags
+set tags+=./tags,./../tags,./**/tags,tags " which tags files CTRL-] will find
 set makeef=error.err " the errorfile for :make and :grep
 
 " ------------------------------------------------------------------
@@ -986,10 +986,9 @@ endif
 
 let g:lsp_async_completion = 1
 let g:lsp_use_event_queue = 1
-autocmd FileType python setlocal omnifunc=lsp#complete
-autocmd FileType c setlocal omnifunc=lsp#complete
-autocmd FileType cpp setlocal omnifunc=lsp#complete
-autocmd FileType go setlocal omnifunc=lsp#complete
-"set completeopt+=noselect
-autocmd FileType python,go,c,c++ nmap gd <plug>(lsp-definition)
-autocmd FileType python,go,c,c++ nmap gh <plug>(lsp-hover)
+let g:lsp_text_edit_enabled = 0
+
+autocmd FileType python,go,c,cpp 
+\  setlocal omnifunc=lsp#complete |
+\  nmap gd <plug>(lsp-definition) | 
+\  nmap gh <plug>(lsp-hover)  
