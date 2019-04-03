@@ -190,6 +190,8 @@ set number
 set guioptions-=r
 set guioptions-=L
 set guioptions-=b
+set guioptions-=m
+set guioptions-=T
 "隐藏顶部标签栏"
 set showtabline=0
 "设置字体"
@@ -394,6 +396,7 @@ map  <leader>co :bot copen<cr>
 map  <leader>f :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 map  <C-F5> :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 map  <F8> :Calendar<cr>
+map  <leader>M :MRU<cr>
 
 "  cscope
 nmap <leader>csa :cs add cscope.out<CR>
