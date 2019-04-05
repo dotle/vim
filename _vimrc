@@ -244,6 +244,8 @@ let g:Powerline_symbols='unicode'
 
 set clipboard=unnamed
 
+set completeopt=longest,menu "补全菜单的样式
+
 " ------------------------------------------------------------------
 " code
 " ------------------------------------------------------------------
@@ -424,7 +426,7 @@ nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 "  run python
 "autocmd BufNewFile,BufRead *.py nmap <leader>cp :w <cr>:AsyncRun -raw python %<cr>
-autocmd BufNewFile,BufRead *.py nmap <m-p> :w <cr>:AsyncRun -raw python %<cr>
+autocmd BufNewFile,BufRead *.py nmap <m-y> :w <cr>:AsyncRun -raw python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
 "autocmd BufNewFile,BufRead *.py nmap <C-r> :w <cr>:!python %<cr>
 "autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
@@ -467,6 +469,87 @@ map <Leader><Leader>k <Plug>(easymotion-k)
 map <Leader><leader>l <Plug>(easymotion-lineforward)
 " 重复上一次操作, 类似repeat插件, 很强大
 map <Leader><leader>. <Plug>(easymotion-repeat)
+
+"*********************************************
+" gui terminal
+" ********************************************
+
+" 0:up, 1:down, 2:pgup, 3:pgdown, 4:top, 5:bottom
+function! Tools_PreviousCursor(mode)
+	if winnr('$') <= 1
+		return
+	endif
+	noautocmd silent! wincmd p
+	if a:mode == 0
+		exec "normal! \<c-y>"
+	elseif a:mode == 1
+		exec "normal! \<c-e>"
+	elseif a:mode == 2
+		exec "normal! ".winheight('.')."\<c-y>"
+	elseif a:mode == 3
+		exec "normal! ".winheight('.')."\<c-e>"
+	elseif a:mode == 4
+		normal! gg
+	elseif a:mode == 5
+		normal! G
+	elseif a:mode == 6
+		exec "normal! \<c-u>"
+	elseif a:mode == 7
+		exec "normal! \<c-d>"
+	elseif a:mode == 8
+		exec "normal! k"
+	elseif a:mode == 9
+		exec "normal! j"
+	endif
+	noautocmd silent! wincmd p
+endfunc
+
+
+" 0:up, 1:down, 2:pgup, 3:pgdown 4:top, 5:bottom, 
+function! Tools_QuickfixCursor(mode)
+	function! s:quickfix_cursor(mode)
+		if &buftype == 'quickfix'
+			if a:mode == 0
+				exec "normal! \<c-y>"
+			elseif a:mode == 1
+				exec "normal! \<c-e>"
+			elseif a:mode == 2
+				exec "normal! ".winheight('.')."\<c-y>"
+			elseif a:mode == 3
+				exec "normal! ".winheight('.')."\<c-e>"
+			elseif a:mode == 4
+				normal! gg
+			elseif a:mode == 5
+				normal! G
+			elseif a:mode == 6
+				exec "normal! \<c-u>"
+			elseif a:mode == 7
+				exec "normal! \<c-d>"
+			elseif a:mode == 8
+				exec "normal! k"
+			elseif a:mode == 9
+				exec "normal! j"
+			endif
+		endif
+	endfunc
+	let l:winnr = winnr()			
+	noautocmd silent! windo call s:quickfix_cursor(a:mode)
+	noautocmd silent! exec ''.l:winnr.'wincmd w'
+endfunc
+
+noremap <silent><M-[> :call Tools_QuickfixCursor(2)<cr>
+noremap <silent><M-]> :call Tools_QuickfixCursor(3)<cr>
+noremap <silent><M-{> :call Tools_QuickfixCursor(4)<cr>
+noremap <silent><M-}> :call Tools_QuickfixCursor(5)<cr>
+noremap <silent><M-u> :call Tools_PreviousCursor(6)<cr>
+noremap <silent><M-d> :call Tools_PreviousCursor(7)<cr>
+
+inoremap <silent><M-[> <c-\><c-o>:call Tools_QuickfixCursor(2)<cr>
+inoremap <silent><M-]> <c-\><c-o>:call Tools_QuickfixCursor(3)<cr>
+inoremap <silent><M-{> <c-\><c-o>:call Tools_QuickfixCursor(4)<cr>
+inoremap <silent><M-}> <c-\><c-o>:call Tools_QuickfixCursor(5)<cr>
+inoremap <silent><M-u> <c-\><c-o>:call Tools_PreviousCursor(6)<cr>
+inoremap <silent><M-d> <c-\><c-o>:call Tools_PreviousCursor(7)<cr>
 
 " ------------------------------------------------------------------
 " taglist
@@ -641,10 +724,10 @@ let s:Sou_Error = 0
 "let s:linux_CPPFlags = 'g++\ -std=gnu++0x\ -Wall\ -g\ -O3\ -c\ %\ -o\ %<.o'
 
 let s:windows_CFlags = 'clang\ -fexec-charset=utf-8\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
-let s:linux_CFlags = 'gcc\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
+let s:linux_CFlags = 'clang\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
 
 let s:windows_CPPFlags = 'clang\ -fexec-charset=utf-8\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
-let s:linux_CPPFlags = 'g++\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
+let s:linux_CPPFlags = 'clang\ -Wall\ -g\ -O0\ -c\ %\ -o\ %<.o'
 
 func! CompileRunGcc()
     exe ":ccl"
@@ -820,8 +903,6 @@ endfunc
 " ------------------------------------------------------------------
 "   omnicppcomplete
 " ------------------------------------------------------------------
-filetype plugin indent on
-set completeopt=longest,menu
 "let OmniCpp_NamespaceSearch = 2     " search namespaces in the current buffer   and in included files
 "let OmniCpp_ShowPrototypeInAbbr = 1 " 显示函数参数列表
 "let OmniCpp_MayCompleteDot = 1   " 输入 .  后自动补全
@@ -838,13 +919,13 @@ let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 " ------------------------------------------------------------------
 "   syntastic
 " ------------------------------------------------------------------
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+""set statusline+=%#warningmsg#
+""set statusline+=%{SyntasticStatuslineFlag()}
+""set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+"let g:syntastic_always_populate_loc_list = 1
+""let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
 
 " ------------------------------------------------------------------
 "  ALE
@@ -888,19 +969,19 @@ let g:ale_cpp_cppcheck_options = ''
 nmap sp <Plug>(ale_previous_wrap)
 nmap sn <Plug>(ale_next_wrap)
 "<Leader>s触发/关闭语法检查
-nmap <Leader>s :ALEToggle<CR>
+nmap <Leader>at :ALEToggle<CR>
 "<Leader>d查看错误或警告的详细信息
-nmap <Leader>d :ALEDetail<CR>
+nmap <Leader>ad :ALEDetail<CR>
 "使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
 "
 let g:ale_linters = {
-\   'cpp':         ['cppcheck','clang','gcc'],
-\   'c':           ['cppcheck','clang', 'gcc'],
-\   'python':      ['pylint'],
-\    'javascript': ['eslint'],
-\    'css':        ['stylelint'],
-\   'bash':        ['shellcheck'],
-\   'go':          ['golint'],
+\   'cpp':        ['cppcheck','clang','gcc'],
+\   'c':          ['cppcheck','clang', 'gcc'],
+\   'python':     ['pylint'],
+\   'javascript': ['eslint'],
+\   'css':        ['stylelint'],
+\   'bash':       ['shellcheck'],
+\   'go':         ['golint'],
 \}
 
 """"""""""""""""""""""""""""""
@@ -934,7 +1015,7 @@ let g:miniBufExplModSelTarget = 1
 
 "解决FileExplorer窗口变小问题
 let g:miniBufExplForceSyntaxEnable = 1
-let g:miniBufExplorerMoreThanOne=2
+let g:miniBufExplorerMoreThanOne=0
 
 " -----------------------------------------------------------------
 "  vimwiki
@@ -991,88 +1072,8 @@ let g:lsp_async_completion = 1
 let g:lsp_use_event_queue = 1
 let g:lsp_text_edit_enabled = 0
 
-autocmd FileType python,go,c,cpp 
+autocmd FileType python,go,c,cpp
 \  setlocal omnifunc=lsp#complete |
-\  nmap gd <plug>(lsp-definition) | 
-\  nmap gh <plug>(lsp-hover)  
+\  nmap <leader>gd <plug>(lsp-definition) |
+\  nmap <leader>gh <plug>(lsp-hover)
 
-"*********************************************
-" gui terminal
-" ********************************************
-
-" 0:up, 1:down, 2:pgup, 3:pgdown, 4:top, 5:bottom
-function! Tools_PreviousCursor(mode)
-	if winnr('$') <= 1
-		return
-	endif
-	noautocmd silent! wincmd p
-	if a:mode == 0
-		exec "normal! \<c-y>"
-	elseif a:mode == 1
-		exec "normal! \<c-e>"
-	elseif a:mode == 2
-		exec "normal! ".winheight('.')."\<c-y>"
-	elseif a:mode == 3
-		exec "normal! ".winheight('.')."\<c-e>"
-	elseif a:mode == 4
-		normal! gg
-	elseif a:mode == 5
-		normal! G
-	elseif a:mode == 6
-		exec "normal! \<c-u>"
-	elseif a:mode == 7
-		exec "normal! \<c-d>"
-	elseif a:mode == 8
-		exec "normal! k"
-	elseif a:mode == 9
-		exec "normal! j"
-	endif
-	noautocmd silent! wincmd p
-endfunc
-
-
-" 0:up, 1:down, 2:pgup, 3:pgdown 4:top, 5:bottom, 
-function! Tools_QuickfixCursor(mode)
-	function! s:quickfix_cursor(mode)
-		if &buftype == 'quickfix'
-			if a:mode == 0
-				exec "normal! \<c-y>"
-			elseif a:mode == 1
-				exec "normal! \<c-e>"
-			elseif a:mode == 2
-				exec "normal! ".winheight('.')."\<c-y>"
-			elseif a:mode == 3
-				exec "normal! ".winheight('.')."\<c-e>"
-			elseif a:mode == 4
-				normal! gg
-			elseif a:mode == 5
-				normal! G
-			elseif a:mode == 6
-				exec "normal! \<c-u>"
-			elseif a:mode == 7
-				exec "normal! \<c-d>"
-			elseif a:mode == 8
-				exec "normal! k"
-			elseif a:mode == 9
-				exec "normal! j"
-			endif
-		endif
-	endfunc
-	let l:winnr = winnr()			
-	noautocmd silent! windo call s:quickfix_cursor(a:mode)
-	noautocmd silent! exec ''.l:winnr.'wincmd w'
-endfunc
-
-noremap <silent><M-[> :call Tools_QuickfixCursor(2)<cr>
-noremap <silent><M-]> :call Tools_QuickfixCursor(3)<cr>
-noremap <silent><M-{> :call Tools_QuickfixCursor(4)<cr>
-noremap <silent><M-}> :call Tools_QuickfixCursor(5)<cr>
-noremap <silent><M-u> :call Tools_PreviousCursor(6)<cr>
-noremap <silent><M-d> :call Tools_PreviousCursor(7)<cr>
-
-inoremap <silent><M-[> <c-\><c-o>:call Tools_QuickfixCursor(2)<cr>
-inoremap <silent><M-]> <c-\><c-o>:call Tools_QuickfixCursor(3)<cr>
-inoremap <silent><M-{> <c-\><c-o>:call Tools_QuickfixCursor(4)<cr>
-inoremap <silent><M-}> <c-\><c-o>:call Tools_QuickfixCursor(5)<cr>
-inoremap <silent><M-u> <c-\><c-o>:call Tools_PreviousCursor(6)<cr>
-inoremap <silent><M-d> <c-\><c-o>:call Tools_PreviousCursor(7)<cr>
