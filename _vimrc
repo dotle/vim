@@ -57,7 +57,7 @@ call plug#begin('c:/plugged')
 Plug 'vim-scripts/mru.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-scripts/Mark--Karkat'
-"Plug 'liuchengxu/vim-which-key'
+Plug 'liuchengxu/vim-which-key'
 "--------------------
 " Code completions
 " -------------------
@@ -246,6 +246,20 @@ let g:Powerline_symbols='unicode'
 set clipboard=unnamed
 
 set completeopt=longest,menu "补全菜单的样式
+
+"------------------------------------------------------------------
+"  which key
+"------------------------------------------------------------------
+set timeoutlen=500
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=1 showmode ruler
+
+let g:which_key_map =  {}
+call which_key#register('<Space>', "g:which_key_map")
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+
 " ------------------------------------------------------------------
 " code
 " ------------------------------------------------------------------
@@ -371,7 +385,7 @@ nmap <leader>z :bp!<cr>
 nmap <leader>x :bn!<cr>
 " When pressing <leader>cd switch to the directory of the open buffer
 " cros to cd
-nmap <leader>vf :cd %:p:h<cr> 
+nmap <leader>vf :cd %:p:h<cr>
 
 " programming related
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -384,7 +398,7 @@ map <leader>bd :Bclose<cr>
 " Close all the buffers
 map <leader>ba :bd%<cr>
 
-map<leader>e :e! $VIMRUNTIME/../_vimrc<cr>
+map<leader>ee :e! $VIMRUNTIME/../_vimrc<cr>
 "autocmd! bufwritepost _vimrc source c:/vim/_vimrc
 map <S-F> <ESC>:%!astyle --style=ansi -U -p -f<CR>
 "map <S-F> <ESC>:LspDocumentFormat<CR>
@@ -394,36 +408,12 @@ map <S-F> <ESC>:%!astyle --style=ansi -U -p -f<CR>
 inoremap <unique> <c-]> <C-X><C-]>
 " search in current files, preview first. remove the original c-p
 "inoremap <un<c-p> <C-X><C-P>ique>
-map  <leader>bc :cclose<cr>
-map  <leader>co :bot copen<cr>
+map  <leader>qc :cclose<cr>
+map  <leader>qo :bot copen<cr>
 map  <leader>f :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 map  <C-F5> :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 map  <F8> :Calendar<cr>
 map  <leader>M :MRU<cr>
-
-"  cscope
-nmap <leader>csa :cs add cscope.out<CR>
-nmap <leader>csr :!cscope -Rb<CR>
-nmap <leader>csk :cs kill -1 <CR>
-nmap <leader>cfa :cs find a <c-r><c-w> <CR>
-nmap <leader>cfc :cs find c <c-r><c-w> <CR>
-nmap <leader>cfd :cs find d <c-r><c-w> <CR>
-nmap <leader>cfe :cs find e <c-r><c-w> <CR>
-nmap <leader>cff :cs find f <c-r><c-w> <CR>
-nmap <leader>cfg :cs find g <c-r><c-w> <CR>
-nmap <leader>cfi :cs find i <c-r><c-w> <CR>
-nmap <leader>cfs :cs find s <c-r><c-w> <CR>
-nmap <leader>cft :cs find t <c-r><c-w> <CR>
-
-nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-_>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 "  run python
 "autocmd BufNewFile,BufRead *.py nmap <leader>cp :w <cr>:AsyncRun -raw python %<cr>
@@ -434,8 +424,8 @@ autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
 map <leader>as :AsyncStop<cr>
 nnoremap <leader>u :UndotreeToggle<cr>
 
-map <m-c> :%!xxd -g 1<cr>
-map <m-x> :%!xxd -r<cr>
+map <leader>eh :%!xxd -g 1<cr>
+map <leader>en :%!xxd -r<cr>
 " ------------------------------------------------------------------
 " NERDTree
 " ------------------------------------------------------------------
@@ -967,8 +957,10 @@ let g:ale_cpp_cppcheck_options = ''
 
 
 "普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
-nmap sp <Plug>(ale_previous_wrap)
-nmap sn <Plug>(ale_next_wrap)
+"nmap sp <Plug>(ale_previous_wrap)
+"nmap sn <Plug>(ale_next_wrap)
+nmap <leader>ap <Plug>(ale_previous_wrap)
+nmap <leader>an <Plug>(ale_next_wrap)
 "<Leader>s触发/关闭语法检查
 nmap <Leader>at :ALEToggle<CR>
 "<Leader>d查看错误或警告的详细信息
@@ -994,16 +986,15 @@ let g:echodoc#enable_at_startup = 1
 " ctrlp
 """"""""""""""""""""""""""""""
 nnoremap <leader>tl :CtrlPBufTag<CR>
-nnoremap <leader>p :CtrlPBufTag<CR>
 
 """"""""""""""""""""""""""""""
 " easy-align 
 """"""""""""""""""""""""""""""
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
+xmap <leader>ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+nmap <leader>ga <Plug>(EasyAlign)
 
 """"""""""""""""""""""""""""""
 " miniBufexplorer Config
@@ -1024,17 +1015,6 @@ let g:miniBufExplorerMoreThanOne=0
 " vimwiki
 let g:vimwiki_use_mouse = 1
 source $VIMRUNTIME/../wiki-list.vim
-
-
-" -----------------------------------------------------------------
-" 括号补全
-"  ----------------------------------------------------------------
-"inoremap ( ()<ESC>i
-"inoremap [ []<ESC>i
-"inoremap { {}<ESC>i
-"inoremap < <><ESC>i
-"inoremap ' ''<ESC>i
-"inoremap " ""<ESC>i
 
 " -----------------------------------------------------------------
 " lsc
@@ -1074,7 +1054,7 @@ let g:lsp_use_event_queue = 1
 let g:lsp_text_edit_enabled = 0
 
 autocmd FileType python,go,c,cpp
-\  setlocal omnifunc=lsp#complete |
-\  nmap <leader>ld <plug>(lsp-definition) |
+\  setlocal omnifunc=lsp#complete|
+\  nmap <leader>ld <plug>(lsp-definition)|
 \  nmap <leader>lh <plug>(lsp-hover)
 
