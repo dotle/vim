@@ -275,6 +275,7 @@ let g:which_key_map['w'] = {
       \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
       \ '?' : ['Windows'    , 'fzf-window']            ,
       \ }
+
 call which_key#register('<Space>', "g:which_key_map")
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
@@ -402,7 +403,8 @@ nmap <leader>we :w!<cr>
 nmap <leader>z :bp!<cr>
 nmap <leader>x :bn!<cr>
 " When pressing <leader>cd switch to the directory of the open buffer
-map <leader>vf :cd %:p:h<cr> " cros to cd
+" cros to cd
+nmap <leader>vf :cd %:p:h<cr> 
 
 " programming related
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -1106,6 +1108,6 @@ let g:lsp_text_edit_enabled = 0
 
 autocmd FileType python,go,c,cpp
 \  setlocal omnifunc=lsp#complete |
-\  nmap <leader>gd <plug>(lsp-definition) |
-\  nmap <leader>gh <plug>(lsp-hover)
+\  nmap <leader>ld <plug>(lsp-definition) |
+\  nmap <leader>lh <plug>(lsp-hover)
 
