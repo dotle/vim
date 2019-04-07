@@ -432,7 +432,7 @@ map  <leader>em :MRU<cr>
 "  run python
 "autocmd BufNewFile,BufRead *.py nmap <leader>cp :w <cr>:AsyncRun -raw python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <m-y> :w <cr>:AsyncRun -raw python %<cr>
-autocmd BufNewFile,BufRead *.py nmap <leader>pP :w <cr>:AsyncRun -raw python %<cr>
+autocmd BufNewFile,BufRead *.py nmap <leader>py :w <cr>:AsyncRun -raw python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
 "autocmd BufNewFile,BufRead *.py nmap <C-r> :w <cr>:!python %<cr>
 "autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
