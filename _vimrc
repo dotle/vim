@@ -415,6 +415,7 @@ map <leader>ba :bd%<cr>
 map<leader>ee :e! $VIMRUNTIME/../_vimrc<cr>
 "autocmd! bufwritepost _vimrc source c:/vim/_vimrc
 map <S-F> <ESC>:%!astyle --style=ansi -U -p -f<CR>
+nmap <leader>pf <ESC>:%!astyle --style=ansi -U -p -f<CR>
 "map <S-F> <ESC>:LspDocumentFormat<CR>
 
 " map for completion see :help ins-completion for whole completions
@@ -1070,8 +1071,14 @@ let g:lsp_async_completion = 1
 let g:lsp_use_event_queue = 1
 let g:lsp_text_edit_enabled = 0
 
+nmap <leader>ls :LspStatus<cr>
+
 autocmd FileType python,go,c,cpp
 \  setlocal omnifunc=lsp#complete|
 \  nmap <leader>ld <plug>(lsp-definition)|
-\  nmap <leader>lh <plug>(lsp-hover)
-
+\  nmap <leader>lh <plug>(lsp-hover)|
+\  nmap <leader>lf :LspDocumentFormat<cr>|
+\  vmap <leader>lf :LspDocumentRangeFormat<cr>|
+\  nmap <leader>ln :LspNextError<cr>|
+\  nmap <leader>lp :LspPreviousError<cr>|
+\  nmap <leader>lr :LspRename<cr>
