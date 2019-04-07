@@ -199,7 +199,8 @@ set showtabline=0
 "set guifont=Monaco:h13
 "set guifont=Lucida_Console:h10:cANSI
 
-set noshowmode "for echodoc show func document
+"set noshowmode "for echodoc show func document
+set cmdheight=2 "for echodoc show func document
 
 let font_name = ""
 if getfontname("Lucida_Console") != ""
@@ -253,9 +254,21 @@ set completeopt=longest,menu "补全菜单的样式
 set timeoutlen=500
 autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=1 showmode ruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 let g:which_key_map =  {}
+let g:which_key_map.a = {'name':'+ALE'}
+let g:which_key_map.b = {'name':'+buffer'}
+let g:which_key_map.c = {'name':'+Gscope'}
+let g:which_key_map.d = {'name':'+Dox'}
+let g:which_key_map.e = {'name':'+Edit'}
+let g:which_key_map.l = {'name':'+Lsp'}
+let g:which_key_map.q = {'name':'+quickfix'}
+let g:which_key_map.p = {'name':'+Program'}
+let g:which_key_map.t = {'name':'+tag'}
+let g:which_key_map.w = {'name':'+wiki'}
+let g:which_key_map[' ']= {'name':'+EasyMotion'}
+
 call which_key#register('<Space>', "g:which_key_map")
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
@@ -326,6 +339,7 @@ au BufNewFile,BufRead *.txt,*.md,*.tmp,*.wiki
 map <F9> :call Compile()<CR>
 imap <F9> <esc>:call Compile()<CR>
 map <m-m> :call Compile()<CR>
+map <leader>pc :call Compile()<CR>
 imap <m-m> <esc>:call Compile()<CR>
 func! Compile()
     exec "w"
@@ -381,16 +395,16 @@ endfunction
 " -----------------------------------------------
 
 nmap <leader>we :w!<cr>
-nmap <leader>z :bp!<cr>
-nmap <leader>x :bn!<cr>
+nmap <leader>bp :bp!<cr>
+nmap <leader>bn :bn!<cr>
 " When pressing <leader>cd switch to the directory of the open buffer
 " cros to cd
-nmap <leader>vf :cd %:p:h<cr>
+nmap <leader>ed :cd %:p:h<cr>
 
 " programming related
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 nmap <leader>ts :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-nmap <leader>sw :FSHere <CR>
+nmap <leader>es :FSHere <CR>
 nnoremap <silent> <F4> :A<CR>
 " Close the current buffer
 map <leader>bd :Bclose<cr>
@@ -410,19 +424,20 @@ inoremap <unique> <c-]> <C-X><C-]>
 "inoremap <un<c-p> <C-X><C-P>ique>
 map  <leader>qc :cclose<cr>
 map  <leader>qo :bot copen<cr>
-map  <leader>f :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
+map  <leader>ef :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 map  <C-F5> :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 map  <F8> :Calendar<cr>
-map  <leader>M :MRU<cr>
+map  <leader>em :MRU<cr>
 
 "  run python
 "autocmd BufNewFile,BufRead *.py nmap <leader>cp :w <cr>:AsyncRun -raw python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <m-y> :w <cr>:AsyncRun -raw python %<cr>
+autocmd BufNewFile,BufRead *.py nmap <leader>pP :w <cr>:AsyncRun -raw python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
 "autocmd BufNewFile,BufRead *.py nmap <C-r> :w <cr>:!python %<cr>
 "autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
-map <leader>as :AsyncStop<cr>
-nnoremap <leader>u :UndotreeToggle<cr>
+map <leader>ps :AsyncStop<cr>
+nnoremap <leader>eu :UndotreeToggle<cr>
 
 map <leader>eh :%!xxd -g 1<cr>
 map <leader>en :%!xxd -r<cr>
@@ -431,7 +446,7 @@ map <leader>en :%!xxd -r<cr>
 " ------------------------------------------------------------------
 "F2开启和关闭树"
 map <F2> :NERDTreeToggle<CR>
-map <leader>nt :NERDTree<CR>
+map <leader>et :NERDTree<CR>
 let NERDTreeChDirMode=2
 "显示书签"
 let NERDTreeShowBookmarks=1
@@ -686,6 +701,7 @@ endif
 " F9 一键保存、编译、连接存并运行
 map <F5> :call MyRun()<CR>
 map <m-r> :call MyRun()<CR>
+map <leader>pr :call MyRun()<CR>
 imap <F5> <ESC>:call MyRun()<CR>
 imap <m-r> <ESC>:call MyRun()<CR>
 
@@ -695,6 +711,7 @@ imap <m-r> <ESC>:call MyRun()<CR>
 
 " Ctrl + F10 一键保存并连接
 map <F10> :call Link()<CR>
+map <leader>pl :call Link()<CR>
 imap <F10> <ESC>:call Link()<CR>
 
 if has('gui_running') && has("win32")
@@ -985,16 +1002,16 @@ let g:echodoc#enable_at_startup = 1
 """"""""""""""""""""""""""""""
 " ctrlp
 """"""""""""""""""""""""""""""
-nnoremap <leader>tl :CtrlPBufTag<CR>
+nnoremap <leader>pp :CtrlPBufTag<CR>
 
 """"""""""""""""""""""""""""""
 " easy-align 
 """"""""""""""""""""""""""""""
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap <leader>ga <Plug>(EasyAlign)
+xmap <leader>ea <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap <leader>ga <Plug>(EasyAlign)
+nmap <leader>ea <Plug>(EasyAlign)
 
 """"""""""""""""""""""""""""""
 " miniBufexplorer Config
