@@ -1077,8 +1077,6 @@ autocmd FileType python,go,c,cpp
 \  setlocal omnifunc=lsp#complete|
 \  nmap <leader>ld <plug>(lsp-definition)|
 \  nmap <leader>lh <plug>(lsp-hover)|
-\  nmap <leader>lf :LspDocumentFormat<cr>|
-\  vmap <leader>lf :LspDocumentRangeFormat<cr>|
 \  nmap <leader>ln :LspNextError<cr>|
 \  nmap <leader>lp :LspPreviousError<cr>|
 \  nmap <leader>lr :LspRename<cr>
