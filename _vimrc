@@ -35,47 +35,24 @@ endfunction
 set nocompatible              " required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-"set rtp+=C:/Vim/vimfiles/bundle/vundle
-"call vundle#begin()
-
 source c:/vim/plug.vim
 
 call plug#begin('c:/plugged')
 
-
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-"Plug   'gmarik/Vundle.vim'
-
-" Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 "------------
 " common plugin
 " -----------
-Plug 'vim-scripts/mru.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'vim-scripts/Mark--Karkat'
-Plug 'liuchengxu/vim-which-key'
+Plug  'vim-scripts/mru.vim'
+Plug  'jiangmiao/auto-pairs'
+Plug  'vim-scripts/Mark--Karkat'
+Plug  'liuchengxu/vim-which-key'
 "--------------------
 " Code completions
 " -------------------
 Plug  'mattn/emmet-vim'   "html 增强插件
-"-----python 增强
-"    Completion <C-Space>
-"    Goto assignments <leader>g (typical goto function)
-"    Goto definitions <leader>d (follow identifier as far as possible, includes imports and statements)
-"    Show Documentation/Pydoc K (shows a popup with assignments)
-"    Renaming <leader>r
-"    Usages <leader>n (shows all the usages of a name)
-"    Open module, e.g. :Pyimport os (opens the os module)
-"---------
-"Plug  'davidhalter/jedi-vim'  "python增强
-
-Plug 'ervandew/supertab'    "super tab tab 补全
-Plug 'vimwiki/vimwiki'
-Plug 'mattn/calendar-vim'
+Plug  'ervandew/supertab'    "super tab tab 补全
+Plug  'vimwiki/vimwiki'
+Plug  'mattn/calendar-vim'
 "-----------------
 "--snippets  "模板支持 如 输入for <tab>出现....
 "------------------
@@ -83,8 +60,7 @@ Plug  'MarcWeber/vim-addon-mw-utils' "应用
 Plug  'tomtom/tlib_vim'  "应用
 Plug  'garbas/vim-snipmate'
 " Optional:
-Plug 'honza/vim-snippets'
-
+Plug  'honza/vim-snippets'
 "----------------------
 " Coding
 " ---------------------
@@ -93,37 +69,23 @@ Plug  'tell-k/vim-autopep8' "automatically formats Python code to conform to the
 Plug  'godlygeek/tabular'  " 输入tabular /, 则以，为分隔符
 Plug  'plasticboy/vim-markdown' "markdown 支持
 Plug  'vim-scripts/a.vim'   "头文件跳转  :A or <leader>is  <leader>ih
-
 Plug  'vim-scripts/indentpython.vim' "帮组python格式化代码缩进。
-
-"Plug  'scrooloose/syntastic'  "检查错误
-Plug   'w0rp/ale'
-
+Plug  'w0rp/ale'
 Plug  'nvie/vim-flake8' "python 标准检查插件
-
-"Plugin  'vim-scripts/taglist.vim'  "tag支持 <leader>tl
-
 Plug  'majutsushi/tagbar'   "tagbar
-
 Plug  'jmcantrell/vim-virtualenv' "python virtual 支持
-
-Plug 'tpope/vim-commentary' "快速注释 gc gcc
-
-Plug 'vim-scripts/DoxygenToolkit.vim'  "生成doxygen风格注释
-
-"Plug 'mbbill/echofunc'  "显示函数信息
-Plug 'Shougo/echodoc.vim'
-
-"Plug 'vim-scripts/OmniCppComplete'
-Plug 'ludovicchabant/vim-gutentags'   "管理tags
-Plug 'skywind3000/gutentags_plus'
-Plug 'octol/vim-cpp-enhanced-highlight'
+Plug  'tpope/vim-commentary' "快速注释 gc gcc
+Plug  'vim-scripts/DoxygenToolkit.vim'  "生成doxygen风格注释
+Plug  'Shougo/echodoc.vim'
+Plug  'ludovicchabant/vim-gutentags'   "管理tags
+Plug  'skywind3000/gutentags_plus'
+Plug  'octol/vim-cpp-enhanced-highlight'
 "-----------------
 " Fast navigation
 "-----------------
-Plug 'easymotion/vim-easymotion'  "快速移动 使用<leader><leader>开头
+Plug  'easymotion/vim-easymotion'  "快速移动 使用<leader><leader>开头
 "Plugin 'Lokaltog/vim-easymotion'
-Plug 'derekwyatt/vim-fswitch' "头文件和文件切换 <leader>sw
+Plug  'derekwyatt/vim-fswitch' "头文件和文件切换 <leader>sw
 "--------------
 " IDE features
 "--------------
@@ -142,21 +104,18 @@ Plug  'junegunn/vim-easy-align'
 " Syntax/Indent for language enhancement
 "----------------------------------------
 "------- web backend ---------
-Plug '2072/PHP-Indenting-for-VIm' "官方php缩进
+Plug  '2072/PHP-Indenting-for-VIm' "官方php缩进
 "Bundle 'tpope/vim-rails'
-Plug 'lepture/vim-jinja'  "jinja支持
+Plug  'lepture/vim-jinja'  "jinja支持
 "Bundle 'digitaltoad/vim-jade'
 
 "-----------lsc----------
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-"Plug 'lifepillar/vim-mucomplete'
-" All of your Plugins must be added before the following line
+Plug  'prabirshrestha/asyncomplete.vim'
+Plug  'prabirshrestha/async.vim'
+Plug  'prabirshrestha/vim-lsp'
+Plug  'prabirshrestha/asyncomplete-lsp.vim'
 call plug#end()            " required
 filetype plugin indent on    " required
-
 
 " ------------------------------------------------------------------
 " chinese
@@ -179,7 +138,6 @@ endif
  language messages zh_CN.utf-8
 "中文乱码结束
 
-
 " ------------------------------------------------------------------
 " normal
 " ------------------------------------------------------------------
@@ -195,9 +153,6 @@ set guioptions-=m
 set guioptions-=T
 "隐藏顶部标签栏"
 set showtabline=0
-"设置字体"
-"set guifont=Monaco:h13
-"set guifont=Lucida_Console:h10:cANSI
 
 "set noshowmode "for echodoc show func document
 set cmdheight=2 "for echodoc show func document
@@ -323,8 +278,6 @@ au BufNewFile,BufRead *.py
 hi BadWhitespace guifg=gray guibg=red ctermfg=gray ctermbg=red
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-
-
 let python_highlight_all=1
 
 " ------------------------------------------------------------------
@@ -393,7 +346,7 @@ endfunction
 " -----------------------------------------------
 " fast key
 " -----------------------------------------------
-
+nmap <leader>eb :%s/\s\+$<CR>
 nmap <leader>we :w!<cr>
 nmap <leader>bp :bp!<cr>
 nmap <leader>bn :bn!<cr>
@@ -416,8 +369,6 @@ map<leader>ee :e! $VIMRUNTIME/../_vimrc<cr>
 "autocmd! bufwritepost _vimrc source c:/vim/_vimrc
 map <S-F> <ESC>:%!astyle --style=ansi -U -p -f<CR>
 nmap <leader>pf <ESC>:%!astyle --style=ansi -U -p -f<CR>
-"map <S-F> <ESC>:LspDocumentFormat<CR>
-
 " map for completion see :help ins-completion for whole completions
 " search tags
 inoremap <unique> <c-]> <C-X><C-]>
@@ -512,7 +463,7 @@ function! Tools_PreviousCursor(mode)
 endfunc
 
 
-" 0:up, 1:down, 2:pgup, 3:pgdown 4:top, 5:bottom, 
+" 0:up, 1:down, 2:pgup, 3:pgdown 4:top, 5:bottom,
 function! Tools_QuickfixCursor(mode)
 	function! s:quickfix_cursor(mode)
 		if &buftype == 'quickfix'
@@ -539,7 +490,7 @@ function! Tools_QuickfixCursor(mode)
 			endif
 		endif
 	endfunc
-	let l:winnr = winnr()			
+	let l:winnr = winnr()
 	noautocmd silent! windo call s:quickfix_cursor(a:mode)
 	noautocmd silent! exec ''.l:winnr.'wincmd w'
 endfunc
@@ -558,21 +509,11 @@ inoremap <silent><M-}> <c-\><c-o>:call Tools_QuickfixCursor(5)<cr>
 inoremap <silent><M-u> <c-\><c-o>:call Tools_PreviousCursor(6)<cr>
 inoremap <silent><M-d> <c-\><c-o>:call Tools_PreviousCursor(7)<cr>
 
-" ------------------------------------------------------------------
-" taglist
-" ------------------------------------------------------------------
-"let Tlist_Show_One_File = 1            "只显示当前文件的taglist，默认是显示多个
-"let Tlist_Exit_OnlyWindow = 1          "如果taglist是最后一个窗口，则退出vim
-"let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist
-"let Tlist_GainFocus_On_ToggleOpen = 1  "打开taglist时，光标保留在taglist窗口
-"let Tlist_Ctags_Cmd='d:/tools/ctags.exe'  "设置ctags命令的位置
-"let Tlist_WinWidth = 40
-"nnoremap <leader>tl : Tlist<CR>        "设置关闭和打开taglist窗口的快捷键
-
 " ----------------------------------------
 " tagbar
 " --------------------------------------------------
-nnoremap <leader>tb :TagbarToggle<CR>        "设置关闭和打开tagbar窗口的快捷键
+"设置关闭和打开tagbar窗口的快捷键
+nnoremap <leader>tb :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 let g:tagbar_width = 25
 
@@ -675,7 +616,6 @@ map <leader>df :Dox<CR>
 map <leader>db :DoxBlock<CR>
 map <leader>dc a /* */<LEFT><LEFT><LEFT>
 "-----------------------------------------------------------------
-
 
 "____________________test____________________________________
 "------------------------------------------------------------------------------
@@ -909,32 +849,12 @@ func! MyRun()
 	endif
 "autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
 endfunc
-" ------------------------------------------------------------------
-"   omnicppcomplete
-" ------------------------------------------------------------------
-"let OmniCpp_NamespaceSearch = 2     " search namespaces in the current buffer   and in included files
-"let OmniCpp_ShowPrototypeInAbbr = 1 " 显示函数参数列表
-"let OmniCpp_MayCompleteDot = 1   " 输入 .  后自动补全
-"let OmniCpp_MayCompleteArrow = 1 " 输入 -> 后自动补全
-"let OmniCpp_MayCompleteScope = 1 " 输入 :: 后自动补全
-"let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 
 " ------------------------------------------------------------------
 "   super tab
 " ------------------------------------------------------------------
 let g:SuperTabRetainCompletionType=2
 let g:SuperTabDefaultCompletionType="<C-X><C-O>"
-
-" ------------------------------------------------------------------
-"   syntastic
-" ------------------------------------------------------------------
-""set statusline+=%#warningmsg#
-""set statusline+=%{SyntasticStatuslineFlag()}
-""set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-""let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
 
 " ------------------------------------------------------------------
 "  ALE
@@ -972,8 +892,6 @@ let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
 
-
-
 "普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
 "nmap sp <Plug>(ale_previous_wrap)
 "nmap sn <Plug>(ale_next_wrap)
@@ -1006,7 +924,7 @@ let g:echodoc#enable_at_startup = 1
 nnoremap <leader>pp :CtrlPBufTag<CR>
 
 """"""""""""""""""""""""""""""
-" easy-align 
+" easy-align
 """"""""""""""""""""""""""""""
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap <leader>ea <Plug>(EasyAlign)
