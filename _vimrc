@@ -203,6 +203,8 @@ set clipboard=unnamed
 
 set completeopt=longest,menu "补全菜单的样式
 
+nmap <leader>pv :source %<CR>
+
 "------------------------------------------------------------------
 "  which key
 "------------------------------------------------------------------
@@ -224,9 +226,12 @@ let g:which_key_map.t = {'name':'+tag'}
 let g:which_key_map.w = {'name':'+wiki'}
 let g:which_key_map[' ']= {'name':'+EasyMotion'}
 
-call which_key#register('<Space>', "g:which_key_map")
-nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+try
+	call which_key#register('<Space>', "g:which_key_map")
+	nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+	vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+catch
+endtry
 
 " ------------------------------------------------------------------
 " code
