@@ -267,7 +267,7 @@ set lines=42 columns=128
 " preview windows
 " ------------------------------------------------------------------
 noremap <leader>tp :PreviewSignature!<cr>
-nmap <leader>pc :PreviewClose<cr>
+nmap <leader>qp :PreviewClose<cr>
 
 " ------------------------------------------------------------------
 " splite windows
