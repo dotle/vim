@@ -79,6 +79,8 @@ Plug  'vim-scripts/DoxygenToolkit.vim'  "生成doxygen风格注释
 Plug  'Shougo/echodoc.vim'
 Plug  'ludovicchabant/vim-gutentags'   "管理tags
 Plug  'skywind3000/gutentags_plus'
+Plug  'skywind3000/vim-preview'
+Plug  'tpope/vim-unimpaired'
 Plug  'octol/vim-cpp-enhanced-highlight'
 "-----------------
 " Fast navigation
@@ -94,7 +96,6 @@ Plug  'mhinz/vim-signify'
 Plug  'bling/vim-airline' "状态栏
 Plug  'fholgado/minibufexpl.vim'  "minibuf
 Plug  'kien/ctrlp.vim' "c-p后调出窗口快速跳转文件及buf
-Plug  'fisadev/vim-ctrlp-cmdpalette'
 Plug  'scrooloose/nerdtree' "文件树查看 <leader>nt F2
 Plug  'terryma/vim-multiple-cursors'  "多光标操作 选中之后c-n  全选中c-n 则为选中头  vip为全选
 Plug  'tpope/vim-surround'       "surround cs ds....
@@ -260,6 +261,13 @@ else
 endif
 
 set lines=42 columns=128
+
+
+" ------------------------------------------------------------------
+" preview windows
+" ------------------------------------------------------------------
+noremap <leader>tp :PreviewSignature!<cr>
+nmap <leader>pc :PreviewClose<cr>
 
 " ------------------------------------------------------------------
 " splite windows
@@ -928,7 +936,7 @@ let g:echodoc#enable_at_startup = 1
 " ctrlp
 """"""""""""""""""""""""""""""
 nnoremap <leader>pp :CtrlPBufTag<CR>
-nmap <leader>ec :CtrlPCmdPalette<CR>
+
 """"""""""""""""""""""""""""""
 " easy-align
 """"""""""""""""""""""""""""""
