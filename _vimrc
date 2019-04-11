@@ -210,7 +210,7 @@ nmap <leader>pv :source %<CR>
 "------------------------------------------------------------------
 "  which key
 "------------------------------------------------------------------
-set timeoutlen=200
+set timeoutlen=500
 autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
@@ -266,9 +266,9 @@ set lines=42 columns=128
 " ------------------------------------------------------------------
 " preview windows
 " ------------------------------------------------------------------
-noremap <leader>tp :PreviewSignature!<cr>
+noremap <leader>tv :PreviewSignature!<cr>
 nmap <leader>qw :PreviewClose<cr>
-
+nmap <leader>tg <C-W>}
 " ------------------------------------------------------------------
 " splite windows
 " ------------------------------------------------------------------
@@ -370,7 +370,7 @@ nmap <leader>ed :cd %:p:h<cr>
 
 " programming related
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-nmap <leader>ts :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+nmap <leader>tc :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 nmap <leader>es :FSHere <CR>
 nnoremap <silent> <F4> :A<CR>
 " Close the current buffer
@@ -935,7 +935,7 @@ let g:echodoc#enable_at_startup = 1
 """"""""""""""""""""""""""""""
 " ctrlp
 """"""""""""""""""""""""""""""
-nnoremap <leader>pp :CtrlPBufTag<CR>
+nnoremap <leader>tp :CtrlPBufTag<CR>
 
 """"""""""""""""""""""""""""""
 " easy-align
