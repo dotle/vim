@@ -239,16 +239,35 @@ let g:which_key_map.b = {
 let g:which_key_map.g = {
       \ 'name' : '+git/version-control' ,
       \ 'b' : ['Gblame'                 , 'fugitive-blame']             ,
-      \ 'c' : ['BCommits'               , 'commits-for-current-buffer'] ,
-      \ 'C' : ['Gcommit'                , 'fugitive-commit']            ,
+      \ 'c' : ['Gcommit'                , 'fugitive-commit']            ,
       \ 'd' : ['Gdiff'                  , 'fugitive-diff']              ,
       \ 'e' : ['Gedit'                  , 'fugitive-edit']              ,
       \ 'l' : ['Glog'                   , 'fugitive-log']               ,
       \ 'r' : ['Gread'                  , 'fugitive-read']              ,
       \ 's' : ['Gstatus'                , 'fugitive-status']            ,
       \ 'w' : ['Gwrite'                 , 'fugitive-write']             ,
-      \ 'p' : ['Git push'               , 'fugitive-push']              ,
+      \ 'p' : ['Gpush'               , 'fugitive-push']              ,
  \}
+
+
+let g:which_key_map['w'] = {
+      \ 'name' : '+windows' ,
+      \ 'c' : ['<C-W>c'     , 'delete-window']         ,
+      \ '-' : ['<C-W>s'     , 'split-window-below']    ,
+      \ '|' : ['<C-W>v'     , 'split-window-right']    ,
+      \ '2' : ['<C-W>v'     , 'layout-double-columns'] ,
+      \ 'h' : ['<C-W>h'     , 'window-left']           ,
+      \ 'j' : ['<C-W>j'     , 'window-below']          ,
+      \ 'l' : ['<C-W>l'     , 'window-right']          ,
+      \ 'k' : ['<C-W>k'     , 'window-up']             ,
+      \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
+      \ 'J' : ['resize +5'  , 'expand-window-below']   ,
+      \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
+      \ 'K' : ['resize -5'  , 'expand-window-up']      ,
+      \ '=' : ['<C-W>='     , 'balance-window']        ,
+      \ 'b' : ['<C-W>s'     , 'split-window-below']    ,
+      \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
+      \ }
 
 try
 	call which_key#register('<Space>', "g:which_key_map")
@@ -266,7 +285,7 @@ au BufRead,BufNewFile  *.asm,*.c,*.cpp,*.java,*.cs,
 			\ 2match Underlined /.\%81v/
 
 nmap <leader>pv :source %<CR>
-nmap <leader>wc <C-W>c
+" nmap <leader>wc <C-W>c
 
 " ------------------------------------------------------------------
 " color
@@ -386,7 +405,7 @@ endfunction
 " -----------------------------------------------
 " fast key
 " -----------------------------------------------
-nmap <leader>eb :%s/\s\+$<CR>
+nmap <leader>fb :%s/\s\+$<CR>
 nmap <leader>fs :w!<cr>
 "nmap <leader>bp :bp!<cr>
 "nmap <leader>bn :bn!<cr>
@@ -397,7 +416,7 @@ nmap <leader>ed :cd %:p:h<cr>
 " programming related
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 nmap <leader>tc :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-nmap <leader>es :FSHere <CR>
+nmap <leader>fw :FSHere <CR>
 nnoremap <silent> <F4> :A<CR>
 " Close the current buffer
 map <leader>bd :Bclose<cr>
@@ -416,10 +435,10 @@ inoremap <unique> <c-]> <C-X><C-]>
 "inoremap <un<c-p> <C-X><C-P>ique>
 map  <leader>qc :cclose<cr>
 map  <leader>qo :bot copen<cr>
-map  <leader>ef :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
+map  <leader>ff :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 map  <C-F5> :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 map  <F8> :Calendar<cr>
-map  <leader>em :MRU<cr>
+map  <leader>fm :MRU<cr>
 
 "  run python
 "autocmd BufNewFile,BufRead *.py nmap <leader>cp :w <cr>:AsyncRun -raw python %<cr>
@@ -429,10 +448,10 @@ autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
 "autocmd BufNewFile,BufRead *.py nmap <C-r> :w <cr>:!python %<cr>
 "autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
 map <leader>ps :AsyncStop<cr>
-nnoremap <leader>eu :UndotreeToggle<cr>
+nnoremap <leader>fu :UndotreeToggle<cr>
 
-map <leader>eh :%!xxd -g 1<cr>
-map <leader>en :%!xxd -r<cr>
+map <leader>fh :%!xxd -g 1<cr>
+map <leader>fn :%!xxd -r<cr>
 " ------------------------------------------------------------------
 " NERDTree
 " ------------------------------------------------------------------
