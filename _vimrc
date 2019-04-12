@@ -205,8 +205,6 @@ set clipboard=unnamed
 
 set completeopt=longest,menu "补全菜单的样式
 
-nmap <leader>pv :source %<CR>
-
 "------------------------------------------------------------------
 "  which key
 "------------------------------------------------------------------
@@ -266,6 +264,10 @@ au BufRead,BufNewFile  *.asm,*.c,*.cpp,*.java,*.cs,
 			\*.sh,*.lua,*.pl,*.pm,*.py,
 			\*.rb,*.erb,*.hs,*.vim
 			\ 2match Underlined /.\%81v/
+
+nmap <leader>pv :source %<CR>
+nmap <leader>wc <C-W>c
+
 " ------------------------------------------------------------------
 " color
 " ------------------------------------------------------------------
