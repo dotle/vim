@@ -361,7 +361,7 @@ endfunction
 " fast key
 " -----------------------------------------------
 nmap <leader>eb :%s/\s\+$<CR>
-nmap <leader>s :w!<cr>
+nmap <leader>fs :w!<cr>
 "nmap <leader>bp :bp!<cr>
 "nmap <leader>bn :bn!<cr>
 " When pressing <leader>cd switch to the directory of the open buffer
