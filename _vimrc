@@ -228,6 +228,30 @@ let g:which_key_map.t = {'name':'+tag'}
 let g:which_key_map.w = {'name':'+wiki'}
 let g:which_key_map[' ']= {'name':'+EasyMotion'}
 
+let g:which_key_map.b = {
+      \ 'name' : '+buffer' ,
+      \ 'a' : ['ba'        , 'delete-all-buffer']   ,
+      \ 'd' : ['bd'        , 'delete-buffer']   ,
+      \ 'f' : ['bfirst'    , 'first-buffer']    ,
+      \ 'h' : ['Startify'  , 'home-buffer']     ,
+      \ 'l' : ['blast'     , 'last-buffer']     ,
+      \ 'n' : ['bnext'     , 'next-buffer']     ,
+      \ 'p' : ['bprevious' , 'previous-buffer'] ,
+      \ }
+let g:which_key_map.g = {
+      \ 'name' : '+git/version-control' ,
+      \ 'b' : ['Gblame'                 , 'fugitive-blame']             ,
+      \ 'c' : ['BCommits'               , 'commits-for-current-buffer'] ,
+      \ 'C' : ['Gcommit'                , 'fugitive-commit']            ,
+      \ 'd' : ['Gdiff'                  , 'fugitive-diff']              ,
+      \ 'e' : ['Gedit'                  , 'fugitive-edit']              ,
+      \ 'l' : ['Glog'                   , 'fugitive-log']               ,
+      \ 'r' : ['Gread'                  , 'fugitive-read']              ,
+      \ 's' : ['Gstatus'                , 'fugitive-status']            ,
+      \ 'w' : ['Gwrite'                 , 'fugitive-write']             ,
+      \ 'p' : ['Git push'               , 'fugitive-push']              ,
+ \}
+
 try
 	call which_key#register('<Space>', "g:which_key_map")
 	nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
@@ -361,7 +385,7 @@ endfunction
 " fast key
 " -----------------------------------------------
 nmap <leader>eb :%s/\s\+$<CR>
-nmap <leader>s :w!<cr>
+nmap <leader>fs :w!<cr>
 "nmap <leader>bp :bp!<cr>
 "nmap <leader>bn :bn!<cr>
 " When pressing <leader>cd switch to the directory of the open buffer
@@ -412,7 +436,7 @@ map <leader>en :%!xxd -r<cr>
 " ------------------------------------------------------------------
 "F2开启和关闭树"
 map <F2> :NERDTreeToggle<CR>
-map <leader>et :NERDTree<CR>
+map <leader>ft :NERDTree<CR>
 let NERDTreeChDirMode=2
 "显示书签"
 let NERDTreeShowBookmarks=1
