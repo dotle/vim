@@ -205,6 +205,8 @@ set clipboard=unnamed
 
 set completeopt=longest,menu "补全菜单的样式
 
+nmap <leader>fh :nohl<CR>
+
 "------------------------------------------------------------------
 "  which key
 "------------------------------------------------------------------
@@ -283,7 +285,7 @@ endtry
 " ------------------------------------------------------------------
 au BufRead,BufNewFile  *.asm,*.c,*.cpp,*.java,*.cs,
 			\*.sh,*.lua,*.pl,*.pm,*.py,
-			\*.rb,*.erb,*.hs,*.vim
+			\*.rb,*.erb,*.hs,*.vim,*.ino
 			\ 2match Underlined /.\%81v/
 
 nmap <leader>pv :source %<CR>
@@ -408,7 +410,7 @@ endfunction
 " fast key
 " -----------------------------------------------
 nmap <leader>fb :%s/\s\+$<CR>
-nmap <leader>s :w!<cr>
+nmap <leader>fs :w!<cr>
 "nmap <leader>bp :bp!<cr>
 "nmap <leader>bn :bn!<cr>
 " When pressing <leader>cd switch to the directory of the open buffer
@@ -447,12 +449,10 @@ map  <leader>fm :MRU<cr>
 autocmd BufNewFile,BufRead *.py nmap <m-y> :w <cr>:AsyncRun -raw python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <leader>py :w <cr>:AsyncRun -raw python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
-"autocmd BufNewFile,BufRead *.py nmap <C-r> :w <cr>:!python %<cr>
-"autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
 map <leader>ps :AsyncStop<cr>
 nnoremap <leader>fu :UndotreeToggle<cr>
 
-map <leader>fh :%!xxd -g 1<cr>
+map <leader>fx :%!xxd -g 1<cr>
 map <leader>fn :%!xxd -r<cr>
 " ------------------------------------------------------------------
 " NERDTree
@@ -472,8 +472,6 @@ let NERDTreeWinSize=25
 let g:indentLine_char='|'
 let g:indentLine_enabled = 1
 
-
-
 "--------------------------
 "autopep8设置"
 "----------------------------
@@ -492,7 +490,6 @@ map <Leader><leader>. <Plug>(easymotion-repeat)
 "*********************************************
 " gui terminal
 " ********************************************
-
 " 0:up, 1:down, 2:pgup, 3:pgdown, 4:top, 5:bottom
 function! Tools_PreviousCursor(mode)
 	if winnr('$') <= 1
@@ -522,7 +519,6 @@ function! Tools_PreviousCursor(mode)
 	endif
 	noautocmd silent! wincmd p
 endfunc
-
 
 " 0:up, 1:down, 2:pgup, 3:pgdown 4:top, 5:bottom,
 function! Tools_QuickfixCursor(mode)
