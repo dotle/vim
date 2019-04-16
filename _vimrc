@@ -35,9 +35,9 @@ endfunction
 set nocompatible              " required
 filetype off                  " required
 
-source c:/vim/plug.vim
-
-call plug#begin('c:/plugged')
+"source c:/vim/plug.vim
+source $VIMRUNTIME/../plug.vim
+call plug#begin('~/plugged')
 
 "------------
 " common plugin
