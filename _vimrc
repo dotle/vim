@@ -225,7 +225,7 @@ let g:which_key_map.l = {'name':'+Lsp'}
 let g:which_key_map.q = {'name':'+quickfix'}
 let g:which_key_map.p = {'name':'+Program'}
 let g:which_key_map.t = {'name':'+tag'}
-let g:which_key_map.w = {'name':'+wiki'}
+let g:which_key_map.v = {'name':'+wiki'}
 let g:which_key_map[' ']= {'name':'+EasyMotion'}
 
 let g:which_key_map.b = {
@@ -1008,7 +1008,8 @@ let g:miniBufExplorerMoreThanOne=0
 " vimwiki
 let g:vimwiki_use_mouse = 1
 source $VIMRUNTIME/../wiki-list.vim
-
+" change wiki prefix to v
+let g:vimwiki_map_prefix = '<Leader>v'
 " -----------------------------------------------------------------
 " lsc
 " -----------------------------------------------------------------
