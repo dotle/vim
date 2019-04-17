@@ -609,7 +609,7 @@ if !isdirectory(s:vim_tags)
 endif
 
 " 如果使用 universal ctags 需要增加下面一行
-"let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 
 " 禁用 gutentags 自动加载 gtags 数据库的行为
 let g:gutentags_auto_add_gtags_cscope = 0
@@ -617,6 +617,8 @@ let g:gutentags_auto_add_gtags_cscope = 0
 " change focus to quickfix window after search (optional).
 let g:gutentags_plus_switch = 1
 
+let $GTAGSLABEL = 'native-pygments'
+let $GTAGSCONF = $VIMRUNTIME.'\..\gtags.conf'
 nmap <leader>cn :cn<CR>
 nmap <leader>cp :cp<CR>
 
