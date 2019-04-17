@@ -112,7 +112,7 @@ Plug  'lepture/vim-jinja'  "jinja支持
 "Bundle 'digitaltoad/vim-jade'
 
 "-----------lsc----------
-"Plug  'prabirshrestha/asyncomplete.vim'
+Plug  'prabirshrestha/asyncomplete.vim'
 Plug  'prabirshrestha/async.vim'
 Plug  'prabirshrestha/vim-lsp'
 Plug  'prabirshrestha/asyncomplete-lsp.vim'
@@ -1025,7 +1025,7 @@ if executable('pyls')
         \ 'whitelist': ['python'],
         \ })
 endif
-let g:jedi#completions_enabled = 0
+"let g:jedi#completions_enabled = 0
 " c/c++ clangd
 if executable('clangd')
     au User lsp_setup call lsp#register_server({
@@ -1042,7 +1042,7 @@ if executable('go-langserver')
         \ 'whitelist': ['go'],
         \ })
 endif
-
+let g:asyncomplete_auto_popup = 0
 let g:lsp_async_completion = 1
 let g:lsp_use_event_queue = 1
 let g:lsp_text_edit_enabled = 0
