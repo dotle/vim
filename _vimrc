@@ -616,6 +616,10 @@ let g:gutentags_auto_add_gtags_cscope = 0
 
 " change focus to quickfix window after search (optional).
 let g:gutentags_plus_switch = 1
+
+nmap <leader>cn :cn<CR>
+nmap <leader>cp :cp<CR>
+
 " ------------------------------------------------------------------
 " change backup dir
 " ------------------------------------------------------------------
