@@ -112,7 +112,7 @@ Plug  'lepture/vim-jinja'  "jinja支持
 "Bundle 'digitaltoad/vim-jade'
 
 "-----------lsc----------
-Plug  'prabirshrestha/asyncomplete.vim'
+"Plug  'prabirshrestha/asyncomplete.vim'
 Plug  'prabirshrestha/async.vim'
 Plug  'prabirshrestha/vim-lsp'
 Plug  'prabirshrestha/asyncomplete-lsp.vim'
