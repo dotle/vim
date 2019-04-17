@@ -436,7 +436,9 @@ nmap <leader>pf <ESC>:%!astyle --style=ansi -U -p -f<CR>
 " search tags
 inoremap <unique> <c-]> <C-X><C-]>
 " search in current files, preview first. remove the original c-p
-"inoremap <un<c-p> <C-X><C-P>ique>
+inoremap <unique> <c-p> <C-X><C-P>
+inoremap <unique> <m-o> <C-X><C-O>
+
 map  <leader>qc :cclose<cr>
 map  <leader>qo :bot copen<cr>
 map  <leader>ff :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
@@ -1030,7 +1032,7 @@ endif
 if executable('clangd')
     au User lsp_setup call lsp#register_server({
         \ 'name': 'clangd',
-        \ 'cmd': {server_info->['clangd']},
+        \ 'cmd': {server_info->['clangd', '-background-index']},
         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
         \ })
 endif
@@ -1045,8 +1047,8 @@ endif
 let g:asyncomplete_auto_popup = 0
 let g:lsp_async_completion = 1
 let g:lsp_use_event_queue = 1
-let g:lsp_text_edit_enabled = 0
-
+let g:lsp_text_edit_enabled = 1
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 nmap <leader>ls :LspStatus<cr>
 
 autocmd FileType python,go,c,cpp
