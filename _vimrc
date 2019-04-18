@@ -46,6 +46,7 @@ Plug  'vim-scripts/mru.vim'
 Plug  'jiangmiao/auto-pairs'
 Plug  'vim-scripts/Mark--Karkat'
 Plug  'liuchengxu/vim-which-key'
+Plug  'mhinz/vim-startify' 
 "--------------------
 " Code completions
 " -------------------
@@ -61,6 +62,16 @@ Plug  'tomtom/tlib_vim'  "应用
 Plug  'garbas/vim-snipmate'
 " Optional:
 Plug  'honza/vim-snippets'
+
+"----------------------
+" text object
+" ---------------------
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-syntax'
+Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java','python','go'] }
+Plug 'sgur/vim-textobj-parameter'
+
 "----------------------
 " Coding
 " ---------------------
@@ -69,7 +80,7 @@ Plug  'tell-k/vim-autopep8' "automatically formats Python code to conform to the
 Plug  'godlygeek/tabular'  " 输入tabular /, 则以，为分隔符
 Plug  'plasticboy/vim-markdown' "markdown 支持
 Plug  'vim-scripts/a.vim'   "头文件跳转  :A or <leader>is  <leader>ih
-Plug  'vim-scripts/indentpython.vim' "帮组python格式化代码缩进。
+Plug  'vim-scripts/indentpython.vim' "帮助python格式化代码缩进。
 Plug  'w0rp/ale'
 Plug  'nvie/vim-flake8' "python 标准检查插件
 Plug  'majutsushi/tagbar'   "tagbar
@@ -227,6 +238,7 @@ let g:which_key_map.p = {'name':'+program'}
 let g:which_key_map.t = {'name':'+tag'}
 let g:which_key_map.v = {'name':'+wiki'}
 let g:which_key_map.m = {'name':'+mark'}
+let g:which_key_map.r = {'name':'+ctrlp'}
 let g:which_key_map[' ']= {'name':'+easyMotion'}
 
 let g:which_key_map.b = {
@@ -249,7 +261,7 @@ let g:which_key_map.g = {
       \ 'r' : ['Gread'                  , 'fugitive-read']              ,
       \ 's' : ['Gstatus'                , 'fugitive-status']            ,
       \ 'w' : ['Gwrite'                 , 'fugitive-write']             ,
-      \ 'p' : ['Gpush'               , 'fugitive-push']              ,
+      \ 'p' : ['Gpush'                  , 'fugitive-push']              ,
  \}
 
 
@@ -263,10 +275,10 @@ let g:which_key_map['w'] = {
       \ 'j' : ['<C-W>j'     , 'window-below']          ,
       \ 'l' : ['<C-W>l'     , 'window-right']          ,
       \ 'k' : ['<C-W>k'     , 'window-up']             ,
-      \ 'H' : ['<C-W>H'    , 'move-window-left']    ,
-      \ 'J' : ['<C-W>J'    , 'move-window-down']   ,
-      \ 'K' : ['<C-W>K'    , 'move-window-right']   ,
-      \ 'L' : ['<C-W>L'    , 'move-window-left']   ,
+      \ 'H' : ['<C-W>H'     , 'move-window-left']    ,
+      \ 'J' : ['<C-W>J'     , 'move-window-down']   ,
+      \ 'K' : ['<C-W>K'     , 'move-window-right']   ,
+      \ 'L' : ['<C-W>L'     , 'move-window-left']   ,
       \ '>' : ['<C-W>5>'    , 'expand-window-left']   ,
       \ '<' : ['<C-W>5<'    , 'expand-window-right']   ,
       \ '=' : ['<C-W>='     , 'balance-window']        ,
@@ -989,8 +1001,16 @@ let g:echodoc#enable_at_startup = 1
 """"""""""""""""""""""""""""""
 " ctrlp
 """"""""""""""""""""""""""""""
-nnoremap <leader>tp :CtrlPBufTag<CR>
-nmap  <leader>fM :CtrlPMRUFiles<cr>
+nnoremap <leader>rt :CtrlPBufTag<CR>
+nmap  <leader>rr :CtrlPRoot<CR>
+nmap  <leader>rm :CtrlPMRUFiles<cr>
+nmap  <leader>rc :CtrlPChange<cr>
+nmap  <leader>ru :CtrlPUndo<cr>
+nmap  <leader>rl :CtrlPLine<cr>
+nmap  <leader>rs :CtrlPRTS<cr>
+nmap  <leader>ra :CtrlPBufTagAll<cr>
+nmap  <leader>rp :CtrlPBuffer<cr>
+
 """"""""""""""""""""""""""""""
 " easy-align
 """"""""""""""""""""""""""""""
