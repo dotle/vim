@@ -42,7 +42,7 @@ call plug#begin('~/plugged')
 "------------
 " common plugin
 " -----------
-Plug  'vim-scripts/mru.vim'
+" Plug  'vim-scripts/mru.vim'
 Plug  'jiangmiao/auto-pairs'
 Plug  'vim-scripts/Mark--Karkat'
 Plug  'liuchengxu/vim-which-key'
@@ -444,7 +444,8 @@ map  <leader>qo :bot copen<cr>
 map  <leader>ff :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 map  <C-F5> :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 map  <F8> :Calendar<cr>
-map  <leader>fm :MRU<cr>
+" map  <leader>fm :MRU<cr>
+map  <leader>fm :CtrlPMRUFiles<cr>
 
 "  run python
 "autocmd BufNewFile,BufRead *.py nmap <leader>cp :w <cr>:AsyncRun -raw python %<cr>
