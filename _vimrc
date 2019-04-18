@@ -610,7 +610,9 @@ if !isdirectory(s:vim_tags)
 endif
 
 " 如果使用 universal ctags 需要增加下面一行
-let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+if executable('readtags')
+    let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+endif
 
 " 禁用 gutentags 自动加载 gtags 数据库的行为
 let g:gutentags_auto_add_gtags_cscope = 0
@@ -935,9 +937,9 @@ hi! SpellRare gui=undercurl guisp=magenta
 let g:ale_set_highlights = 0
 ""自定义error和warning图标
 let g:ale_sign_error = 'E'
-let g:ale_sign_warning = 'w'
+let g:ale_sign_warning = 'W'
 ""在vim自带的状态栏中整合ale
-"let g:ale_statusline_format = ['E %d', 'W %d', 'O OK']
+let g:ale_statusline_format = ['E %d', 'W %d', 'O OK']
 ""显示Linter名称,出错或警告等相关信息
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -948,13 +950,13 @@ let g:ale_linters_explicit = 1
 let g:ale_completion_delay = 500
 let g:ale_echo_delay = 20
 let g:ale_lint_delay = 500
-"let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+let g:ale_echo_msg_format = '[%linter%] %code: %%s'
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:airline#extensions#ale#enabled = 1
 
 let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
-"let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
 
@@ -1055,6 +1057,7 @@ let g:asyncomplete_auto_popup = 0
 let g:lsp_async_completion = 1
 let g:lsp_use_event_queue = 1
 let g:lsp_text_edit_enabled = 1
+let g:lsp_diagnostics_enabled  = 0
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 nmap <leader>ls :LspStatus<cr>
 
