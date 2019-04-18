@@ -42,7 +42,7 @@ call plug#begin('~/plugged')
 "------------
 " common plugin
 " -----------
-" Plug  'vim-scripts/mru.vim'
+Plug  'vim-scripts/mru.vim'
 Plug  'jiangmiao/auto-pairs'
 Plug  'vim-scripts/Mark--Karkat'
 Plug  'liuchengxu/vim-which-key'
@@ -217,16 +217,17 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 let g:which_key_map =  {}
 let g:which_key_map.a = {'name':'+ALE'}
-let g:which_key_map.b = {'name':'+buffer'}
-let g:which_key_map.c = {'name':'+Gscope'}
-let g:which_key_map.d = {'name':'+Dox'}
-let g:which_key_map.e = {'name':'+Edit'}
-let g:which_key_map.l = {'name':'+Lsp'}
+" let g:which_key_map.b = {'name':'+Buffer'}
+let g:which_key_map.c = {'name':'+gscope'}
+let g:which_key_map.d = {'name':'+dox'}
+let g:which_key_map.e = {'name':'+edit'}
+let g:which_key_map.l = {'name':'+lsp'}
 let g:which_key_map.q = {'name':'+quickfix'}
-let g:which_key_map.p = {'name':'+Program'}
+let g:which_key_map.p = {'name':'+program'}
 let g:which_key_map.t = {'name':'+tag'}
 let g:which_key_map.v = {'name':'+wiki'}
-let g:which_key_map[' ']= {'name':'+EasyMotion'}
+let g:which_key_map.m = {'name':'+mark'}
+let g:which_key_map[' ']= {'name':'+easyMotion'}
 
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
@@ -444,8 +445,7 @@ map  <leader>qo :bot copen<cr>
 map  <leader>ff :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 map  <C-F5> :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 map  <F8> :Calendar<cr>
-" map  <leader>fm :MRU<cr>
-map  <leader>fm :CtrlPMRUFiles<cr>
+map  <leader>fm :MRU<cr>
 
 "  run python
 "autocmd BufNewFile,BufRead *.py nmap <leader>cp :w <cr>:AsyncRun -raw python %<cr>
@@ -990,7 +990,7 @@ let g:echodoc#enable_at_startup = 1
 " ctrlp
 """"""""""""""""""""""""""""""
 nnoremap <leader>tp :CtrlPBufTag<CR>
-
+nmap  <leader>fM :CtrlPMRUFiles<cr>
 """"""""""""""""""""""""""""""
 " easy-align
 """"""""""""""""""""""""""""""
@@ -1012,6 +1012,16 @@ let g:miniBufExplModSelTarget = 1
 "解决FileExplorer窗口变小问题
 let g:miniBufExplForceSyntaxEnable = 1
 let g:miniBufExplorerMoreThanOne=0
+
+
+" -----------------------------------------------------------------
+"  mark
+"  ----------------------------------------------------------------
+nmap <leader>mm <Plug>MarkSet
+vmap <leader>mm <Plug>MarkSet
+nmap <leader>mr <Plug>MarkRegex
+vmap <leader>mr <Plug>MarkRegex
+nmap <leader>mn <Plug>MarkClear
 
 " -----------------------------------------------------------------
 "  vimwiki
