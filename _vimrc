@@ -216,6 +216,8 @@ set clipboard=unnamed
 
 set completeopt=longest,menu "补全菜单的样式
 
+set cursorcolumn 
+
 nmap <leader>fh :nohl<CR>
 
 "------------------------------------------------------------------
