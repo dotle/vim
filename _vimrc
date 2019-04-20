@@ -46,7 +46,7 @@ Plug  'vim-scripts/mru.vim'
 Plug  'jiangmiao/auto-pairs'
 Plug  'vim-scripts/Mark--Karkat'
 Plug  'liuchengxu/vim-which-key'
-Plug  'mhinz/vim-startify' 
+Plug  'mhinz/vim-startify'
 "--------------------
 " Code completions
 " -------------------
@@ -204,96 +204,18 @@ set matchtime=5
 set ignorecase        "忽略大小写"
 set incsearch
 set hlsearch        "高亮搜索项"
-set noexpandtab        "不允许扩展table"
+set expandtab        "不允许扩展tab"
 set whichwrap+=<,>,h,l
 set autoread
 set hidden                  " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
 
 let mapleader="\<Space>"
-let g:Powerline_symbols='unicode'
 
 set clipboard=unnamed
 
 set completeopt=longest,menu "补全菜单的样式
 
-set cursorcolumn 
-
 nmap <leader>fh :nohl<CR>
-
-"------------------------------------------------------------------
-"  which key
-"------------------------------------------------------------------
-set timeoutlen=500
-autocmd! FileType which_key
-autocmd  FileType which_key set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-let g:which_key_map =  {}
-let g:which_key_map.a = {'name':'+ALE'}
-" let g:which_key_map.b = {'name':'+Buffer'}
-let g:which_key_map.c = {'name':'+gscope'}
-let g:which_key_map.d = {'name':'+dox'}
-let g:which_key_map.e = {'name':'+edit'}
-let g:which_key_map.l = {'name':'+lsp'}
-let g:which_key_map.q = {'name':'+quickfix'}
-let g:which_key_map.p = {'name':'+program'}
-let g:which_key_map.t = {'name':'+tag'}
-let g:which_key_map.v = {'name':'+wiki'}
-let g:which_key_map.m = {'name':'+mark'}
-let g:which_key_map.r = {'name':'+ctrlp'}
-let g:which_key_map[' ']= {'name':'+easyMotion'}
-
-let g:which_key_map.b = {
-      \ 'name' : '+buffer' ,
-      \ 'a' : ['ba'        , 'delete-all-buffer']   ,
-      \ 'd' : ['bd'        , 'delete-buffer']   ,
-      \ 'f' : ['bfirst'    , 'first-buffer']    ,
-      \ 'h' : ['Startify'  , 'home-buffer']     ,
-      \ 'l' : ['blast'     , 'last-buffer']     ,
-      \ 'n' : ['bnext'     , 'next-buffer']     ,
-      \ 'p' : ['bprevious' , 'previous-buffer'] ,
-      \ }
-let g:which_key_map.g = {
-      \ 'name' : '+git/version-control' ,
-      \ 'b' : ['Gblame'                 , 'fugitive-blame']             ,
-      \ 'c' : ['Gcommit'                , 'fugitive-commit']            ,
-      \ 'd' : ['Gdiff'                  , 'fugitive-diff']              ,
-      \ 'e' : ['Gedit'                  , 'fugitive-edit']              ,
-      \ 'l' : ['Glog'                   , 'fugitive-log']               ,
-      \ 'r' : ['Gread'                  , 'fugitive-read']              ,
-      \ 's' : ['Gstatus'                , 'fugitive-status']            ,
-      \ 'w' : ['Gwrite'                 , 'fugitive-write']             ,
-      \ 'p' : ['Gpush'                  , 'fugitive-push']              ,
- \}
-
-
-let g:which_key_map['w'] = {
-      \ 'name' : '+windows' ,
-      \ 'c' : ['<C-W>c'     , 'delete-window']         ,
-      \ '-' : ['<C-W>s'     , 'split-window-below']    ,
-      \ '|' : ['<C-W>v'     , 'split-window-right']    ,
-      \ '2' : ['<C-W>v'     , 'layout-double-columns'] ,
-      \ 'h' : ['<C-W>h'     , 'window-left']           ,
-      \ 'j' : ['<C-W>j'     , 'window-below']          ,
-      \ 'l' : ['<C-W>l'     , 'window-right']          ,
-      \ 'k' : ['<C-W>k'     , 'window-up']             ,
-      \ 'H' : ['<C-W>H'     , 'move-window-left']    ,
-      \ 'J' : ['<C-W>J'     , 'move-window-down']   ,
-      \ 'K' : ['<C-W>K'     , 'move-window-right']   ,
-      \ 'L' : ['<C-W>L'     , 'move-window-left']   ,
-      \ '>' : ['<C-W>5>'    , 'expand-window-left']   ,
-      \ '<' : ['<C-W>5<'    , 'expand-window-right']   ,
-      \ '=' : ['<C-W>='     , 'balance-window']        ,
-      \ 'b' : ['<C-W>s'     , 'split-window-below']    ,
-      \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
-      \ }
-
-try
-	call which_key#register('<Space>', "g:which_key_map")
-	nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
-	vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
-catch
-endtry
 
 " ------------------------------------------------------------------
 " code
@@ -345,13 +267,11 @@ nnoremap <C-H> <C-W><C-H>
 " python
 " ------------------------------------------------------------------
 au BufNewFile,BufRead *.py
-\ set tabstop=4 |
-\ set softtabstop=4 |
-\ set shiftwidth=4 |
-\ set textwidth=79 |
-\ set expandtab |
-\ set autoindent |
-\ set fileformat=unix
+\ setlocal softtabstop=4 |
+\ setlocal textwidth=79 |
+\ setlocal autoindent |
+\ setlocal cc=80 |
+\ setlocal cursorcolumn
 
 hi BadWhitespace guifg=gray guibg=red ctermfg=gray ctermbg=red
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
@@ -426,9 +346,7 @@ endfunction
 " -----------------------------------------------
 nmap <leader>fb :%s/\s\+$<CR>
 nmap <leader>fs :w!<cr>
-"nmap <leader>bp :bp!<cr>
-"nmap <leader>bn :bn!<cr>
-" When pressing <leader>cd switch to the directory of the open buffer
+" When pressing <leader>ed switch to the directory of the open buffer
 " cros to cd
 nmap <leader>ed :cd %:p:h<cr>
 
@@ -471,38 +389,6 @@ nnoremap <leader>fu :UndotreeToggle<cr>
 
 map <leader>fx :%!xxd -g 1<cr>
 map <leader>fn :%!xxd -r<cr>
-" ------------------------------------------------------------------
-" NERDTree
-" ------------------------------------------------------------------
-"F2开启和关闭树"
-map <F2> :NERDTreeToggle<CR>
-map <leader>ft :NERDTree<CR>
-let NERDTreeChDirMode=2
-"显示书签"
-let NERDTreeShowBookmarks=1
-"设置忽略文件类型"
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$','\.git','\.svn']
-"窗口大小"
-let NERDTreeWinSize=25
-
-"缩进指示线"
-let g:indentLine_char='|'
-let g:indentLine_enabled = 1
-
-"--------------------------
-"autopep8设置"
-"----------------------------
-let g:autopep8_disable_show_diff=1
-"--------------------------------------------------------------------------------
-"easy mothing
-"--------------------------------------------------------------------------------
-let g:EasyMotion_smartcase = 1
-map <Leader><leader>h <Plug>(easymotion-linebackward)
-map <Leader><Leader>j <Plug>(easymotion-j)
-map <Leader><Leader>k <Plug>(easymotion-k)
-map <Leader><leader>l <Plug>(easymotion-lineforward)
-" 重复上一次操作, 类似repeat插件, 很强大
-map <Leader><leader>. <Plug>(easymotion-repeat)
 
 "*********************************************
 " gui terminal
@@ -583,61 +469,6 @@ inoremap <silent><M-}> <c-\><c-o>:call Tools_QuickfixCursor(5)<cr>
 inoremap <silent><M-u> <c-\><c-o>:call Tools_PreviousCursor(6)<cr>
 inoremap <silent><M-d> <c-\><c-o>:call Tools_PreviousCursor(7)<cr>
 
-" ----------------------------------------
-" tagbar
-" --------------------------------------------------
-"设置关闭和打开tagbar窗口的快捷键
-nnoremap <leader>tb :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-let g:tagbar_width = 25
-
-" ----------------------------------------
-" gutentags
-" --------------------------------------------------
-" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-
-" 所生成的数据文件的名称
-let g:gutentags_ctags_tagfile = '.tags'
-
-" 同时开启 ctags 和 gtags 支持：
-let g:gutentags_modules = []
-if executable('ctags')
-	let g:gutentags_modules += ['ctags']
-endif
-if executable('gtags-cscope') && executable('gtags')
-	let g:gutentags_modules += ['gtags_cscope']
-endif
-
-" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir = s:vim_tags
-
-" 配置 ctags 的参数
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-
-" 检测 ~/.cache/tags 不存在就新建
-if !isdirectory(s:vim_tags)
-   silent! call mkdir(s:vim_tags, 'p')
-endif
-
-" 如果使用 universal ctags 需要增加下面一行
-if executable('readtags')
-    let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-endif
-
-" 禁用 gutentags 自动加载 gtags 数据库的行为
-let g:gutentags_auto_add_gtags_cscope = 0
-
-" change focus to quickfix window after search (optional).
-let g:gutentags_plus_switch = 1
-
-let $GTAGSLABEL = 'native-pygments'
-let $GTAGSCONF = $VIMRUNTIME.'\..\gtags.conf'
-nmap <leader>cn :cn<CR>
-nmap <leader>cp :cp<CR>
 
 " ------------------------------------------------------------------
 " change backup dir
@@ -678,28 +509,11 @@ unlet undo_dir
 set tags+=./tags,./../tags,./**/tags,tags " which tags files CTRL-] will find
 set makeef=error.err " the errorfile for :make and :grep
 
-" ------------------------------------------------------------------
-" Desc: snipMate
-" ------------------------------------------------------------------
-:filetype plugin on
 "------------------------------------------------------------
 " arduino
 "------------------------------------------------------------
 au BufNewFile,BufRead *.ino set filetype=c
 
-"-----------------------------------------------------------------
-" plugin - DoxygenToolkit.vim 由注释生成文档，并且能够快速生成函数标准注释
-"-----------------------------------------------------------------
-let g:DoxygenToolkit_authorName="Rhys"
-let g:DoxygenToolkit_briefTag_funcName="yes"
-let g:doxygen_enhanced_color=1
-map <leader>da :DoxAuthor<CR>
-map <leader>df :Dox<CR>
-map <leader>db :DoxBlock<CR>
-map <leader>dc a /* */<LEFT><LEFT><LEFT>
-"-----------------------------------------------------------------
-
-"____________________test____________________________________
 "------------------------------------------------------------------------------
 "  < 判断操作系统是否是 Windows 还是 Linux >
 "------------------------------------------------------------------------------
@@ -931,6 +745,43 @@ func! MyRun()
 	endif
 "autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
 endfunc
+" ------------------------------------------------------------------
+"----------------------plugin set-----------------------------------
+" ------------------------------------------------------------------
+
+" ------------------------------------------------------------------
+" NERDTree
+" ------------------------------------------------------------------
+"F2开启和关闭树"
+map <F2> :NERDTreeToggle<CR>
+map <leader>ft :NERDTree<CR>
+let NERDTreeChDirMode=2
+"显示书签"
+let NERDTreeShowBookmarks=1
+"设置忽略文件类型"
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$','\.git','\.svn']
+"窗口大小"
+let NERDTreeWinSize=25
+
+"缩进指示线"
+let g:indentLine_char='|'
+let g:indentLine_enabled = 1
+
+"--------------------------
+"autopep8设置"
+"----------------------------
+let g:autopep8_disable_show_diff=1
+
+"--------------------------------------------------------------------------------
+"easy mothing
+"--------------------------------------------------------------------------------
+let g:EasyMotion_smartcase = 1
+map <Leader><leader>h <Plug>(easymotion-linebackward)
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+map <Leader><leader>l <Plug>(easymotion-lineforward)
+" 重复上一次操作, 类似repeat插件, 很强大
+map <Leader><leader>. <Plug>(easymotion-repeat)
 
 " ------------------------------------------------------------------
 "   super tab
@@ -938,62 +789,72 @@ endfunc
 let g:SuperTabRetainCompletionType=2
 let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 
-" ------------------------------------------------------------------
-"  ALE
-" ------------------------------------------------------------------
-let g:ale_sign_error = "\ue009\ue009"
-hi! clear SpellBad
-hi! clear SpellCap
-hi! clear SpellRare
-hi! SpellBad gui=undercurl guisp=red
-hi! SpellCap gui=undercurl guisp=blue
-hi! SpellRare gui=undercurl guisp=magenta
-let g:ale_set_highlights = 0
-""自定义error和warning图标
-let g:ale_sign_error = 'E'
-let g:ale_sign_warning = 'W'
-""在vim自带的状态栏中整合ale
-let g:ale_statusline_format = ['E %d', 'W %d', 'O OK']
-""显示Linter名称,出错或警告等相关信息
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-""打开文件时不进行检查
-"let g:ale_lint_on_enter = 0
+"-----------------------------------------------------------------
+" plugin - DoxygenToolkit.vim 由注释生成文档，并且能够快速生成函数标准注释
+"-----------------------------------------------------------------
+let g:DoxygenToolkit_authorName="Rhys"
+let g:DoxygenToolkit_briefTag_funcName="yes"
+let g:doxygen_enhanced_color=1
+map <leader>da :DoxAuthor<CR>
+map <leader>df :Dox<CR>
+map <leader>db :DoxBlock<CR>
+map <leader>dc a /* */<LEFT><LEFT><LEFT>
 
-let g:ale_linters_explicit = 1
-let g:ale_completion_delay = 500
-let g:ale_echo_delay = 20
-let g:ale_lint_delay = 500
-let g:ale_echo_msg_format = '[%linter%] %code: %%s'
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
-let g:airline#extensions#ale#enabled = 1
+" ----------------------------------------
+" tagbar
+" --------------------------------------------------
+"设置关闭和打开tagbar窗口的快捷键
+nnoremap <leader>tb :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+let g:tagbar_width = 25
 
-let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
-let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
-let g:ale_c_cppcheck_options = ''
-let g:ale_cpp_cppcheck_options = ''
+" ----------------------------------------
+" gutentags
+" --------------------------------------------------
+" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 
-"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
-"nmap sp <Plug>(ale_previous_wrap)
-"nmap sn <Plug>(ale_next_wrap)
-nmap <leader>ap <Plug>(ale_previous_wrap)
-nmap <leader>an <Plug>(ale_next_wrap)
-"<Leader>s触发/关闭语法检查
-nmap <Leader>at :ALEToggle<CR>
-"<Leader>d查看错误或警告的详细信息
-nmap <Leader>ad :ALEDetail<CR>
-"使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
-"
-let g:ale_linters = {
-\   'cpp':        ['cppcheck','clang','gcc'],
-\   'c':          ['cppcheck','clang', 'gcc'],
-\   'python':     ['pylint'],
-\   'javascript': ['eslint'],
-\   'css':        ['stylelint'],
-\   'bash':       ['shellcheck'],
-\   'go':         ['golint'],
-\}
+" 所生成的数据文件的名称
+let g:gutentags_ctags_tagfile = '.tags'
+
+" 同时开启 ctags 和 gtags 支持：
+let g:gutentags_modules = []
+if executable('ctags')
+	let g:gutentags_modules += ['ctags']
+endif
+if executable('gtags-cscope') && executable('gtags')
+	let g:gutentags_modules += ['gtags_cscope']
+endif
+
+" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+
+" 配置 ctags 的参数
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+" 检测 ~/.cache/tags 不存在就新建
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+
+" 如果使用 universal ctags 需要增加下面一行
+if executable('readtags')
+    let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+endif
+
+" 禁用 gutentags 自动加载 gtags 数据库的行为
+let g:gutentags_auto_add_gtags_cscope = 0
+
+" change focus to quickfix window after search (optional).
+let g:gutentags_plus_switch = 1
+
+let $GTAGSLABEL = 'native-pygments'
+let $GTAGSCONF = $VIMRUNTIME.'\..\gtags.conf'
+nmap <leader>cn :cn<CR>
+nmap <leader>cp :cp<CR>
 
 """"""""""""""""""""""""""""""
 " echodoc
@@ -1102,3 +963,135 @@ autocmd FileType python,go,c,cpp
 \  nmap <leader>ln :LspNextError<cr>|
 \  nmap <leader>lp :LspPreviousError<cr>|
 \  nmap <leader>lr :LspRename<cr>
+
+" ------------------------------------------------------------------
+"  ALE
+" ------------------------------------------------------------------
+let g:ale_sign_error = "\ue009\ue009"
+hi! clear SpellBad
+hi! clear SpellCap
+hi! clear SpellRare
+hi! SpellBad gui=undercurl guisp=red
+hi! SpellCap gui=undercurl guisp=blue
+hi! SpellRare gui=undercurl guisp=magenta
+let g:ale_set_highlights = 0
+""自定义error和warning图标
+let g:ale_sign_error = 'E'
+let g:ale_sign_warning = 'W'
+""在vim自带的状态栏中整合ale
+let g:ale_statusline_format = ['E %d', 'W %d', 'O OK']
+""显示Linter名称,出错或警告等相关信息
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+""打开文件时不进行检查
+"let g:ale_lint_on_enter = 0
+
+let g:ale_linters_explicit = 1
+let g:ale_completion_delay = 500
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 500
+let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:airline#extensions#ale#enabled = 1
+
+let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
+
+"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
+"nmap sp <Plug>(ale_previous_wrap)
+"nmap sn <Plug>(ale_next_wrap)
+nmap <leader>ap <Plug>(ale_previous_wrap)
+nmap <leader>an <Plug>(ale_next_wrap)
+"<Leader>s触发/关闭语法检查
+nmap <Leader>at :ALEToggle<CR>
+"<Leader>d查看错误或警告的详细信息
+nmap <Leader>ad :ALEDetail<CR>
+"使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
+"
+let g:ale_linters = {
+\   'cpp':        ['cppcheck','clang','gcc'],
+\   'c':          ['cppcheck','clang', 'gcc'],
+\   'python':     ['pylint'],
+\   'javascript': ['eslint'],
+\   'css':        ['stylelint'],
+\   'bash':       ['shellcheck'],
+\   'go':         ['golint'],
+\}
+
+"------------------------------------------------------------------
+"  which key
+"------------------------------------------------------------------
+set timeoutlen=500
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+let g:which_key_map =  {}
+let g:which_key_map.a = {'name':'+ALE'}
+" let g:which_key_map.b = {'name':'+Buffer'}
+let g:which_key_map.c = {'name':'+gscope'}
+let g:which_key_map.d = {'name':'+dox'}
+let g:which_key_map.e = {'name':'+edit'}
+let g:which_key_map.l = {'name':'+lsp'}
+let g:which_key_map.q = {'name':'+quickfix'}
+let g:which_key_map.p = {'name':'+program'}
+let g:which_key_map.t = {'name':'+tag'}
+let g:which_key_map.v = {'name':'+wiki'}
+let g:which_key_map.m = {'name':'+mark'}
+let g:which_key_map.r = {'name':'+ctrlp'}
+let g:which_key_map[' ']= {'name':'+easyMotion'}
+
+let g:which_key_map.b = {
+      \ 'name' : '+buffer' ,
+      \ 'a' : ['ba'        , 'delete-all-buffer']   ,
+      \ 'd' : ['bd'        , 'delete-buffer']   ,
+      \ 'f' : ['bfirst'    , 'first-buffer']    ,
+      \ 'h' : ['Startify'  , 'home-buffer']     ,
+      \ 'l' : ['blast'     , 'last-buffer']     ,
+      \ 'n' : ['bnext'     , 'next-buffer']     ,
+      \ 'p' : ['bprevious' , 'previous-buffer'] ,
+      \ }
+let g:which_key_map.g = {
+      \ 'name' : '+git/version-control' ,
+      \ 'b' : ['Gblame'                 , 'fugitive-blame']             ,
+      \ 'c' : ['Gcommit'                , 'fugitive-commit']            ,
+      \ 'd' : ['Gdiff'                  , 'fugitive-diff']              ,
+      \ 'e' : ['Gedit'                  , 'fugitive-edit']              ,
+      \ 'l' : ['Glog'                   , 'fugitive-log']               ,
+      \ 'r' : ['Gread'                  , 'fugitive-read']              ,
+      \ 's' : ['Gstatus'                , 'fugitive-status']            ,
+      \ 'w' : ['Gwrite'                 , 'fugitive-write']             ,
+      \ 'p' : ['Gpush'                  , 'fugitive-push']              ,
+ \}
+
+
+let g:which_key_map['w'] = {
+      \ 'name' : '+windows' ,
+      \ 'c' : ['<C-W>c'     , 'delete-window']         ,
+      \ '-' : ['<C-W>s'     , 'split-window-below']    ,
+      \ '|' : ['<C-W>v'     , 'split-window-right']    ,
+      \ '2' : ['<C-W>v'     , 'layout-double-columns'] ,
+      \ 'h' : ['<C-W>h'     , 'window-left']           ,
+      \ 'j' : ['<C-W>j'     , 'window-below']          ,
+      \ 'l' : ['<C-W>l'     , 'window-right']          ,
+      \ 'k' : ['<C-W>k'     , 'window-up']             ,
+      \ 'H' : ['<C-W>H'     , 'move-window-left']    ,
+      \ 'J' : ['<C-W>J'     , 'move-window-down']   ,
+      \ 'K' : ['<C-W>K'     , 'move-window-right']   ,
+      \ 'L' : ['<C-W>L'     , 'move-window-left']   ,
+      \ '>' : ['<C-W>5>'    , 'expand-window-left']   ,
+      \ '<' : ['<C-W>5<'    , 'expand-window-right']   ,
+      \ '=' : ['<C-W>='     , 'balance-window']        ,
+      \ 'b' : ['<C-W>s'     , 'split-window-below']    ,
+      \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
+      \ }
+
+try
+	call which_key#register('<Space>', "g:which_key_map")
+	nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+	vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+catch
+endtry
