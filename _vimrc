@@ -1093,4 +1093,3 @@ try
 	vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 catch
 endtry
-
