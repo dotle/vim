@@ -248,7 +248,6 @@ endif
 
 set lines=42 columns=128
 
-
 " ------------------------------------------------------------------
 " preview windows
 " ------------------------------------------------------------------
@@ -309,7 +308,6 @@ func! Compile()
     endif
 endfunc
 
-
 function RunPython()
   let mp = &makeprg
   let ef = &errorformat
@@ -341,6 +339,7 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
+
 " -----------------------------------------------
 " fast key
 " -----------------------------------------------
@@ -468,7 +467,6 @@ inoremap <silent><M-{> <c-\><c-o>:call Tools_QuickfixCursor(4)<cr>
 inoremap <silent><M-}> <c-\><c-o>:call Tools_QuickfixCursor(5)<cr>
 inoremap <silent><M-u> <c-\><c-o>:call Tools_PreviousCursor(6)<cr>
 inoremap <silent><M-d> <c-\><c-o>:call Tools_PreviousCursor(7)<cr>
-
 
 " ------------------------------------------------------------------
 " change backup dir
@@ -745,8 +743,9 @@ func! MyRun()
 	endif
 "autocmd BufNewFile,BufRead *.py nmap <m-r> :w <cr>:!python %<cr>
 endfunc
+
 " ------------------------------------------------------------------
-"----------------------plugin set-----------------------------------
+" ---------------------plugin set-----------------------------------
 " ------------------------------------------------------------------
 
 " ------------------------------------------------------------------
@@ -896,7 +895,6 @@ let g:miniBufExplModSelTarget = 1
 let g:miniBufExplForceSyntaxEnable = 1
 let g:miniBufExplorerMoreThanOne=0
 
-
 " -----------------------------------------------------------------
 "  mark
 "  ----------------------------------------------------------------
@@ -914,6 +912,7 @@ let g:vimwiki_use_mouse = 1
 source $VIMRUNTIME/../wiki-list.vim
 " change wiki prefix to v
 let g:vimwiki_map_prefix = '<Leader>v'
+
 " -----------------------------------------------------------------
 " lsc
 " -----------------------------------------------------------------
@@ -1009,8 +1008,9 @@ nmap <leader>an <Plug>(ale_next_wrap)
 nmap <Leader>at :ALEToggle<CR>
 "<Leader>d查看错误或警告的详细信息
 nmap <Leader>ad :ALEDetail<CR>
+"java 中文乱码
+let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en'
 "使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
-"
 let g:ale_linters = {
 \   'cpp':        ['cppcheck','clang','gcc'],
 \   'c':          ['cppcheck','clang', 'gcc'],
@@ -1031,7 +1031,6 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 let g:which_key_map =  {}
 let g:which_key_map.a = {'name':'+ALE'}
-" let g:which_key_map.b = {'name':'+Buffer'}
 let g:which_key_map.c = {'name':'+gscope'}
 let g:which_key_map.d = {'name':'+dox'}
 let g:which_key_map.e = {'name':'+edit'}
@@ -1066,7 +1065,6 @@ let g:which_key_map.g = {
       \ 'w' : ['Gwrite'                 , 'fugitive-write']             ,
       \ 'p' : ['Gpush'                  , 'fugitive-push']              ,
  \}
-
 
 let g:which_key_map['w'] = {
       \ 'name' : '+windows' ,
