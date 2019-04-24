@@ -223,8 +223,12 @@ nmap <leader>fh :nohl<CR>
 au BufRead,BufNewFile  *.asm,*.c,*.cpp,*.java,*.cs,
 			\*.sh,*.lua,*.pl,*.pm,*.py,
 			\*.rb,*.erb,*.hs,*.vim,*.ino
-			\ 2match Underlined /.\%81v/
-
+			\ 2match Underlined /.\%81v/|
+            \ match BadWhitespace /\s\+$/|
+            \ setlocal softtabstop=4|
+            \ set cul|
+            \ setlocal cc=80
+" au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.ino,*.go,*.vim,*.java,*.cs,*.asm match BadWhitespace /\s\+$/
 nmap <leader>pv :source %<CR>
 " nmap <leader>wc <C-W>c
 
@@ -266,14 +270,12 @@ nnoremap <C-H> <C-W><C-H>
 " python
 " ------------------------------------------------------------------
 au BufNewFile,BufRead *.py
-\ setlocal softtabstop=4 |
 \ setlocal textwidth=79 |
 \ setlocal autoindent |
-\ setlocal cc=80 |
-\ setlocal cursorcolumn
+" \ setlocal cc=80 
+" \ setlocal cursorcolumn
 
 hi BadWhitespace guifg=gray guibg=red ctermfg=gray ctermbg=red
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 let python_highlight_all=1
 
