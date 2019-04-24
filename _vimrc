@@ -222,7 +222,7 @@ nmap <leader>fh :nohl<CR>
 " ------------------------------------------------------------------
 au BufRead,BufNewFile  *.asm,*.c,*.cpp,*.java,*.cs,
 			\*.sh,*.lua,*.pl,*.pm,*.py,
-			\*.rb,*.erb,*.hs,*.vim,*.ino
+			\*.rb,*.erb,*.hs,*.vim,*.ino,*.go,*.h,*.pyw
 			\ 2match Underlined /.\%81v/|
             \ match BadWhitespace /\s\+$/|
             \ setlocal softtabstop=4|
@@ -272,7 +272,7 @@ nnoremap <C-H> <C-W><C-H>
 au BufNewFile,BufRead *.py
 \ setlocal textwidth=79 |
 \ setlocal autoindent |
-" \ setlocal cc=80 
+" \ setlocal cc=80
 " \ setlocal cursorcolumn
 
 hi BadWhitespace guifg=gray guibg=red ctermfg=gray ctermbg=red
