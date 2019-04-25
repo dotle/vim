@@ -84,7 +84,7 @@ Plug  'vim-scripts/indentpython.vim' "帮助python格式化代码缩进。
 Plug  'w0rp/ale'
 Plug  'nvie/vim-flake8' "python 标准检查插件
 Plug  'majutsushi/tagbar'   "tagbar
-Plug  'jmcantrell/vim-virtualenv' "python virtual 支持
+" Plug  'jmcantrell/vim-virtualenv' "python virtual 支持
 Plug  'tpope/vim-commentary' "快速注释 gc gcc
 Plug  'vim-scripts/DoxygenToolkit.vim'  "生成doxygen风格注释
 Plug  'Shougo/echodoc.vim'
@@ -93,6 +93,7 @@ Plug  'skywind3000/gutentags_plus'
 Plug  'skywind3000/vim-preview'
 Plug  'tpope/vim-unimpaired'
 Plug  'octol/vim-cpp-enhanced-highlight'
+Plug  'fisadev/FixedTaskList.vim'
 "-----------------
 " Fast navigation
 "-----------------
@@ -914,6 +915,11 @@ let g:vimwiki_use_mouse = 1
 source $VIMRUNTIME/../wiki-list.vim
 " change wiki prefix to v
 let g:vimwiki_map_prefix = '<Leader>v'
+
+" -----------------------------------------------------------------
+" tasklist
+" -----------------------------------------------------------------
+map <leader>tl <Plug>TaskList
 
 " -----------------------------------------------------------------
 " lsc
