@@ -221,7 +221,7 @@ nmap <leader>fh :nohl<CR>
 " ------------------------------------------------------------------
 " code
 " ------------------------------------------------------------------
-hi BadWhitespace guifg=red guibg=red ctermfg=red ctermbg=red
+hi BadWhitespace guifg=gray guibg=red ctermfg=gray ctermbg=red
 
 au BufRead,BufNewFile  *.asm,*.c,*.cpp,*.java,*.cs,
 			\*.sh,*.lua,*.pl,*.pm,*.py,
