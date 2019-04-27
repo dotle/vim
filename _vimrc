@@ -1,6 +1,8 @@
-﻿source $VIMRUNTIME/vimrc_example.vim
-source $VIMRUNTIME/mswin.vim
-behave mswin
+﻿if(has("win32") || has("win64") || has("win95") || has("win16"))
+    source $VIMRUNTIME/vimrc_example.vim
+    source $VIMRUNTIME/mswin.vim
+    behave mswin
+endif
 
 set diffexpr=MyDiff()
 function MyDiff()
@@ -138,17 +140,19 @@ set fenc=utf-8
 set encoding=utf-8
 filetype plugin on
 set fileencodings=utf-8,gbk,chinese,latin-1
-if has("win32")
+if(has("win32") || has("win64") || has("win95") || has("win16"))
  set fileencoding=utf-8
 else
  set fileencoding=utf-8
 endif
 "处理菜单及右键菜单乱码
- source $VIMRUNTIME/delmenu.vim
- source $VIMRUNTIME/menu.vim
+if(has("win32") || has("win64") || has("win95") || has("win16"))
+    source $VIMRUNTIME/delmenu.vim
+    source $VIMRUNTIME/menu.vim
+endif
 
 "处理consle输出乱码
- language messages zh_CN.utf-8
+language messages zh_CN.utf-8
 "中文乱码结束
 
 " ------------------------------------------------------------------
@@ -170,20 +174,6 @@ set showtabline=0
 "set noshowmode "for echodoc show func document
 set cmdheight=2 "for echodoc show func document
 
-let font_name = ""
-if getfontname("Lucida_Console") != ""
-	set guifont=Lucida_Console:h12:cANSI
-	let font_name = "Lucida_Console"
-elseif getfontname( "Bitstream_Vera_Sans_Mono" ) != ""
-	set guifont=Bitstream_Vera_Sans_Mono:h12:cANSI
-	let font_name = "Bitstream_Vera_Sans_Mono"
-elseif getfontname( "Consolas" ) != ""
-	set guifont=Consolas:h11:cANSI " this is the default visual studio font
-	let font_name = "Consolas"
-else
-	set guifont=Lucida_Console:h12:cANSI
-	let font_name = "Lucida_Console"
-endif
 syntax on    "开启语法高亮"
 
 "set wrap    "设置折行"
@@ -226,12 +216,11 @@ if has("gui_running")
   set t_Co=256
   set background=dark
   colorscheme evening
-
   set nu
 else
-  colorscheme zellner
+  colorscheme evening
+  " colorscheme zellner
   set background=dark
-
   set nonu
 endif
 
@@ -253,6 +242,18 @@ if has("gui_running")
     let g:isGUI = 1
 else
     let g:isGUI = 0
+endif
+
+"------------------------------------------------------------------------------
+"  font
+"------------------------------------------------------------------------------
+let font_name = ""
+if(has("win32") || has("win64") || has("win95") || has("win16"))
+	set guifont=Lucida_Console:h12:cANSI
+	let font_name = "Lucida_Console"
+else
+	set guifont=Consolas:h11:cANSI " this is the default visual studio font
+	let font_name = "Consolas"
 endif
 
 " ------------------------------------------------------------------
