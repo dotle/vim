@@ -47,6 +47,7 @@ Plug  'jiangmiao/auto-pairs'
 Plug  'vim-scripts/Mark--Karkat'
 Plug  'liuchengxu/vim-which-key'
 Plug  'mhinz/vim-startify'
+Plug  'junegunn/goyo.vim'
 "--------------------
 " Code completions
 " -------------------
@@ -93,12 +94,10 @@ Plug  'skywind3000/gutentags_plus'
 Plug  'skywind3000/vim-preview'
 Plug  'tpope/vim-unimpaired'
 Plug  'octol/vim-cpp-enhanced-highlight'
-Plug  'fisadev/FixedTaskList.vim'
 "-----------------
 " Fast navigation
 "-----------------
 Plug  'easymotion/vim-easymotion'  "快速移动 使用<leader><leader>开头
-"Plugin 'Lokaltog/vim-easymotion'
 Plug  'derekwyatt/vim-fswitch' "头文件和文件切换 <leader>sw
 "--------------
 " IDE features
@@ -219,23 +218,6 @@ set completeopt=longest,menu "补全菜单的样式
 nmap <leader>fh :nohl<CR>
 
 " ------------------------------------------------------------------
-" code
-" ------------------------------------------------------------------
-hi BadWhitespace guifg=gray guibg=red ctermfg=gray ctermbg=red
-
-au BufRead,BufNewFile  *.asm,*.c,*.cpp,*.java,*.cs,
-			\*.sh,*.lua,*.pl,*.pm,*.py,
-			\*.rb,*.erb,*.hs,*.vim,*.ino,*.go,*.h,*.pyw
-			\ 2match Underlined /.\%81v/|
-            \ match BadWhitespace /\s\+$/|
-            \ setlocal softtabstop=4|
-            \ setlocal cul|
-            \ setlocal cc=80
-" au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.ino,*.go,*.vim,*.java,*.cs,*.asm match BadWhitespace /\s\+$/
-nmap <leader>pv :source %<CR>
-" nmap <leader>wc <C-W>c
-
-" ------------------------------------------------------------------
 " color
 " ------------------------------------------------------------------
 if has("gui_running")
@@ -254,6 +236,41 @@ else
 endif
 
 set lines=42 columns=128
+
+"------------------------------------------------------------------------------
+"  < 判断操作系统是否是 Windows 还是 Linux >
+"------------------------------------------------------------------------------
+if(has("win32") || has("win64") || has("win95") || has("win16"))
+    let g:iswindows = 1
+else
+    let g:iswindows = 0
+endif
+
+"------------------------------------------------------------------------------
+"  < 判断是终端还是 Gvim >
+"------------------------------------------------------------------------------
+if has("gui_running")
+    let g:isGUI = 1
+else
+    let g:isGUI = 0
+endif
+
+" ------------------------------------------------------------------
+" code
+" ------------------------------------------------------------------
+hi BadWhitespace guifg=gray guibg=red ctermfg=gray ctermbg=red
+
+au BufRead,BufNewFile  *.asm,*.c,*.cpp,*.java,*.cs,
+			\*.sh,*.lua,*.pl,*.pm,*.py,
+			\*.rb,*.erb,*.hs,*.vim,*.ino,*.go,*.h,*.pyw
+			\ 2match Underlined /.\%81v/|
+            \ match BadWhitespace /\s\+$/|
+            \ setlocal softtabstop=4|
+            \ setlocal cul|
+            \ setlocal cc=80
+" au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.ino,*.go,*.vim,*.java,*.cs,*.asm match BadWhitespace /\s\+$/
+nmap <leader>pv :source %<CR>
+" nmap <leader>wc <C-W>c
 
 " ------------------------------------------------------------------
 " preview windows
@@ -514,24 +531,6 @@ set makeef=error.err " the errorfile for :make and :grep
 " arduino
 "------------------------------------------------------------
 au BufNewFile,BufRead *.ino set filetype=c
-
-"------------------------------------------------------------------------------
-"  < 判断操作系统是否是 Windows 还是 Linux >
-"------------------------------------------------------------------------------
-if(has("win32") || has("win64") || has("win95") || has("win16"))
-    let g:iswindows = 1
-else
-    let g:iswindows = 0
-endif
-
-"------------------------------------------------------------------------------
-"  < 判断是终端还是 Gvim >
-"------------------------------------------------------------------------------
-if has("gui_running")
-    let g:isGUI = 1
-else
-    let g:isGUI = 0
-endif
 
 "------------------------------------------------------------------------------
 "  < 编译、连接、运行配置 >
@@ -917,9 +916,10 @@ source $VIMRUNTIME/../wiki-list.vim
 let g:vimwiki_map_prefix = '<Leader>v'
 
 " -----------------------------------------------------------------
-" tasklist
+" fugitive
 " -----------------------------------------------------------------
-map <leader>tl <Plug>TaskList
+nmap <leader>gc :Gcommit %<CR>
+nmap <leader>gC :Gcommit .<CR>
 
 " -----------------------------------------------------------------
 " lsc
@@ -1064,7 +1064,8 @@ let g:which_key_map.b = {
 let g:which_key_map.g = {
       \ 'name' : '+git/version-control' ,
       \ 'b' : ['Gblame'                 , 'fugitive-blame']             ,
-      \ 'c' : ['Gcommit'                , 'fugitive-commit']            ,
+      \ 'c' : 'commits-for-current-buffer',    
+      \ 'C' : 'fugitive-commit' ,   
       \ 'd' : ['Gdiff'                  , 'fugitive-diff']              ,
       \ 'e' : ['Gedit'                  , 'fugitive-edit']              ,
       \ 'l' : ['Glog'                   , 'fugitive-log']               ,
@@ -1072,6 +1073,7 @@ let g:which_key_map.g = {
       \ 's' : ['Gstatus'                , 'fugitive-status']            ,
       \ 'w' : ['Gwrite'                 , 'fugitive-write']             ,
       \ 'p' : ['Gpush'                  , 'fugitive-push']              ,
+      \ 'y' : ['Goyo'                   , 'goyo-mode']         ,
  \}
 
 let g:which_key_map['w'] = {
