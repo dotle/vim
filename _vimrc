@@ -936,7 +936,7 @@ autocmd BufNewFile,BufRead *.py nmap <leader>py :w <cr>:AsyncRun -raw python %<c
 map <leader>ps :AsyncStop<cr>
 
 " -----------------------------------------------------------------
-" undotree 
+" undotree
 " -----------------------------------------------------------------
 nnoremap <leader>fu :UndotreeToggle<cr>
 " ------------------------------------------------------------------
@@ -1090,6 +1090,7 @@ let g:which_key_map.t = {'name':'+tag'}
 let g:which_key_map.v = {'name':'+wiki'}
 let g:which_key_map.m = {'name':'+mark'}
 let g:which_key_map.r = {'name':'+ctrlp'}
+let g:which_key_map.s = {'name':'+slime'}
 let g:which_key_map[' ']= {'name':'+easyMotion'}
 
 let g:which_key_map.b = {
@@ -1105,8 +1106,8 @@ let g:which_key_map.b = {
 let g:which_key_map.g = {
       \ 'name' : '+git/version-control' ,
       \ 'b' : ['Gblame'                 , 'fugitive-blame']             ,
-      \ 'c' : 'commits-for-current-buffer',    
-      \ 'C' : 'fugitive-commit' ,   
+      \ 'c' : 'commits-for-current-buffer',
+      \ 'C' : 'fugitive-commit' ,
       \ 'd' : ['Gdiff'                  , 'fugitive-diff']              ,
       \ 'e' : ['Gedit'                  , 'fugitive-edit']              ,
       \ 'l' : ['Glog'                   , 'fugitive-log']               ,
