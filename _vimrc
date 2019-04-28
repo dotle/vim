@@ -115,6 +115,7 @@ Plug  'tpope/vim-surround'       "surround cs ds....
 Plug  'mbbill/undotree'         "undo  操作
 Plug  'skywind3000/asyncrun.vim'  "异步操作
 Plug  'junegunn/vim-easy-align'
+Plug  'jpalardy/vim-slime'
 "----------------------------------------
 " Syntax/Indent for language enhancement
 "----------------------------------------
@@ -409,6 +410,8 @@ nnoremap <leader>fu :UndotreeToggle<cr>
 
 map <leader>fx :%!xxd -g 1<cr>
 map <leader>fn :%!xxd -r<cr>
+nmap <leader>ft :terminal<cr>
+nmap <leader>bu :unhide<cr>
 
 "*********************************************
 " gui terminal
@@ -756,7 +759,7 @@ endfunc
 " ------------------------------------------------------------------
 "F2开启和关闭树"
 map <F2> :NERDTreeToggle<CR>
-map <leader>ft :NERDTree<CR>
+map <leader>fd :NERDTree<CR>
 let NERDTreeChDirMode=2
 "显示书签"
 let NERDTreeShowBookmarks=1
@@ -874,7 +877,7 @@ nmap  <leader>ru :CtrlPUndo<cr>
 nmap  <leader>rl :CtrlPLine<cr>
 nmap  <leader>rs :CtrlPRTS<cr>
 nmap  <leader>ra :CtrlPBufTagAll<cr>
-nmap  <leader>rp :CtrlPBuffer<cr>
+nmap  <leader>rb :CtrlPBuffer<cr>
 
 """"""""""""""""""""""""""""""
 " easy-align
@@ -921,6 +924,13 @@ let g:vimwiki_map_prefix = '<Leader>v'
 " -----------------------------------------------------------------
 nmap <leader>gc :Gcommit %<CR>
 nmap <leader>gC :Gcommit .<CR>
+
+" -----------------------------------------------------------------
+" vim-slime
+" -----------------------------------------------------------------
+let g:slime_target = "vimterminal"
+let g:slime_vimterminal_cmd = "cmd"
+" let g:slime_python_ipython = 1
 
 " -----------------------------------------------------------------
 " lsc
