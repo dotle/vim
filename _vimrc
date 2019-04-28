@@ -258,6 +258,14 @@ else
 endif
 
 " ------------------------------------------------------------------
+" splite windows
+" ------------------------------------------------------------------
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" ------------------------------------------------------------------
 " code
 " ------------------------------------------------------------------
 hi BadWhitespace guifg=gray guibg=red ctermfg=gray ctermbg=red
@@ -273,20 +281,6 @@ au BufRead,BufNewFile  *.asm,*.c,*.cpp,*.java,*.cs,
 " au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.ino,*.go,*.vim,*.java,*.cs,*.asm match BadWhitespace /\s\+$/
 nmap <leader>pv :source %<CR>
 " nmap <leader>wc <C-W>c
-
-" ------------------------------------------------------------------
-" preview windows
-" ------------------------------------------------------------------
-noremap <leader>tv :PreviewSignature!<cr>
-nmap <leader>qw :PreviewClose<cr>
-nmap <leader>tg <C-W>}
-" ------------------------------------------------------------------
-" splite windows
-" ------------------------------------------------------------------
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 " ------------------------------------------------------------------
 " python
@@ -374,7 +368,6 @@ nmap <leader>ed :cd %:p:h<cr>
 " programming related
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 nmap <leader>tc :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-nmap <leader>fw :FSHere <CR>
 nnoremap <silent> <F4> :A<CR>
 " Close the current buffer
 map <leader>bd :Bclose<cr>
@@ -392,21 +385,15 @@ inoremap <unique> <c-]> <C-X><C-]>
 " search in current files, preview first. remove the original c-p
 inoremap <unique> <c-p> <C-X><C-P>
 inoremap <unique> <m-o> <C-X><C-O>
+nmap <leader>tg <C-W>}
 
 map  <leader>qc :cclose<cr>
 map  <leader>qo :bot copen<cr>
 map  <leader>ff :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 map  <C-F5> :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
-map  <F8> :Calendar<cr>
-map  <leader>fm :MRU<cr>
 
 "  run python
-"autocmd BufNewFile,BufRead *.py nmap <leader>cp :w <cr>:AsyncRun -raw python %<cr>
-autocmd BufNewFile,BufRead *.py nmap <m-y> :w <cr>:AsyncRun -raw python %<cr>
-autocmd BufNewFile,BufRead *.py nmap <leader>py :w <cr>:AsyncRun -raw python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
-map <leader>ps :AsyncStop<cr>
-nnoremap <leader>fu :UndotreeToggle<cr>
 
 map <leader>fx :%!xxd -g 1<cr>
 map <leader>fn :%!xxd -r<cr>
@@ -926,10 +913,53 @@ nmap <leader>gc :Gcommit %<CR>
 nmap <leader>gC :Gcommit .<CR>
 
 " -----------------------------------------------------------------
+" source and header switch
+" -----------------------------------------------------------------
+nmap <leader>fw :FSHere <CR>
+
+" -----------------------------------------------------------------
+" Calendar
+" -----------------------------------------------------------------
+map  <F8> :Calendar<cr>
+
+" -----------------------------------------------------------------
+" MRU
+" -----------------------------------------------------------------
+map  <leader>fm :MRU<cr>
+
+" -----------------------------------------------------------------
+" async
+" -----------------------------------------------------------------
+"autocmd BufNewFile,BufRead *.py nmap <leader>cp :w <cr>:AsyncRun -raw python %<cr>
+autocmd BufNewFile,BufRead *.py nmap <m-y> :w <cr>:AsyncRun -raw python %<cr>
+autocmd BufNewFile,BufRead *.py nmap <leader>py :w <cr>:AsyncRun -raw python %<cr>
+map <leader>ps :AsyncStop<cr>
+
+" -----------------------------------------------------------------
+" undotree 
+" -----------------------------------------------------------------
+nnoremap <leader>fu :UndotreeToggle<cr>
+" ------------------------------------------------------------------
+" preview windows
+" ------------------------------------------------------------------
+noremap <leader>tv :PreviewSignature!<cr>
+nmap <leader>qw :PreviewClose<cr>
+
+" -----------------------------------------------------------------
 " vim-slime
 " -----------------------------------------------------------------
 let g:slime_target = "vimterminal"
-let g:slime_vimterminal_cmd = "cmd"
+
+if(has("win32") || has("win64") || has("win95") || has("win16"))
+    let g:slime_vimterminal_cmd = "cmd"
+endif
+nmap <leader>sc <plug>SlimeConfig
+nmap <leader>sp <plug>SlimeParagraphSend
+xmap <leader>ss <plug>SlimeRegionSend
+nmap <leader>ss :SlimeSend<cr>
+nmap <leader>sl :SlimeSendCurrentLine<cr>
+nmap <leader>s1 :SlimeSend1
+nmap <leader>s0 :SlimeSend0
 " let g:slime_python_ipython = 1
 
 " -----------------------------------------------------------------
