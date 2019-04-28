@@ -50,6 +50,7 @@ Plug  'vim-scripts/Mark--Karkat'
 Plug  'liuchengxu/vim-which-key'
 Plug  'mhinz/vim-startify'
 Plug  'junegunn/goyo.vim'
+Plug  'tpope/vim-sensible'
 "--------------------
 " Code completions
 " -------------------
@@ -206,7 +207,7 @@ set clipboard=unnamed
 
 set completeopt=longest,menu "补全菜单的样式
 
-nmap <leader>fh :nohl<CR>
+nmap <leader>fh :nohlsearch<CR>
 
 " ------------------------------------------------------------------
 " color
