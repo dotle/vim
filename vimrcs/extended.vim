@@ -95,19 +95,27 @@ endfunction
 " -----------------------------------------------
 nmap <leader>fb :%s/\s\+$<CR>
 nmap <leader>fs :w!<cr>
+nmap <leader>fa :wall<cr>
+nmap <leader>fh :nohlsearch<CR>
+map <leader>fx :%!xxd -g 1<cr>
+map <leader>fn :%!xxd -r<cr>
+nmap <leader>ft :terminal<cr>
+map  <leader>ff :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
+map  <C-F5> :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 " When pressing <leader>ed switch to the directory of the open buffer
 " cros to cd
 nmap <leader>ed :cd %:p:h<cr>
 
+nmap <leader>tg <C-W>}
 " programming related
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 nmap <leader>tc :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 nnoremap <silent> <F4> :A<CR>
 " Close the current buffer
 map <leader>bd :Bclose<cr>
-
 " Close all the buffers
 map <leader>ba :bd%<cr>
+nmap <leader>bu :unhide<cr>
 
 map<leader>ee :e! $VIMRUNTIME/../_vimrc<cr>
 map<leader>eb :e! $VIMRUNTIME/../vimrcs/basic.vim<cr>
@@ -122,20 +130,13 @@ inoremap <unique> <c-]> <C-X><C-]>
 " search in current files, preview first. remove the original c-p
 inoremap <unique> <c-p> <C-X><C-P>
 inoremap <unique> <m-o> <C-X><C-O>
-nmap <leader>tg <C-W>}
 
 map  <leader>qc :cclose<cr>
 map  <leader>qo :bot copen<cr>
-map  <leader>ff :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
-map  <C-F5> :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 
 "  run python
 autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
 
-map <leader>fx :%!xxd -g 1<cr>
-map <leader>fn :%!xxd -r<cr>
-nmap <leader>ft :terminal<cr>
-nmap <leader>bu :unhide<cr>
 
 "*********************************************
 " gui terminal
