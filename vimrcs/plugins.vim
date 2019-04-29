@@ -83,6 +83,7 @@ Plug  'mbbill/undotree'         "undo  操作
 Plug  'skywind3000/asyncrun.vim'  "异步操作
 Plug  'junegunn/vim-easy-align'
 Plug  'jpalardy/vim-slime'
+Plug  'ntpeters/vim-better-whitespace'
 "----------------------------------------
 " Syntax/Indent for language enhancement
 "----------------------------------------
@@ -270,6 +271,16 @@ source $VIMRUNTIME/../wiki-list.vim
 let g:vimwiki_map_prefix = '<Leader>v'
 
 " -----------------------------------------------------------------
+"  better white space
+"  ----------------------------------------------------------------
+let g:better_whitespace_enabled=1
+nmap <leader>fwe :EnableWhitespace<CR>
+nmap <leader>fwd :DisableWhitespace<CR>
+nmap <leader>fwt :ToggleWhitespace<CR>
+nmap <leader>fws :StripWhitespace<CR>
+let g:better_whitespace_filetypes_blacklist=['text', 'markdown', 'vimwiki',
+            \'diff', 'gitcommit', 'unite', 'qf', 'help', 'markdown']
+" -----------------------------------------------------------------
 " fugitive
 " -----------------------------------------------------------------
 nmap <leader>gc :Gcommit %<CR>
@@ -278,7 +289,7 @@ nmap <leader>gC :Gcommit .<CR>
 " -----------------------------------------------------------------
 " source and header switch
 " -----------------------------------------------------------------
-nmap <leader>fw :FSHere <CR>
+nmap <leader>fg :FSHere <CR>
 
 " -----------------------------------------------------------------
 " Calendar
@@ -446,6 +457,8 @@ let g:which_key_map.a = {'name':'+ALE'}
 let g:which_key_map.c = {'name':'+gscope'}
 let g:which_key_map.d = {'name':'+dox'}
 let g:which_key_map.e = {'name':'+edit'}
+let g:which_key_map.f = {'name':'+file'}
+let g:which_key_map.f.w = {'name':'+whitespace'}
 let g:which_key_map.l = {'name':'+lsp'}
 let g:which_key_map.q = {'name':'+quickfix'}
 let g:which_key_map.p = {'name':'+program'}

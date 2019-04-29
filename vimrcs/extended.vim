@@ -2,19 +2,19 @@
 " ------------------------------------------------------------------
 " code
 " ------------------------------------------------------------------
-hi BadWhitespace guifg=gray guibg=red ctermfg=gray ctermbg=red
-
 au BufRead,BufNewFile  *.asm,*.c,*.cpp,*.java,*.cs,
 			\*.sh,*.lua,*.pl,*.pm,*.py,
 			\*.rb,*.erb,*.hs,*.vim,*.ino,*.go,*.h,*.pyw
-			\ 2match Underlined /.\%81v/|
-            \ match BadWhitespace /\s\+$/|
             \ setlocal softtabstop=4|
             \ setlocal cul|
             \ setlocal cc=80
 " au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.ino,*.go,*.vim,*.java,*.cs,*.asm match BadWhitespace /\s\+$/
 nmap <leader>pv :source %<CR>
 " nmap <leader>wc <C-W>c
+
+" hi BadWhitespace guifg=gray guibg=red ctermfg=gray ctermbg=red
+" \ 2match Underlined /.\%81v/|
+" \ match BadWhitespace /\s\+$/|
 
 " ------------------------------------------------------------------
 " python
@@ -93,7 +93,6 @@ endfunction
 " -----------------------------------------------
 " fast key
 " -----------------------------------------------
-nmap <leader>fb :%s/\s\+$<CR>
 nmap <leader>fs :w!<cr>
 nmap <leader>fa :wall<cr>
 nmap <leader>fh :nohlsearch<CR>
