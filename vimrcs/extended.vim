@@ -217,8 +217,6 @@ inoremap <silent><M-}> <c-\><c-o>:call Tools_QuickfixCursor(5)<cr>
 inoremap <silent><M-u> <c-\><c-o>:call Tools_PreviousCursor(6)<cr>
 inoremap <silent><M-d> <c-\><c-o>:call Tools_PreviousCursor(7)<cr>
 
-
-
 " ------------------------------------------------------------------
 " tags
 " ------------------------------------------------------------------

@@ -109,8 +109,6 @@ set clipboard=unnamed
 
 set completeopt=longest,menu "补全菜单的样式
 
-nmap <leader>fh :nohlsearch<CR>
-
 " ------------------------------------------------------------------
 " color
 " ------------------------------------------------------------------
