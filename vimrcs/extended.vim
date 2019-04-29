@@ -137,7 +137,6 @@ map  <leader>qo :bot copen<cr>
 "  run python
 autocmd BufNewFile,BufRead *.py nmap <F12> :w <cr>:!python %<cr>
 
-
 "*********************************************
 " gui terminal
 " ********************************************
