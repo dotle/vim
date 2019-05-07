@@ -32,7 +32,7 @@ let python_highlight_all=1
 " ------------------------------------------------------------------
 "设置折行 不自动换行
 au BufNewFile,BufRead *.txt,*.md,*.tmp,*.wiki
-\ set wrap
+\ setlocal wrap
 
 " ------------------------------------------------------------------
 " quick run
@@ -121,6 +121,8 @@ map<leader>ee :e! $VIMRUNTIME/../_vimrc<cr>
 map<leader>eb :e! $VIMRUNTIME/../vimrcs/basic.vim<cr>
 map<leader>ex :e! $VIMRUNTIME/../vimrcs/extended.vim<cr>
 map<leader>ep :e! $VIMRUNTIME/../vimrcs/plugins.vim<cr>
+map<leader>ew :setlocal wrap<cr>
+map<leader>eW :setlocal nowrap<cr>
 "autocmd! bufwritepost _vimrc source c:/vim/_vimrc
 map <S-F> <ESC>:%!astyle --style=ansi -U -p -f<CR>
 nmap <leader>pf <ESC>:%!astyle --style=ansi -U -p -f<CR>
