@@ -279,7 +279,7 @@ nmap <leader>fwd :DisableWhitespace<CR>
 nmap <leader>fwt :ToggleWhitespace<CR>
 nmap <leader>fws :StripWhitespace<CR>
 let g:better_whitespace_filetypes_blacklist=['text', 'markdown', 'vimwiki',
-            \'diff', 'gitcommit', 'unite', 'qf', 'help', 'markdown']
+            \'diff', 'gitcommit', 'unite', 'qf', 'help', 'markdown','Dockerfile']
 " -----------------------------------------------------------------
 " fugitive
 " -----------------------------------------------------------------
