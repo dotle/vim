@@ -101,7 +101,7 @@ map <leader>fx :%!xxd -g 1<cr>
 map <leader>fn :%!xxd -r<cr>
 nmap <leader>ft :terminal<cr>
 map  <leader>ff :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
-map  <leader>fF :vim // *.*<left><left><left><left><left>
+map  <leader>fF :vim // **/*.*<left><left><left><left><left><left><left><left>
 map  <C-F5> :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 " When pressing <leader>ed switch to the directory of the open buffer
 " cros to cd

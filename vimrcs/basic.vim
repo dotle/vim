@@ -197,3 +197,12 @@ unlet data_dir
 unlet backup_dir
 unlet swap_dir
 unlet undo_dir
+
+" ------------------------------------------------------------------
+"  Command-line editing
+" ------------------------------------------------------------------
+:cnoremap <C-A> <Home>
+:cnoremap <C-F> <Right>
+:cnoremap <C-B> <Left>
+:cnoremap <C-S> <S-Left>
+:cnoremap <C-G> <S-Right>
