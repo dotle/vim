@@ -464,6 +464,7 @@ let g:ale_linters = {
 \   'c':          ['cppcheck','clang', 'gcc'],
 \   'python':     ['pylint'],
 \   'javascript': ['eslint'],
+\   'java':       ['eslint'],
 \   'css':        ['stylelint'],
 \   'bash':       ['shellcheck'],
 \   'go':         ['golint'],
