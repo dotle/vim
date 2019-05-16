@@ -383,9 +383,9 @@ if executable('java') && filereadable(expand('~/lsp/eclipse.jdt.ls/plugins/org.e
         \     '-Dfile.encoding=UTF-8',
         \     '-Xmx1G',
         \     '-jar',
-        \     expand('~/jdt.lsp/plugins/org.eclipse.equinox.launcher_1.5.300.v20190213-1655.jar'),
+        \     expand('~/lsp/eclipse.jdt.ls/plugins/org.eclipse.equinox.launcher_1.5.300.v20190213-1655.jar'),
         \     '-configuration',
-        \     expand('~/jdt.lsp/config_win'),
+        \     expand('~/lsp/eclipse.jdt.ls/config_win'),
         \     '-data',
         \     expand('~/.cache/javalsp/cache')
         \ ]},
