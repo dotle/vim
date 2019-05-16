@@ -369,6 +369,30 @@ if executable('go-langserver')
         \ 'whitelist': ['go'],
         \ })
 endif
+"java
+if executable('java') && filereadable(expand('~/lsp/eclipse.jdt.ls/plugins/org.eclipse.equinox.launcher_1.5.300.v20190213-1655.jar'))
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'eclipse.jdt.ls',
+        \ 'cmd': {server_info->[
+        \     'java',
+        \     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+        \     '-Dosgi.bundles.defaultStartLevel=4',
+        \     '-Declipse.product=org.eclipse.jdt.ls.core.product',
+        \     '-Dlog.level=ALL',
+        \     '-noverify',
+        \     '-Dfile.encoding=UTF-8',
+        \     '-Xmx1G',
+        \     '-jar',
+        \     expand('~/jdt.lsp/plugins/org.eclipse.equinox.launcher_1.5.300.v20190213-1655.jar'),
+        \     '-configuration',
+        \     expand('~/jdt.lsp/config_win'),
+        \     '-data',
+        \     expand('~/.cache/javalsp/cache')
+        \ ]},
+        \ 'whitelist': ['java'],
+        \ })
+endif
+
 let g:asyncomplete_auto_popup = 0
 let g:lsp_async_completion = 1
 let g:lsp_use_event_queue = 1
@@ -377,7 +401,7 @@ let g:lsp_diagnostics_enabled  = 0
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 nmap <leader>ls :LspStatus<cr>
 
-autocmd FileType python,go,c,cpp
+autocmd FileType python,go,c,cpp,java
 \  setlocal omnifunc=lsp#complete|
 \  nmap <leader>ld <plug>(lsp-definition)|
 \  nmap <leader>lh <plug>(lsp-hover)|
