@@ -458,6 +458,8 @@ nmap <Leader>at :ALEToggle<CR>
 nmap <Leader>ad :ALEDetail<CR>
 "java 中文乱码
 let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en'
+" auto parse makefile
+let g:ale_c_parse_makefile = 1
 "使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
 let g:ale_linters = {
 \   'cpp':        ['cppcheck','clang','gcc'],
