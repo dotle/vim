@@ -520,6 +520,7 @@ let g:which_key_map.g = {
       \ 's' : ['Gstatus'                , 'fugitive-status']            ,
       \ 'w' : ['Gwrite'                 , 'fugitive-write']             ,
       \ 'p' : ['Gpush'                  , 'fugitive-push']              ,
+      \ 'u' : ['Gpull'                  , 'fugitive-pull']              ,
       \ 'y' : ['Goyo'                   , 'goyo-mode']         ,
  \}
 
