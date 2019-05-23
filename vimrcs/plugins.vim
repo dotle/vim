@@ -150,6 +150,8 @@ let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 "-----------------------------------------------------------------
 let g:DoxygenToolkit_authorName="Rhys"
 let g:DoxygenToolkit_briefTag_funcName="yes"
+" let g:DoxygenToolkit_briefTag_pre="@Synopsis "
+let g:DoxygenToolkit_paramTag_pre="@param[in] "
 let g:doxygen_enhanced_color=1
 map <leader>da :DoxAuthor<CR>
 map <leader>df :Dox<CR>
