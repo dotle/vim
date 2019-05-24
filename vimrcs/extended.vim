@@ -7,7 +7,8 @@ au BufRead,BufNewFile  *.asm,*.c,*.cpp,*.java,*.cs,
 			\*.rb,*.erb,*.hs,*.vim,*.ino,*.go,*.h,*.pyw
             \ setlocal softtabstop=4|
             \ setlocal cul|
-            \ setlocal cc=80
+            \ setlocal cc=80 |
+            \ setlocal textwidth=79
 " au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.ino,*.go,*.vim,*.java,*.cs,*.asm match BadWhitespace /\s\+$/
 nmap <leader>pv :source %<CR>
 " nmap <leader>wc <C-W>c
@@ -28,10 +29,10 @@ au BufNewFile,BufRead *.py
 let python_highlight_all=1
 
 " ------------------------------------------------------------------
-" md txt tmp
+" md txt tmp wiki
 " ------------------------------------------------------------------
 "设置折行 不自动换行
-au BufNewFile,BufRead *.txt,*.md,*.tmp,*.wiki
+au BufNewFile,BufRead *.txt,*.md,*.tmp,*.wiki,*.markdown
 \ setlocal wrap
 
 " ------------------------------------------------------------------

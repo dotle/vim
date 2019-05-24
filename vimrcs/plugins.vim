@@ -231,8 +231,7 @@ nmap  <leader>rl :CtrlPLine<cr>
 nmap  <leader>rs :CtrlPRTS<cr>
 nmap  <leader>ra :CtrlPBufTagAll<cr>
 nmap  <leader>rb :CtrlPBuffer<cr>
-nmap  <leader>rp :CtrlP
-nmap  <leader>rP :CtrlP<cr>
+nmap  <leader>rp :CtrlP<cr>
 
 """"""""""""""""""""""""""""""
 " easy-align
