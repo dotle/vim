@@ -153,6 +153,7 @@ let font_name = ""
 if(has("win32") || has("win64") || has("win95") || has("win16"))
 	set guifont=Lucida_Console:h12:cANSI
 	let font_name = "Lucida_Console"
+ 	set guifont=Consolas:h12:cANSI " this is the default visual studio font
 " else
 " 	set guifont=Consolas:h11:cANSI " this is the default visual studio font
 " 	let font_name = "Consolas"
