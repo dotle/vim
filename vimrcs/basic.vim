@@ -102,6 +102,8 @@ set expandtab        "不允许扩展tab"
 set whichwrap+=<,>,h,l
 set autoread
 set hidden                  " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
+" 消除报警声音
+set belloff=all
 
 let mapleader="\<Space>"
 
