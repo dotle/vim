@@ -463,6 +463,7 @@ nmap <Leader>ad :ALEDetail<CR>
 let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en'
 " auto parse makefile
 let g:ale_c_parse_makefile = 1
+" let g:ale_c_parse_compile_commands = 1
 "使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
 let g:ale_linters = {
 \   'cpp':        ['cppcheck','clang','gcc'],
@@ -544,7 +545,7 @@ let g:which_key_map['w'] = {
       \ '<' : ['<C-W>5<'    , 'expand-window-right']   ,
       \ '=' : ['<C-W>='     , 'balance-window']        ,
       \ 'b' : ['<C-W>s'     , 'split-window-below']    ,
-      \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
+      \ 'v' : ['<C-W>v'     , 'split-window-right']    ,
       \ }
 
 try
