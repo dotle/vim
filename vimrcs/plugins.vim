@@ -286,6 +286,10 @@ let g:better_whitespace_filetypes_blacklist=['text', 'markdown', 'vimwiki',
 " -----------------------------------------------------------------
 " fugitive
 " -----------------------------------------------------------------
+nmap <leader>ga :Git add %<CR>
+nmap <leader>gA :Git add .<CR>
+nmap <leader>gc :Gcommit %<CR>
+nmap <leader>gC :Gcommit .<CR>
 
 " -----------------------------------------------------------------
 " source and header switch
@@ -511,11 +515,13 @@ let g:which_key_map.b = {
       \ }
 let g:which_key_map.g = {
       \ 'name' : '+git/version-control' ,
-      \ 'a' : [':Git add %'             ,'Git-add']             ,
+      \ 'a' : 'git-add-current-file',
+      \ 'A' : 'git-add-current-directory',
       \ 'b' : ['Gblame'                 , 'fugitive-blame']             ,
-      \ 'c' : [':Gcommit %'             ,'commits-for-current-buffer'],
-      \ 'C' : [':Gcommit .'             ,'fugitive-commit'],
+      \ 'c' : 'commits-for-current-buffer',
+      \ 'C' : 'fugitive-commit' ,
       \ 'd' : ['Gdiff'                  , 'fugitive-diff']              ,
+      \ 'D' : ['SignifyDiff'            , 'fugitive-diff']              ,
       \ 'e' : ['Gedit'                  , 'fugitive-edit']              ,
       \ 'f' : ['Gfetch'                 , 'fugitive-fetch']              ,
       \ 'l' : ['Glog'                   , 'fugitive-log']               ,
