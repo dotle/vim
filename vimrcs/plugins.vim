@@ -74,6 +74,7 @@ Plug  'derekwyatt/vim-fswitch' "头文件和文件切换 <leader>sw
 Plug  'tpope/vim-fugitive' "git 支持
 Plug  'mhinz/vim-signify'
 Plug  'bling/vim-airline' "状态栏
+Plug 'vim-airline/vim-airline-themes'
 Plug  'fholgado/minibufexpl.vim'  "minibuf
 Plug  'kien/ctrlp.vim' "c-p后调出窗口快速跳转文件及buf
 Plug  'scrooloose/nerdtree' "文件树查看 <leader>nt F2
@@ -127,6 +128,11 @@ let g:indentLine_enabled = 1
 "autopep8设置"
 "----------------------------
 let g:autopep8_disable_show_diff=1
+
+"--------------------------
+"AirlineTheme设置"
+"----------------------------
+let g:airline_theme='dark_minimal'
 
 "--------------------------------------------------------------------------------
 "easy mothing
