@@ -337,6 +337,8 @@ let g:slime_target = "vimterminal"
 
 if(has("win32") || has("win64") || has("win95") || has("win16"))
     let g:slime_vimterminal_cmd = "cmd"
+else
+    let g:slime_vimterminal_cmd = "zsh"
 endif
 nmap <leader>sc <plug>SlimeConfig
 nmap <leader>sp <plug>SlimeParagraphSend
