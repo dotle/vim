@@ -76,7 +76,10 @@ set guioptions-=T
 set showtabline=0
 
 "set noshowmode "for echodoc show func document
-set cmdheight=2 "for echodoc show func document
+if has("gui_running")
+    set cmdheight=2 "for echodoc show func document
+    set laststatus=2    "命令行为两行"
+endif
 
 syntax on    "开启语法高亮"
 
@@ -88,7 +91,6 @@ set tabstop=4    "设置table长度"
 set shiftwidth=4        "同上"
 set showmatch    "显示匹配的括号"
 set scrolloff=5        "距离顶部和底部5行"
-set laststatus=2    "命令行为两行"
 "set fenc=utf-8      "文件编码"
 set backspace=2
 set mouse=a        "启用鼠标"
@@ -128,7 +130,9 @@ else
   set nonu
 endif
 
-set lines=42 columns=128
+if has("gui_running")
+    set lines=42 columns=128
+endif
 
 "------------------------------------------------------------------------------
 "  < 判断操作系统是否是 Windows 还是 Linux >
