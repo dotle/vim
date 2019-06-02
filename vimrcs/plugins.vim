@@ -559,6 +559,7 @@ let g:which_key_map['w'] = {
       \ '=' : ['<C-W>='     , 'balance-window']        ,
       \ 'b' : ['<C-W>s'     , 'split-window-below']    ,
       \ 'v' : ['<C-W>v'     , 'split-window-right']    ,
+      \ 'o' : ['<C-W>o'     , 'del-other-windows']    ,
       \ }
 
 try
