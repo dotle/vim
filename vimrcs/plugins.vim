@@ -215,8 +215,9 @@ let g:gutentags_auto_add_gtags_cscope = 0
 " change focus to quickfix window after search (optional).
 let g:gutentags_plus_switch = 1
 
-let $GTAGSLABEL = 'native-pygments'
-let $GTAGSCONF = $VIMRUNTIME.'/../gtags.conf'
+" 放入环境变量中设置
+" let $GTAGSLABEL = 'native-pygments'
+" let $GTAGSCONF = $VIMRUNTIME.'/../gtags.conf'
 nmap <leader>cn :cn<CR>
 nmap <leader>cp :cp<CR>
 
