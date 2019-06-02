@@ -216,7 +216,7 @@ let g:gutentags_auto_add_gtags_cscope = 0
 let g:gutentags_plus_switch = 1
 
 let $GTAGSLABEL = 'native-pygments'
-let $GTAGSCONF = $VIMRUNTIME.'\..\gtags.conf'
+let $GTAGSCONF = $VIMRUNTIME.'/../gtags.conf'
 nmap <leader>cn :cn<CR>
 nmap <leader>cp :cp<CR>
 
