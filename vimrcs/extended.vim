@@ -139,7 +139,7 @@ inoremap <unique> <m-o> <C-X><C-O>
 inoremap <expr> <CR>       pumvisible()?"\<C-Y>":"\<CR>"
 inoremap <expr> <C-J>      pumvisible()?"\<PageDown>\<C-N>\<C-P>":"\<C-X><C-O>"
 inoremap <expr> <C-K>      pumvisible()?"\<PageUp>\<C-P>\<C-N>":"\<C-K>"
-inoremap <expr> <C-U>      pumvisible()?"\<C-E>":"\<C-U>" 
+inoremap <expr> <C-U>      pumvisible()?"\<C-E>":"\<C-U>"
 
 map  <leader>qc :cclose<cr>
 map  <leader>qo :bot copen<cr>
