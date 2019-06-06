@@ -135,7 +135,7 @@ inoremap <unique> <c-]> <C-X><C-]>
 inoremap <unique> <c-p> <C-X><C-P>
 inoremap <unique> <m-o> <C-X><C-O>
 " inoremap <unique> <c-o> <C-X><C-O>
-inoremap <unique> <c-l> <C-X><C-O>
+inoremap <unique> <m-/> <C-X><C-O>
 
 map  <leader>qc :cclose<cr>
 map  <leader>qo :bot copen<cr>
