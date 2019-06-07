@@ -49,6 +49,7 @@ Plug  'Yggdroot/indentLine' "缩进对其线
 Plug  'tell-k/vim-autopep8' "automatically formats Python code to conform to the PEP 8 style guide
 Plug  'godlygeek/tabular'  " 输入tabular /, 则以，为分隔符
 Plug  'plasticboy/vim-markdown' "markdown 支持
+Plug  'iamcco/markdown-preview.vim'  " need python support
 Plug  'vim-scripts/a.vim'   "头文件跳转  :A or <leader>is  <leader>ih
 Plug  'vim-scripts/indentpython.vim' "帮助python格式化代码缩进。
 Plug  'w0rp/ale'
@@ -270,6 +271,19 @@ vmap <leader>mm <Plug>MarkSet
 nmap <leader>mr <Plug>MarkRegex
 vmap <leader>mr <Plug>MarkRegex
 nmap <leader>mn <Plug>MarkClear
+
+
+" -----------------------------------------------------------------
+"  markdown-preview
+"  ----------------------------------------------------------------
+" need python support
+if executable('chrome')
+    let g:mkdp_path_to_chrome = "chrome"
+elseif executable('firefox')
+    let g:mkdp_path_to_chrome = "firefox"
+endif
+map <leader>Mp <Plug>MarkdownPreview
+map <leader>Ms <Plug>StopMarkdownPreview
 
 " -----------------------------------------------------------------
 "  vimwiki
@@ -507,6 +521,7 @@ let g:which_key_map.p = {'name':'+program'}
 let g:which_key_map.t = {'name':'+tag'}
 let g:which_key_map.v = {'name':'+wiki'}
 let g:which_key_map.m = {'name':'+mark'}
+let g:which_key_map.M = {'name':'+markdown'}
 let g:which_key_map.r = {'name':'+ctrlp'}
 let g:which_key_map.s = {'name':'+slime'}
 let g:which_key_map[' ']= {'name':'+easyMotion'}
