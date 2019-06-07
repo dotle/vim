@@ -55,7 +55,7 @@ Plug  'vim-scripts/indentpython.vim' "帮助python格式化代码缩进。
 Plug  'w0rp/ale'
 Plug  'nvie/vim-flake8' "python 标准检查插件
 Plug  'majutsushi/tagbar'   "tagbar
-" Plug  'jmcantrell/vim-virtualenv' "python virtual 支持
+Plug  'jmcantrell/vim-virtualenv' "python virtual 支持
 Plug  'tpope/vim-commentary' "快速注释 gc gcc
 Plug  'vim-scripts/DoxygenToolkit.vim'  "生成doxygen风格注释
 Plug  'Shougo/echodoc.vim'
@@ -75,7 +75,7 @@ Plug  'derekwyatt/vim-fswitch' "头文件和文件切换 <leader>sw
 Plug  'tpope/vim-fugitive' "git 支持
 Plug  'mhinz/vim-signify'
 Plug  'bling/vim-airline' "状态栏
-Plug 'vim-airline/vim-airline-themes'
+Plug  'vim-airline/vim-airline-themes'
 Plug  'fholgado/minibufexpl.vim'  "minibuf
 Plug  'kien/ctrlp.vim' "c-p后调出窗口快速跳转文件及buf
 Plug  'scrooloose/nerdtree' "文件树查看 <leader>nt F2
