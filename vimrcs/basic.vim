@@ -1,6 +1,6 @@
 
 if(has("win32") || has("win64") || has("win95") || has("win16"))
-    " source $VIMRUNTIME/vimrc_example.vim
+    source $VIMRUNTIME/vimrc_example.vim
     source $VIMRUNTIME/mswin.vim
     behave mswin
 endif

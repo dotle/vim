@@ -353,7 +353,7 @@ nmap <leader>s0 :SlimeSend0
 " -----------------------------------------------------------------
 " lsc
 " -----------------------------------------------------------------
-imap <c-space> <Plug>(asyncomplete_force_refresh)
+imap <c-l> <Plug>(asyncomplete_force_refresh)
 
 "autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " python pyls
@@ -411,7 +411,7 @@ let g:lsp_async_completion = 1
 let g:lsp_use_event_queue = 1
 let g:lsp_text_edit_enabled = 1
 let g:lsp_diagnostics_enabled  = 0
-inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+"inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 nmap <leader>ls :LspStatus<cr>
 
 autocmd FileType python,go,c,cpp,java

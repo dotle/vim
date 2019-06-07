@@ -132,7 +132,7 @@ nmap <leader>pf <ESC>:%!astyle --style=ansi -U -p -f<CR>
 " search tags
 inoremap <unique> <c-]> <C-X><C-]>
 " search in current files, preview first. remove the original c-p
-inoremap <unique> <c-p> <C-X><C-P>
+" inoremap <unique> <c-p> <C-X><C-P>
 inoremap <unique> <m-o> <C-X><C-O>
 " inoremap <unique> <c-o> <C-X><C-O>
 " mapping
