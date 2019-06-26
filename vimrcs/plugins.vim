@@ -421,6 +421,7 @@ if executable('java') && filereadable(expand('~/lsp/eclipse.jdt.ls/plugins/org.e
 endif
 
 let g:asyncomplete_auto_popup = 0
+" c 对中文问题
 let g:lsp_async_completion = 1
 let g:lsp_use_event_queue = 1
 let g:lsp_text_edit_enabled = 1
