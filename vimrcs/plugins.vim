@@ -426,6 +426,7 @@ let g:lsp_async_completion = 1
 let g:lsp_use_event_queue = 1
 let g:lsp_text_edit_enabled = 1
 let g:lsp_diagnostics_enabled  = 0
+let g:lsp_signature_help_enabled = 0
 "inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 nmap <leader>ls :LspStatus<cr>
 
@@ -437,7 +438,11 @@ autocmd FileType python,go,c,cpp,java
 \  vmap <leader>lf :LspDocumentRangeFormat<cr>|
 \  nmap <leader>ln :LspNextError<cr>|
 \  nmap <leader>lp :LspPreviousError<cr>|
-\  nmap <leader>lr :LspRename<cr>
+\  nmap <leader>lr :LspRename<cr>|
+\  nmap <leader>lkd :LspPeekDeclaration<cr>|
+\  nmap <leader>lkD :LspPeekDefinition<cr>|
+\  nmap <leader>lki :LspPeekImplementation<cr>|
+\  nmap <leader>lkt :LspPeekTypeDefinition<cr>
 
 " ------------------------------------------------------------------
 "  ALE
@@ -526,6 +531,7 @@ let g:which_key_map.M = {'name':'+markdown'}
 let g:which_key_map.r = {'name':'+ctrlp'}
 let g:which_key_map.s = {'name':'+slime'}
 let g:which_key_map[' ']= {'name':'+easyMotion'}
+let g:which_key_map.l.k={'name':'+LspPeek'}
 
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
