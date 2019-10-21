@@ -11,7 +11,7 @@ call plug#begin('~/plugged')
 " common plugin
 " -----------
 Plug  'vim-scripts/mru.vim'
-Plug  'jiangmiao/auto-pairs'
+" Plug  'jiangmiao/auto-pairs' "与vimlsp 有冲突
 Plug  'vim-scripts/Mark--Karkat'
 Plug  'liuchengxu/vim-which-key'
 Plug  'mhinz/vim-startify'
@@ -344,7 +344,6 @@ nnoremap <leader>fu :UndotreeToggle<cr>
 " ------------------------------------------------------------------
 noremap <leader>tv :PreviewSignature!<cr>
 nmap <leader>qw :PreviewClose<cr>
-
 " -----------------------------------------------------------------
 " vim-slime
 " -----------------------------------------------------------------
@@ -420,13 +419,13 @@ if executable('java') && filereadable(expand('~/lsp/eclipse.jdt.ls/plugins/org.e
         \ })
 endif
 
-let g:asyncomplete_auto_popup = 0
+let g:asyncomplete_auto_popup = 1
 " c 对中文问题
 let g:lsp_async_completion = 1
 let g:lsp_use_event_queue = 1
 let g:lsp_text_edit_enabled = 1
 let g:lsp_diagnostics_enabled  = 0
-let g:lsp_signature_help_enabled = 0
+" let g:lsp_signature_help_enabled = 1
 "inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 nmap <leader>ls :LspStatus<cr>
 
