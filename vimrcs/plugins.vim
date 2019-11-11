@@ -64,6 +64,7 @@ Plug  'skywind3000/gutentags_plus'
 Plug  'skywind3000/vim-preview'
 Plug  'tpope/vim-unimpaired'
 Plug  'octol/vim-cpp-enhanced-highlight'
+Plug  'OmniSharp/omnisharp-vim'
 "-----------------
 " Fast navigation
 "-----------------
@@ -133,7 +134,7 @@ let g:autopep8_disable_show_diff=1
 "--------------------------
 "AirlineTheme设置"
 "----------------------------
-let g:airline_theme='dark_minimal'
+" let g:airline_theme='dark_minimal'
 
 "--------------------------------------------------------------------------------
 "easy mothing
@@ -427,21 +428,21 @@ let g:lsp_text_edit_enabled = 1
 let g:lsp_diagnostics_enabled  = 0
 " let g:lsp_signature_help_enabled = 1
 "inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
-nmap <leader>ls :LspStatus<cr>
+nmap <leader>l* :LspStatus<cr>
 
 autocmd FileType python,go,c,cpp,java
 \  setlocal omnifunc=lsp#complete|
-\  nmap <leader>ld <plug>(lsp-definition)|
-\  nmap <leader>lh <plug>(lsp-hover)|
-\  nmap <leader>lf :LspDocumentFormat<cr>|
-\  vmap <leader>lf :LspDocumentRangeFormat<cr>|
-\  nmap <leader>ln :LspNextError<cr>|
-\  nmap <leader>lp :LspPreviousError<cr>|
-\  nmap <leader>lr :LspRename<cr>|
-\  nmap <leader>lkd :LspPeekDeclaration<cr>|
-\  nmap <leader>lkD :LspPeekDefinition<cr>|
-\  nmap <leader>lki :LspPeekImplementation<cr>|
-\  nmap <leader>lkt :LspPeekTypeDefinition<cr>
+\  nmap <buffer> <leader>ld <plug>(lsp-definition)|
+\  nmap <buffer> <leader>lh <plug>(lsp-hover)|
+\  nmap <buffer> <leader>lf :LspDocumentFormat<cr>|
+\  vmap <buffer> <leader>lf :LspDocumentRangeFormat<cr>|
+\  nmap <buffer> <leader>ln :LspNextError<cr>|
+\  nmap <buffer> <leader>lp :LspPreviousError<cr>|
+\  nmap <buffer> <leader>lr :LspRename<cr>|
+\  nmap <buffer> <leader>lkd :LspPeekDeclaration<cr>|
+\  nmap <buffer> <leader>lkD :LspPeekDefinition<cr>|
+\  nmap <buffer> <leader>lki :LspPeekImplementation<cr>|
+\  nmap <buffer> <leader>lkt :LspPeekTypeDefinition<cr>
 
 " ------------------------------------------------------------------
 "  ALE
@@ -503,7 +504,94 @@ let g:ale_linters = {
 \   'css':        ['stylelint'],
 \   'bash':       ['shellcheck'],
 \   'go':         ['golint'],
+\   'cs': ['OmniSharp'],
 \}
+
+"------------------------------------------------------------------
+"  Omnisharp
+"------------------------------------------------------------------
+" let g:OmniSharp_server_path = 'D:\tools\omnisharp-win-x64\OmniSharp.exe'
+" Use the stdio OmniSharp-roslyn server
+let g:OmniSharp_server_stdio = 1
+
+" Set the type lookup function to use the preview window instead of echoing it
+"let g:OmniSharp_typeLookupInPreview = 1
+
+" Timeout in seconds to wait for a response from the server
+let g:OmniSharp_timeout = 5
+
+" Don't autoselect first omnicomplete option, show options even if there is only
+" one (so the preview documentation is accessible). Remove 'preview' if you
+" don't want to see any documentation whatsoever.
+set completeopt=longest,menuone,preview
+
+" Fetch full documentation during omnicomplete requests.
+" By default, only Type/Method signatures are fetched. Full documentation can
+" still be fetched when you need it with the :OmniSharpDocumentation command.
+"let g:omnicomplete_fetch_full_documentation = 1
+
+" Set desired preview window height for viewing documentation.
+" You might also want to look at the echodoc plugin.
+set previewheight=5
+
+" Tell ALE to use OmniSharp for linting C# files, and no other linters.
+" let g:ale_linters = { 'cs': ['OmniSharp'] }
+
+" Update semantic highlighting after all text changes
+let g:OmniSharp_highlight_types = 3
+" Update semantic highlighting on BufEnter and InsertLeave
+" let g:OmniSharp_highlight_types = 2
+
+augroup omnisharp_commands
+    autocmd!
+
+    " Show type information automatically when the cursor stops moving
+    autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+
+    " The following commands are contextual, based on the cursor position.
+    autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>lsi :OmniSharpFindImplementations<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>lss :OmniSharpFindSymbol<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>lsu :OmniSharpFindUsages<CR>
+
+    " Finds members in the current buffer
+    autocmd FileType cs nnoremap <buffer> <Leader>lsm :OmniSharpFindMembers<CR>
+
+    autocmd FileType cs nnoremap <buffer> <Leader>lsx :OmniSharpFixUsings<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>lst :OmniSharpTypeLookup<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>lsd :OmniSharpDocumentation<CR>
+    autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
+    autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
+
+    " Navigate up and down by method/property/field
+    autocmd FileType cs nnoremap <buffer> <leader>[[ :OmniSharpNavigateUp<CR>
+    autocmd FileType cs nnoremap <buffer> <leader>]] :OmniSharpNavigateDown<CR>
+
+    " Find all code errors/warnings for the current solution and populate the quickfix window
+    autocmd FileType cs nnoremap <buffer> <Leader>lsc :OmniSharpGlobalCodeCheck<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>nm :OmniSharpRename<CR>
+augroup END
+
+" Contextual code actions (uses fzf, CtrlP or unite.vim when available)
+nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
+" Run code actions with text selected in visual mode to extract method
+xnoremap <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
+
+" Rename with dialog
+" nnoremap <Leader>nm :OmniSharpRename<CR>
+" nnoremap <F2> :OmniSharpRename<CR>
+" Rename without dialog - with cursor on the symbol to rename: `:Rename newname`
+command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
+
+nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
+
+" Start the omnisharp server for the current solution
+nnoremap <Leader>ss :OmniSharpStartServer<CR>
+nnoremap <Leader>sp :OmniSharpStopServer<CR>
+let g:OmniSharp_selector_ui = 'ctrlp'  " Use ctrlp.vim
+" Enable snippet completion
+let g:OmniSharp_want_snippet=1
+
 
 "------------------------------------------------------------------
 "  which key
@@ -520,7 +608,7 @@ let g:which_key_map.d = {'name':'+dox'}
 let g:which_key_map.e = {'name':'+edit'}
 let g:which_key_map.f = {'name':'+file'}
 let g:which_key_map.f.w = {'name':'+whitespace'}
-let g:which_key_map.l = {'name':'+lsp'}
+let g:which_key_map.l = {'name':'+language'}
 let g:which_key_map.q = {'name':'+quickfix'}
 let g:which_key_map.p = {'name':'+program'}
 let g:which_key_map.t = {'name':'+tag'}
@@ -531,6 +619,7 @@ let g:which_key_map.r = {'name':'+ctrlp'}
 let g:which_key_map.s = {'name':'+slime'}
 let g:which_key_map[' ']= {'name':'+easyMotion'}
 let g:which_key_map.l.k={'name':'+LspPeek'}
+let g:which_key_map.l.s={'name':'+csharp'}
 
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
