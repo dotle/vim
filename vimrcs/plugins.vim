@@ -135,7 +135,7 @@ let g:autopep8_disable_show_diff=1
 "AirlineTheme设置"
 "----------------------------
 let g:airline_theme='dark_minimal'
-
+nmap <leader>el :AirlineToggle<cr>
 "--------------------------------------------------------------------------------
 "easy mothing
 "--------------------------------------------------------------------------------
