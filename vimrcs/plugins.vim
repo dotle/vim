@@ -264,6 +264,7 @@ let g:miniBufExplModSelTarget = 1
 let g:miniBufExplForceSyntaxEnable = 1
 let g:miniBufExplorerMoreThanOne=0
 
+nmap <leader>em :MBEToggle<cr>
 " -----------------------------------------------------------------
 "  mark
 "  ----------------------------------------------------------------
