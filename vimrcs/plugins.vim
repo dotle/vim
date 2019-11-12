@@ -333,7 +333,7 @@ map  <leader>fm :MRU<cr>
 " -----------------------------------------------------------------
 "autocmd BufNewFile,BufRead *.py nmap <leader>cp :w <cr>:AsyncRun -raw python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <m-y> :w <cr>:AsyncRun -raw python %<cr>
-autocmd BufNewFile,BufRead *.py nmap <leader>py :w <cr>:AsyncRun -raw python %<cr>
+autocmd BufNewFile,BufRead *.py nmap <leader>pap :w <cr>:AsyncRun -raw python %<cr>
 map <leader>pas :AsyncStop<cr>
 
 " -----------------------------------------------------------------
@@ -611,8 +611,11 @@ let g:which_key_map.f = {'name':'+file'}
 let g:which_key_map.f.w = {'name':'+whitespace'}
 let g:which_key_map.i = {'name':'+switchfile'}
 let g:which_key_map.l = {'name':'+lsp'}
+let g:which_key_map.l.k={'name':'+LspPeek'}
 let g:which_key_map.q = {'name':'+quickfix'}
 let g:which_key_map.p = {'name':'+program'}
+let g:which_key_map.p.a = {'name':'+Async'}
+let g:which_key_map.p.s={'name':'+OmniSharp'}
 let g:which_key_map.t = {'name':'+tag'}
 let g:which_key_map.v = {'name':'+wiki'}
 let g:which_key_map.m = {'name':'+mark'}
@@ -620,8 +623,6 @@ let g:which_key_map.M = {'name':'+markdown'}
 let g:which_key_map.r = {'name':'+ctrlp'}
 let g:which_key_map.s = {'name':'+slime'}
 let g:which_key_map[' ']= {'name':'+easyMotion'}
-let g:which_key_map.l.k={'name':'+LspPeek'}
-let g:which_key_map.p.s={'name':'+OmniSharp'}
 
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
