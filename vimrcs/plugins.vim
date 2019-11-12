@@ -334,7 +334,7 @@ map  <leader>fm :MRU<cr>
 "autocmd BufNewFile,BufRead *.py nmap <leader>cp :w <cr>:AsyncRun -raw python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <m-y> :w <cr>:AsyncRun -raw python %<cr>
 autocmd BufNewFile,BufRead *.py nmap <leader>py :w <cr>:AsyncRun -raw python %<cr>
-map <leader>ps :AsyncStop<cr>
+map <leader>pas :AsyncStop<cr>
 
 " -----------------------------------------------------------------
 " undotree
@@ -550,16 +550,16 @@ augroup omnisharp_commands
 
     " The following commands are contextual, based on the cursor position.
     autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>lsi :OmniSharpFindImplementations<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>lss :OmniSharpFindSymbol<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>lsu :OmniSharpFindUsages<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>psi :OmniSharpFindImplementations<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>psb :OmniSharpFindSymbol<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>psu :OmniSharpFindUsages<CR>
 
     " Finds members in the current buffer
-    autocmd FileType cs nnoremap <buffer> <Leader>lsm :OmniSharpFindMembers<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>psm :OmniSharpFindMembers<CR>
 
-    autocmd FileType cs nnoremap <buffer> <Leader>lsx :OmniSharpFixUsings<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>lst :OmniSharpTypeLookup<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>lsd :OmniSharpDocumentation<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>psx :OmniSharpFixUsings<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>pst :OmniSharpTypeLookup<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>psd :OmniSharpDocumentation<CR>
     autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
     autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
 
@@ -568,8 +568,12 @@ augroup omnisharp_commands
     autocmd FileType cs nnoremap <buffer> <leader>]] :OmniSharpNavigateDown<CR>
 
     " Find all code errors/warnings for the current solution and populate the quickfix window
-    autocmd FileType cs nnoremap <buffer> <Leader>lsc :OmniSharpGlobalCodeCheck<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>psc :OmniSharpGlobalCodeCheck<CR>
     autocmd FileType cs nnoremap <buffer> <Leader>nm :OmniSharpRename<CR>
+
+    " Start the omnisharp server for the current solution
+    autocmd FileType cs nnoremap <buffer> <Leader>pss :OmniSharpStartServer<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>psp :OmniSharpStopServer<CR>
 augroup END
 
 " Contextual code actions (uses fzf, CtrlP or unite.vim when available)
@@ -585,9 +589,6 @@ command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
 
 nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
 
-" Start the omnisharp server for the current solution
-nnoremap <Leader>ss :OmniSharpStartServer<CR>
-nnoremap <Leader>sp :OmniSharpStopServer<CR>
 let g:OmniSharp_selector_ui = 'ctrlp'  " Use ctrlp.vim
 " Enable snippet completion
 let g:OmniSharp_want_snippet=0
@@ -609,7 +610,7 @@ let g:which_key_map.e = {'name':'+edit'}
 let g:which_key_map.f = {'name':'+file'}
 let g:which_key_map.f.w = {'name':'+whitespace'}
 let g:which_key_map.i = {'name':'+switchfile'}
-let g:which_key_map.l = {'name':'+language'}
+let g:which_key_map.l = {'name':'+lsp'}
 let g:which_key_map.q = {'name':'+quickfix'}
 let g:which_key_map.p = {'name':'+program'}
 let g:which_key_map.t = {'name':'+tag'}
@@ -620,7 +621,7 @@ let g:which_key_map.r = {'name':'+ctrlp'}
 let g:which_key_map.s = {'name':'+slime'}
 let g:which_key_map[' ']= {'name':'+easyMotion'}
 let g:which_key_map.l.k={'name':'+LspPeek'}
-let g:which_key_map.l.s={'name':'+OmniSharp'}
+let g:which_key_map.p.s={'name':'+OmniSharp'}
 
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
