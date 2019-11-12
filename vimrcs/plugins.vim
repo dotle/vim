@@ -590,7 +590,7 @@ nnoremap <Leader>ss :OmniSharpStartServer<CR>
 nnoremap <Leader>sp :OmniSharpStopServer<CR>
 let g:OmniSharp_selector_ui = 'ctrlp'  " Use ctrlp.vim
 " Enable snippet completion
-let g:OmniSharp_want_snippet=1
+let g:OmniSharp_want_snippet=0
 
 
 "------------------------------------------------------------------
@@ -619,7 +619,7 @@ let g:which_key_map.r = {'name':'+ctrlp'}
 let g:which_key_map.s = {'name':'+slime'}
 let g:which_key_map[' ']= {'name':'+easyMotion'}
 let g:which_key_map.l.k={'name':'+LspPeek'}
-let g:which_key_map.l.s={'name':'+csharp'}
+let g:which_key_map.l.s={'name':'+OmniSharp'}
 
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
