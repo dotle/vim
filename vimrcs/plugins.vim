@@ -608,6 +608,7 @@ let g:which_key_map.d = {'name':'+dox'}
 let g:which_key_map.e = {'name':'+edit'}
 let g:which_key_map.f = {'name':'+file'}
 let g:which_key_map.f.w = {'name':'+whitespace'}
+let g:which_key_map.i = {'name':'+switchfile'}
 let g:which_key_map.l = {'name':'+language'}
 let g:which_key_map.q = {'name':'+quickfix'}
 let g:which_key_map.p = {'name':'+program'}
