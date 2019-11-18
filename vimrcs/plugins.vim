@@ -570,7 +570,7 @@ augroup omnisharp_commands
 
     " Find all code errors/warnings for the current solution and populate the quickfix window
     autocmd FileType cs nnoremap <buffer> <Leader>psc :OmniSharpGlobalCodeCheck<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>nm :OmniSharpRename<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>psn :OmniSharpRename<CR>
 
     " Start the omnisharp server for the current solution
     autocmd FileType cs nnoremap <buffer> <Leader>pss :OmniSharpStartServer<CR>
