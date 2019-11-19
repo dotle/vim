@@ -178,7 +178,7 @@ let g:tagbar_width = 25
 " gutentags
 " --------------------------------------------------
 " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project','.vs']
 
 " 所生成的数据文件的名称
 let g:gutentags_ctags_tagfile = '.tags'
@@ -570,7 +570,7 @@ augroup omnisharp_commands
 
     " Find all code errors/warnings for the current solution and populate the quickfix window
     autocmd FileType cs nnoremap <buffer> <Leader>psc :OmniSharpGlobalCodeCheck<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>psn :OmniSharpRename<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>psr :OmniSharpRename<CR>
 
     " Start the omnisharp server for the current solution
     autocmd FileType cs nnoremap <buffer> <Leader>pss :OmniSharpStartServer<CR>
