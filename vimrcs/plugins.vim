@@ -87,6 +87,8 @@ Plug  'skywind3000/asyncrun.vim'  "异步操作
 Plug  'junegunn/vim-easy-align'
 Plug  'jpalardy/vim-slime'
 Plug  'ntpeters/vim-better-whitespace'
+Plug  'liuchengxu/vista.vim'
+Plug  'tacahiroy/ctrlp-funky'
 "----------------------------------------
 " Syntax/Indent for language enhancement
 "----------------------------------------
@@ -242,6 +244,73 @@ nmap  <leader>ra :CtrlPBufTagAll<cr>
 nmap  <leader>rb :CtrlPBuffer<cr>
 nmap  <leader>rp :CtrlP<cr>
 
+" ----------------------------------------
+" ctrlp-funky
+" --------------------------------------------------
+nnoremap <Leader>rf :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <Leader>rF :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
+" ----------------------------------------
+" vista.vim
+" --------------------------------------------------
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
+nnoremap <leader>tv :Vista!!<CR>
+
+" set statusline+=%{NearestMethodOrFunction()}
+
+" By default vista.vim never run if you don't call it explicitly.
+"
+" If you want to show the nearest function in your statusline automatically,
+" you can add the following line to your vimrc 
+" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+" How each level is indented and what to prepend.
+" This could make the display more compact or more spacious.
+" e.g., more compact: ["▸ ", ""]
+" Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+" Executive used when opening vista sidebar without specifying it.
+" See all the avaliable executives via `:echo g:vista#executives`.
+let g:vista_default_executive = 'ctags'
+
+" Set the executive for some filetypes explicitly. Use the explicit executive
+" instead of the default one for these filetypes when using `:Vista` without
+" specifying the executive.
+let g:vista_executive_for = {
+  \ 'cpp': 'vim_lsp',
+  \ 'php': 'vim_lsp',
+  \ 'c': 'vim_lsp',
+  \ 'py': 'vim_lsp',
+  \ 'go': 'vim_lsp',
+  \ 'java': 'vim_lsp',
+  \ 'cs': 'ctags',
+  \ }
+
+" Declare the command including the executable and options used to generate ctags output
+" for some certain filetypes.The file path will be appened to your custom command.
+" For example:
+let g:vista_ctags_cmd = {
+      \ 'haskell': 'hasktags -x -o - -c',
+      \ }
+
+" To enable fzf's preview window set g:vista_fzf_preview.
+" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+" For example:
+let g:vista_fzf_preview = ['right:50%']
+
+" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+let g:vista#renderer#enable_icon = 1
+
+" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+let g:vista#renderer#icons = {
+\   "function": "\uf794",
+\   "variable": "\uf71b",
+\  }
+
 """"""""""""""""""""""""""""""
 " easy-align
 """"""""""""""""""""""""""""""
@@ -344,7 +413,7 @@ nnoremap <leader>fu :UndotreeToggle<cr>
 " ------------------------------------------------------------------
 " preview windows
 " ------------------------------------------------------------------
-noremap <leader>tv :PreviewSignature!<cr>
+noremap <leader>tp :PreviewSignature!<cr>
 nmap <leader>qw :PreviewClose<cr>
 " -----------------------------------------------------------------
 " vim-slime
@@ -578,9 +647,9 @@ augroup omnisharp_commands
 augroup END
 
 " Contextual code actions (uses fzf, CtrlP or unite.vim when available)
-nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
+nnoremap <Leader>psg :OmniSharpGetCodeActions<CR>
 " Run code actions with text selected in visual mode to extract method
-xnoremap <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
+xnoremap <Leader>psg :call OmniSharp#GetCodeActions('visual')<CR>
 
 " Rename with dialog
 " nnoremap <Leader>nm :OmniSharpRename<CR>
@@ -599,9 +668,10 @@ let g:OmniSharp_want_snippet=0
 "  which key
 "------------------------------------------------------------------
 set timeoutlen=500
-autocmd! FileType which_key
-autocmd  FileType which_key set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+" 与新版本vim有冲突，导致状态栏小时
+" autocmd! FileType which_key
+" autocmd  FileType which_key set laststatus=0 noshowmode noruler
+"   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 let g:which_key_map =  {}
 let g:which_key_map.a = {'name':'+ALE'}
