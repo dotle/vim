@@ -235,7 +235,7 @@ let g:echodoc#enable_at_startup = 1
 """"""""""""""""""""""""""""""
 " ctrlp
 """"""""""""""""""""""""""""""
-" nnoremap <leader>rt :CtrlPBufTag<CR>
+nnoremap <leader>rt :CtrlPBufTag<CR>
 nmap  <leader>rr :CtrlPRoot<CR>
 nmap  <leader>rm :CtrlPMRUFiles<cr>
 nmap  <leader>rc :CtrlPChange<cr>
@@ -256,7 +256,7 @@ nnoremap <Leader>rF :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 """"""""""""""""""""""""""""""
 " FZF
 """"""""""""""""""""""""""""""
-nmap  <leader>rt :Vista finder ctags<CR>
+nmap  <leader>rv :Vista finder<CR>
 nmap  <leader>rp :FZF<cr>
 " This is the default extra key bindings
 let g:fzf_action = {
