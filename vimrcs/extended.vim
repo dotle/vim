@@ -95,13 +95,13 @@ endfunction
 " -----------------------------------------------
 " fast key
 " -----------------------------------------------
-nmap <leader>fs :w!<cr>
-nmap <leader>fa :wall<cr>
-nmap <leader>fh :nohlsearch<CR>
-map <leader>fx :%!xxd -g 1<cr>
-map <leader>fn :%!xxd -r<cr>
-nmap <leader>ft :terminal<cr>
-map  <leader>ff :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
+nmap <leader>es :w!<cr>
+nmap <leader>ea :wall<cr>
+nmap <leader>eh :nohlsearch<CR>
+map <leader>ex :%!xxd -g 1<cr>
+map <leader>eX :%!xxd -r<cr>
+nmap <leader>et :terminal<cr>
+map  <leader>ff :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c **/*.vim<cr>:copen<cr>
 map  <leader>fF :vim // **/*.*<left><left><left><left><left><left><left><left>
 map  <C-F5> :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 " When pressing <leader>ed switch to the directory of the open buffer
@@ -119,10 +119,10 @@ map <leader>bd :Bclose<cr>
 map <leader>ba :bd%<cr>
 nmap <leader>bu :unhide<cr>
 
-map<leader>ee :e! $VIMRUNTIME/../_vimrc<cr>
-map<leader>eb :e! $VIMRUNTIME/../vimrcs/basic.vim<cr>
-map<leader>ex :e! $VIMRUNTIME/../vimrcs/extended.vim<cr>
-map<leader>ep :e! $VIMRUNTIME/../vimrcs/plugins.vim<cr>
+map<leader>eve :e! $VIMRUNTIME/../_vimrc<cr>
+map<leader>evb :e! $VIMRUNTIME/../vimrcs/basic.vim<cr>
+map<leader>evx :e! $VIMRUNTIME/../vimrcs/extended.vim<cr>
+map<leader>evp :e! $VIMRUNTIME/../vimrcs/plugins.vim<cr>
 map<leader>ew :setlocal wrap<cr>
 map<leader>eW :setlocal nowrap<cr>
 "autocmd! bufwritepost _vimrc source c:/vim/_vimrc

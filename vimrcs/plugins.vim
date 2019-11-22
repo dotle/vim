@@ -117,7 +117,7 @@ filetype plugin indent on    " required
 " ------------------------------------------------------------------
 "F2开启和关闭树"
 map <F2> :NERDTreeToggle<CR>
-map <leader>fd :NERDTree<CR>
+map <leader>en :NERDTree<CR>
 let NERDTreeChDirMode=2
 "显示书签"
 let NERDTreeShowBookmarks=1
@@ -256,8 +256,55 @@ nnoremap <Leader>rF :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 """"""""""""""""""""""""""""""
 " FZF
 """"""""""""""""""""""""""""""
-nmap  <leader>rv :Vista finder<CR>
-nmap  <leader>rp :FZF<cr>
+nmap  <leader>fv :Vista finder<CR>
+nmap  <leader>fzf :FZF<cr>
+" " nmap <leader>fzf :Files [PATH]`    " Files (similar to  `:FZF` )
+" Git files ( `git ls-files` )
+nmap <leader>fzgf :GFiles<CR>
+" Git files ( `git status` )
+nmap <leader>fzgF :GFiles?<CR>
+" Open buffers
+nmap <leader>fzb :Buffers<CR>
+" Color schemes
+nmap <leader>fzS :Colors<CR>
+" {ag}{6} search result ( `ALT-A`  to select all,  `ALT-D`  to deselect all)
+nmap <leader>fza :Ag<CR>
+" {rg}{7} search result ( `ALT-A`  to select all,  `ALT-D`  to deselect all)
+nmap <leader>fzr :Rg<CR>
+" Lines in loaded buffers
+nmap <leader>fzL :Lines<CR>
+" Lines in the current buffer
+nmap <leader>fzl :BLines<CR>
+" Tags in the project ( `ctags -R` )
+nmap <leader>fzT :Tags<CR>
+" Tags in the current buffer
+nmap <leader>fzt :BTags<CR>
+" Marks
+nmap <leader>fzm :Marks<CR>
+" Windows
+nmap <leader>fzw :Windows<CR>
+"  `locate`  command output
+nmap <leader>fzo :Locate
+"  `v:oldfiles`  and open buffers
+nmap <leader>fzh :History<CR>
+" Command history
+nmap <leader>fzH :History:<CR>
+" Search history
+nmap <leader>fzs :History/<CR>
+" Snippets ({UltiSnips}{8})
+nmap <leader>fzp :Snippets<CR>
+" Git commits (requires {fugitive.vim}{9})
+nmap <leader>fzC :Commits<CR>
+" Git commits for the current buffer
+nmap <leader>fzc :BCommits<CR>
+" Commands
+nmap <leader>fzd :Commands<CR>
+" Normal mode mappings
+nmap <leader>fzM :Maps<CR>
+" Help tags [1]
+nmap <leader>fz? :Helptags<CR>
+" File types
+nmap <leader>fzy :Filetypes<CR>
 " This is the default extra key bindings
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -302,28 +349,30 @@ let g:fzf_tags_command = 'ctags -R'
 " [Commands] --expect expression for directly executing the command
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 
-" Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
 
-" Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
+if executable('fzf')
+    " Mapping selecting mappings
+    nmap <leader><tab> <plug>(fzf-maps-n)
+    xmap <leader><tab> <plug>(fzf-maps-x)
+    omap <leader><tab> <plug>(fzf-maps-o)
 
-" Advanced customization using autoload functions
-inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+    " Insert mode completion
+    imap <c-x><c-k> <plug>(fzf-complete-word)
+    imap <c-x><c-f> <plug>(fzf-complete-path)
+    imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+    imap <c-x><c-l> <plug>(fzf-complete-line)
+    " Advanced customization using autoload functions
+    inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+endif
 
 " ----------------------------------------
 " vista.vim
 " --------------------------------------------------
+nmap  <leader>tv :Vista!!<CR>
 function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 
-nnoremap <leader>tv :Vista!!<CR>
 
 " set statusline+=%{NearestMethodOrFunction()}
 
@@ -380,10 +429,10 @@ let g:vista#renderer#icons = {
 " easy-align
 """"""""""""""""""""""""""""""
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap <leader>ea <Plug>(EasyAlign)
+xmap <leader>ee <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap <leader>ea <Plug>(EasyAlign)
+nmap <leader>ee <Plug>(EasyAlign)
 
 """"""""""""""""""""""""""""""
 " miniBufexplorer Config
@@ -398,7 +447,7 @@ let g:miniBufExplModSelTarget = 1
 let g:miniBufExplForceSyntaxEnable = 1
 let g:miniBufExplorerMoreThanOne=0
 
-nmap <leader>em :MBEToggle<cr>
+nmap <leader>er :MBEToggle<cr>
 " -----------------------------------------------------------------
 "  mark
 "  ----------------------------------------------------------------
@@ -434,10 +483,10 @@ let g:vimwiki_map_prefix = '<Leader>v'
 "  better white space
 "  ----------------------------------------------------------------
 let g:better_whitespace_enabled=1
-nmap <leader>fwe :EnableWhitespace<CR>
-nmap <leader>fwd :DisableWhitespace<CR>
-nmap <leader>fwt :ToggleWhitespace<CR>
-nmap <leader>fws :StripWhitespace<CR>
+nmap <leader>ebe :EnableWhitespace<CR>
+nmap <leader>ebd :DisableWhitespace<CR>
+nmap <leader>ebt :ToggleWhitespace<CR>
+nmap <leader>ebs :StripWhitespace<CR>
 let g:better_whitespace_filetypes_blacklist=['text', 'markdown', 'vimwiki',
             \'diff', 'gitcommit', 'unite', 'qf', 'help', 'markdown','Dockerfile']
 " -----------------------------------------------------------------
@@ -450,18 +499,18 @@ nmap <leader>gC :Gcommit .<CR>
 " -----------------------------------------------------------------
 " source and header switch
 " -----------------------------------------------------------------
-nmap <leader>fg :FSHere <CR>
+nmap <leader>eg :FSHere <CR>
 
 " -----------------------------------------------------------------
 " Calendar
 " -----------------------------------------------------------------
 map  <F8> :Calendar<cr>
-map <leader>fc :Calendar<cr>
+map <leader>ec :Calendar<cr>
 
 " -----------------------------------------------------------------
 " MRU
 " -----------------------------------------------------------------
-map  <leader>fm :MRU<cr>
+map  <leader>em :MRU<cr>
 
 " -----------------------------------------------------------------
 " async
@@ -474,7 +523,7 @@ map <leader>pas :AsyncStop<cr>
 " -----------------------------------------------------------------
 " undotree
 " -----------------------------------------------------------------
-nnoremap <leader>fu :UndotreeToggle<cr>
+nnoremap <leader>eu :UndotreeToggle<cr>
 " ------------------------------------------------------------------
 " preview windows
 " ------------------------------------------------------------------
@@ -743,8 +792,11 @@ let g:which_key_map.a = {'name':'+ALE'}
 let g:which_key_map.c = {'name':'+gscope'}
 let g:which_key_map.d = {'name':'+dox'}
 let g:which_key_map.e = {'name':'+edit'}
+let g:which_key_map.e.v = {'name':'+vimrc'}
+let g:which_key_map.e.b = {'name':'+whitespace'}
 let g:which_key_map.f = {'name':'+file'}
-let g:which_key_map.f.w = {'name':'+whitespace'}
+let g:which_key_map.f.z = {'name':'+fzf'}
+let g:which_key_map.f.z.g = {'name':'+fzf git'}
 let g:which_key_map.i = {'name':'+switchfile'}
 let g:which_key_map.l = {'name':'+lsp'}
 let g:which_key_map.l.k={'name':'+LspPeek'}
