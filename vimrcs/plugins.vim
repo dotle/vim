@@ -781,7 +781,7 @@ let g:OmniSharp_want_snippet=0
 "------------------------------------------------------------------
 "  which key
 "------------------------------------------------------------------
-set timeoutlen=500
+set timeoutlen=200
 " 与新版本vim有冲突，导致状态栏小时
 " autocmd! FileType which_key
 " autocmd  FileType which_key set laststatus=0 noshowmode noruler
