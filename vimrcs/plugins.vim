@@ -39,7 +39,7 @@ Plug  'honza/vim-snippets'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-syntax'
-Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java','python','go'] }
+Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java','python','cs','go'] }
 Plug 'sgur/vim-textobj-parameter'
 
 "----------------------
@@ -62,14 +62,14 @@ Plug  'Shougo/echodoc.vim'
 Plug  'ludovicchabant/vim-gutentags'   "管理tags
 Plug  'skywind3000/gutentags_plus'
 Plug  'skywind3000/vim-preview'
-Plug  'tpope/vim-unimpaired'
+Plug  'tpope/vim-unimpaired'   "通过[]快速按键
 Plug  'octol/vim-cpp-enhanced-highlight'
-Plug  'OmniSharp/omnisharp-vim'
+Plug  'OmniSharp/omnisharp-vim'     " c#支持
 "-----------------
 " Fast navigation
 "-----------------
 Plug  'easymotion/vim-easymotion'  "快速移动 使用<leader><leader>开头
-Plug  'derekwyatt/vim-fswitch' "头文件和文件切换 <leader>sw
+Plug  'derekwyatt/vim-fswitch' "头文件和文件切换 <leader>eg
 "--------------
 " IDE features
 "--------------
@@ -78,8 +78,7 @@ Plug  'mhinz/vim-signify'
 Plug  'bling/vim-airline' "状态栏
 Plug  'vim-airline/vim-airline-themes'
 Plug  'fholgado/minibufexpl.vim'  "minibuf
-Plug  'kien/ctrlp.vim' "c-p后调出窗口快速跳转文件及buf
-Plug  'scrooloose/nerdtree' "文件树查看 <leader>nt F2
+Plug  'scrooloose/nerdtree' "文件树查看 <leader>en F2
 Plug  'terryma/vim-multiple-cursors'  "多光标操作 选中之后c-n  全选中c-n 则为选中头  vip为全选
 Plug  'tpope/vim-surround'       "surround cs ds....
 Plug  'mbbill/undotree'         "undo  操作
@@ -87,8 +86,9 @@ Plug  'skywind3000/asyncrun.vim'  "异步操作
 Plug  'junegunn/vim-easy-align'
 Plug  'jpalardy/vim-slime'
 Plug  'ntpeters/vim-better-whitespace'
+Plug  'kien/ctrlp.vim'             "c-p后调出窗口快速跳转文件及buf
+Plug  'tacahiroy/ctrlp-funky'      " func支持
 Plug  'liuchengxu/vista.vim'
-Plug  'tacahiroy/ctrlp-funky'
 Plug  'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug  'junegunn/fzf.vim'
 "----------------------------------------
@@ -374,7 +374,7 @@ function! NearestMethodOrFunction() abort
 endfunction
 
 
-" set statusline+=%{NearestMethodOrFunction()}
+set statusline+=%{NearestMethodOrFunction()}
 
 " By default vista.vim never run if you don't call it explicitly.
 "
@@ -781,7 +781,7 @@ let g:OmniSharp_want_snippet=0
 "------------------------------------------------------------------
 "  which key
 "------------------------------------------------------------------
-set timeoutlen=200
+set timeoutlen=300
 " 与新版本vim有冲突，导致状态栏小时
 " autocmd! FileType which_key
 " autocmd  FileType which_key set laststatus=0 noshowmode noruler
