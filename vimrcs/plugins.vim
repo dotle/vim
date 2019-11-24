@@ -117,6 +117,7 @@ filetype plugin indent on    " required
 " ------------------------------------------------------------------
 "F2开启和关闭树"
 map <F2> :NERDTreeToggle<CR>
+nmap ge :NERDTreeToggle<CR>
 map <leader>en :NERDTree<CR>
 let NERDTreeChDirMode=2
 "显示书签"
