@@ -370,13 +370,13 @@ endif
 " ----------------------------------------
 " vista.vim
 " --------------------------------------------------
-nmap  <leader>tv :Vista!!<CR>
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
+" nmap  <leader>tv :Vista!!<CR>
+" function! NearestMethodOrFunction() abort
+"   return get(b:, 'vista_nearest_method_or_function', '')
+" endfunction
 
 
-set statusline+=%{NearestMethodOrFunction()}
+" set statusline+=%{NearestMethodOrFunction()}
 
 " By default vista.vim never run if you don't call it explicitly.
 "
