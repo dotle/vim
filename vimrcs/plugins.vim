@@ -52,7 +52,8 @@ Plug  'plasticboy/vim-markdown' "markdown 支持
 Plug  'iamcco/markdown-preview.vim'  " need python support
 Plug  'vim-scripts/a.vim'   "头文件跳转  :A or <leader>is  <leader>ih
 Plug  'vim-scripts/indentpython.vim' "帮助python格式化代码缩进。
-Plug  'w0rp/ale'
+" Plug  'w0rp/ale'
+Plug  'dense-analysis/ale'    "ale git 名修改
 Plug  'nvie/vim-flake8' "python 标准检查插件
 Plug  'majutsushi/tagbar'   "tagbar
 Plug  'jmcantrell/vim-virtualenv' "python virtual 支持
@@ -183,7 +184,7 @@ let g:tagbar_width = 25
 " gutentags
 " --------------------------------------------------
 " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project','.vs']
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project','.vs','.vscode']
 
 " 所生成的数据文件的名称
 let g:gutentags_ctags_tagfile = '.tags'
@@ -610,24 +611,53 @@ let g:asyncomplete_auto_popup = 1
 let g:lsp_async_completion = 1
 let g:lsp_use_event_queue = 1
 let g:lsp_text_edit_enabled = 1
-let g:lsp_diagnostics_enabled  = 0
-" let g:lsp_signature_help_enabled = 1
+let g:lsp_diagnostics_enabled  = 1
+let g:lsp_signature_help_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+" let g:lsp_signs_priority = 11
+let g:lsp_signs_priority_map = {
+        \'LspError': 11,
+        \'LspWarning': 7,
+        \'clangd_LspWarning': 11,
+        \'clangd_LspInformation': 11
+        \}
+
+set statusline+=%{NearestMethodOrFunction()}
 "inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
-nmap <leader>l* :LspStatus<cr>
 
 autocmd FileType python,go,c,cpp,java
-\  setlocal omnifunc=lsp#complete|
-\  nmap <buffer> <leader>ld <plug>(lsp-definition)|
-\  nmap <buffer> <leader>lh <plug>(lsp-hover)|
-\  nmap <buffer> <leader>lf :LspDocumentFormat<cr>|
-\  vmap <buffer> <leader>lf :LspDocumentRangeFormat<cr>|
-\  nmap <buffer> <leader>ln :LspNextError<cr>|
-\  nmap <buffer> <leader>lp :LspPreviousError<cr>|
-\  nmap <buffer> <leader>lr :LspRename<cr>|
-\  nmap <buffer> <leader>lkd :LspPeekDeclaration<cr>|
-\  nmap <buffer> <leader>lkD :LspPeekDefinition<cr>|
-\  nmap <buffer> <leader>lki :LspPeekImplementation<cr>|
-\  nmap <buffer> <leader>lkt :LspPeekTypeDefinition<cr>
+\  setlocal omnifunc=lsp#complete
+
+
+" key setting
+autocmd FileType python,go,c,cpp,java
+\ nmap <leader>l* :LspStatus<cr>|
+\ nmap <buffer> <leader>lc  :LspCodeAction<cr>|
+\ nmap <buffer> <leader>lg  :LspDocumentDiagnostics<cr>|
+\ nmap <buffer> <leader>lD  :LspDeclaration<cr>|
+\ nmap <buffer> <leader>ld  :LspDefinition<cr>|
+\ nmap <buffer> <leader>lf  :LspDocumentFold<cr>|
+\ nmap <buffer> <leader>lsf  :LspDocumentFoldSync<cr>|
+\ nmap <buffer> <leader>lF  :LspDocumentFormat<cr>|
+\ nmap <buffer> <leader>lsF  :LspDocumentFormatSync<cr>|
+\ vmap <buffer> <leader>lf  :LspDocumentRangeFormat<cr>|
+\ nmap <buffer> <leader>lsd  :LspDocumentSymbol<cr>|
+\ nmap <buffer> <leader>lh  :LspHover<cr>|
+\ nmap <buffer> <leader>len  :LspNextError<cr>|
+\ nmap <buffer> <leader>lrn  :LspNextReference<cr>|
+\ nmap <buffer> <leader>lpD  :LspPeekDeclaration<cr>|
+\ nmap <buffer> <leader>lpd  :LspPeekDefinition<cr>|
+\ nmap <buffer> <leader>lpi  :LspPeekImplementation<cr>|
+\ nmap <buffer> <leader>lpt  :LspPeekTypeDefinition<cr>|
+\ nmap <buffer> <leader>lep  :LspPreviousError<cr>|
+\ nmap <buffer> <leader>lrp  :LspPreviousReference<cr>|
+\ nmap <buffer> <leader>li  :LspImplementation<cr>|
+\ nmap <buffer> <leader>lrf  :LspReferences<cr>|
+\ nmap <buffer> <leader>ln  :LspRename<cr>|
+\ nmap <buffer> <leader>lt  :LspTypeDefinition<cr>|
+\ nmap <buffer> <leader>lsw  :LspWorkspaceSymbol<cr>|
+\ nmap <buffer> <leader>lpc  <plug>(lsp-preview-close)|
+\ nmap <buffer> <leader>lpf  <plug>(lsp-preview-focus)
 
 " ------------------------------------------------------------------
 "  ALE
@@ -672,6 +702,7 @@ nmap <leader>ap <Plug>(ale_previous_wrap)
 nmap <leader>an <Plug>(ale_next_wrap)
 "<Leader>s触发/关闭语法检查
 nmap <Leader>at :ALEToggle<CR>
+nmap <Leader>as :ALEToggleBuffer<CR>
 "<Leader>d查看错误或警告的详细信息
 nmap <Leader>ad :ALEDetail<CR>
 "java 中文乱码
@@ -679,19 +710,28 @@ let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en'
 " auto parse makefile
 let g:ale_c_parse_makefile = 1
 " let g:ale_c_parse_compile_commands = 1
-"使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
-let g:ale_linters = {
-\   'cpp':        ['cppcheck','clang','gcc'],
-\   'c':          ['cppcheck','clang', 'gcc'],
-\   'python':     ['pylint'],
-\   'javascript': ['eslint'],
-\   'java':       ['eslint'],
-\   'css':        ['stylelint'],
-\   'bash':       ['shellcheck'],
-\   'go':         ['golint'],
-\   'cs': ['OmniSharp'],
-\}
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
+" 使用clangd对c和c++进行语法检查，对python使用pylint进行语法检查
+ let g:ale_linters = {
+ \   'cpp':        ['cppcheck'],
+ \   'c':          ['cppcheck'],
+ \   'python':     ['pylint'],
+ \   'javascript': ['eslint'],
+ \   'java':       ['eslint'],
+ \   'css':        ['stylelint'],
+ \   'bash':       ['shellcheck'],
+ \   'go':         ['golint'],
+ \   'cs': ['OmniSharp'],
+ \}
 
+" let g:ale_linters = {
+" \   'javascript': ['eslint'],
+" \   'css':        ['stylelint'],
+" \   'bash':       ['shellcheck'],
+" \   'cs': ['OmniSharp'],
+" \}
+" autocmd BufWritePre *.cpp,*.c !cppcheck %
 "------------------------------------------------------------------
 "  Omnisharp
 "------------------------------------------------------------------
@@ -800,7 +840,10 @@ let g:which_key_map.f.z = {'name':'+fzf'}
 let g:which_key_map.f.z.g = {'name':'+fzf git'}
 let g:which_key_map.i = {'name':'+switchfile'}
 let g:which_key_map.l = {'name':'+lsp'}
-let g:which_key_map.l.k={'name':'+LspPeek'}
+let g:which_key_map.l.e={'name':'+Error'}
+let g:which_key_map.l.p={'name':'+Peek&preview'}
+let g:which_key_map.l.r={'name':'+Reference'}
+let g:which_key_map.l.s={'name':'+Symbol&Sync'}
 let g:which_key_map.q = {'name':'+quickfix'}
 let g:which_key_map.p = {'name':'+program'}
 let g:which_key_map.p.a = {'name':'+Async'}
