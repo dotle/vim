@@ -273,54 +273,54 @@ nnoremap <Leader>rF :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 " FZF
 """"""""""""""""""""""""""""""
 nmap  <leader>fv :Vista finder<CR>
-nmap  <leader>fzf :FZF<cr>
+nmap  <leader>fz :FZF<cr>
 " " nmap <leader>fzf :Files [PATH]`    " Files (similar to  `:FZF` )
 " Git files ( `git ls-files` )
-nmap <leader>fzgf :GFiles<CR>
+nmap <leader>fgf :GFiles<CR>
 " Git files ( `git status` )
-nmap <leader>fzgF :GFiles?<CR>
+nmap <leader>fgF :GFiles?<CR>
 " Open buffers
-nmap <leader>fzb :Buffers<CR>
+nmap <leader>fb :Buffers<CR>
 " Color schemes
-nmap <leader>fzS :Colors<CR>
+nmap <leader>fS :Colors<CR>
 " {ag}{6} search result ( `ALT-A`  to select all,  `ALT-D`  to deselect all)
-nmap <leader>fza :Ag<CR>
+nmap <leader>fa :Ag<CR>
 " {rg}{7} search result ( `ALT-A`  to select all,  `ALT-D`  to deselect all)
-nmap <leader>fzr :Rg<CR>
+nmap <leader>fr :Rg<CR>
 " Lines in loaded buffers
-nmap <leader>fzL :Lines<CR>
+nmap <leader>fL :Lines<CR>
 " Lines in the current buffer
-nmap <leader>fzl :BLines<CR>
+nmap <leader>fl :BLines<CR>
 " Tags in the project ( `ctags -R` )
-nmap <leader>fzT :Tags<CR>
+nmap <leader>fT :Tags<CR>
 " Tags in the current buffer
-nmap <leader>fzt :BTags<CR>
+nmap <leader>ft :BTags<CR>
 " Marks
-nmap <leader>fzm :Marks<CR>
+nmap <leader>fm :Marks<CR>
 " Windows
-nmap <leader>fzw :Windows<CR>
+nmap <leader>fw :Windows<CR>
 "  `locate`  command output
-nmap <leader>fzo :Locate
+nmap <leader>fo :Locate
 "  `v:oldfiles`  and open buffers
-nmap <leader>fzh :History<CR>
+nmap <leader>fh :History<CR>
 " Command history
-nmap <leader>fzH :History:<CR>
+nmap <leader>fH :History:<CR>
 " Search history
-nmap <leader>fzs :History/<CR>
+nmap <leader>fs :History/<CR>
 " Snippets ({UltiSnips}{8})
-nmap <leader>fzp :Snippets<CR>
+nmap <leader>fp :Snippets<CR>
 " Git commits (requires {fugitive.vim}{9})
-nmap <leader>fzC :Commits<CR>
+nmap <leader>fC :Commits<CR>
 " Git commits for the current buffer
-nmap <leader>fzc :BCommits<CR>
+nmap <leader>fc :BCommits<CR>
 " Commands
-nmap <leader>fzd :Commands<CR>
+nmap <leader>fd :Commands<CR>
 " Normal mode mappings
-nmap <leader>fzM :Maps<CR>
+nmap <leader>fM :Maps<CR>
 " Help tags [1]
-nmap <leader>fz? :Helptags<CR>
+nmap <leader>f? :Helptags<CR>
 " File types
-nmap <leader>fzy :Filetypes<CR>
+nmap <leader>fy :Filetypes<CR>
 " This is the default extra key bindings
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -365,20 +365,14 @@ let g:fzf_tags_command = 'ctags -R'
 " [Commands] --expect expression for directly executing the command
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 
-
 if executable('fzf')
-    " Mapping selecting mappings
-    nmap <leader><tab> <plug>(fzf-maps-n)
-    xmap <leader><tab> <plug>(fzf-maps-x)
-    omap <leader><tab> <plug>(fzf-maps-o)
-
     " Insert mode completion
     imap <c-x><c-k> <plug>(fzf-complete-word)
     imap <c-x><c-f> <plug>(fzf-complete-path)
     imap <c-x><c-j> <plug>(fzf-complete-file-ag)
     imap <c-x><c-l> <plug>(fzf-complete-line)
     " Advanced customization using autoload functions
-    inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+    " inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 endif
 
 " ----------------------------------------
@@ -856,8 +850,8 @@ let g:which_key_map.e = {'name':'+edit'}
 let g:which_key_map.e.v = {'name':'+vimrc'}
 let g:which_key_map.e.b = {'name':'+whitespace'}
 let g:which_key_map.f = {'name':'+find/fzf'}
-let g:which_key_map.f.z = {'name':'+fzf'}
-let g:which_key_map.f.z.g = {'name':'+fzf git'}
+let g:which_key_map.f = {'name':'+fzf'}
+let g:which_key_map.f.g = {'name':'+fzf/git'}
 let g:which_key_map.i = {'name':'+switchfile'}
 let g:which_key_map.l = {'name':'+lsp'}
 let g:which_key_map.l.e={'name':'+Error'}

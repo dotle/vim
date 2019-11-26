@@ -126,7 +126,7 @@ map<leader>evp :e! $VIMRUNTIME/../vimrcs/plugins.vim<cr>
 map<leader>ew :setlocal wrap<cr>
 map<leader>eW :setlocal nowrap<cr>
 "autocmd! bufwritepost _vimrc source c:/vim/_vimrc
-map <S-F> <ESC>:%!astyle --style=ansi -U -p -f<CR>
+" map <S-F> <ESC>:%!astyle --style=ansi -U -p -f<CR>
 nmap <leader>pf <ESC>:%!astyle --style=ansi -U -p -f<CR>
 " map for completion see :help ins-completion for whole completions
 " search tags
