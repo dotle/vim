@@ -10,7 +10,7 @@ call plug#begin('~/plugged')
 "------------
 " common plugin
 " -----------
-Plug  'vim-scripts/mru.vim'
+" Plug  'vim-scripts/mru.vim'
 " Plug  'jiangmiao/auto-pairs' "与vimlsp 有冲突
 Plug  'vim-scripts/Mark--Karkat'
 Plug  'liuchengxu/vim-which-key'
@@ -78,7 +78,7 @@ Plug  'tpope/vim-fugitive' "git 支持
 Plug  'mhinz/vim-signify'
 Plug  'bling/vim-airline' "状态栏
 Plug  'vim-airline/vim-airline-themes'
-Plug  'fholgado/minibufexpl.vim'  "minibuf
+" Plug  'fholgado/minibufexpl.vim'  "minibuf
 Plug  'scrooloose/nerdtree' "文件树查看 <leader>en F2
 Plug  'terryma/vim-multiple-cursors'  "多光标操作 选中之后c-n  全选中c-n 则为选中头  vip为全选
 Plug  'tpope/vim-surround'       "surround cs ds....
@@ -138,10 +138,24 @@ let g:indentLine_enabled = 1
 let g:autopep8_disable_show_diff=1
 
 "--------------------------
+" startify
+"----------------------------
+autocmd User Startified setlocal cursorline
+
+let g:startify_session_persistence = 1
+
+nmap <leader>Sl :SLoad<cr>
+nmap <leader>Ss :SSave<cr>
+nmap <leader>Sd :SDelete<cr>
+nmap <leader>Sc :SClose<cr>
+
+"--------------------------
 "AirlineTheme设置"
 "----------------------------
 let g:airline_theme='dark_minimal'
 nmap <leader>el :AirlineToggle<cr>
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 "--------------------------------------------------------------------------------
 "easy mothing
 "--------------------------------------------------------------------------------
@@ -625,9 +639,15 @@ let g:lsp_signs_priority_map = {
 set statusline+=%{NearestMethodOrFunction()}
 "inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 
+autocmd! FileType python,go,c,cpp,java
 autocmd FileType python,go,c,cpp,java
-\  setlocal omnifunc=lsp#complete
-
+\ setlocal omnifunc=lsp#complete|
+\| autocmd BufEnter <buffer>
+\ let g:airline_section_warning = 'W:%{lsp#get_buffer_diagnostics_counts()["warning"]}'|
+\ let g:airline_section_error = 'E:%{lsp#get_buffer_diagnostics_counts()["error"]}%{lsp#get_buffer_first_error_line()? "(L".lsp#get_buffer_first_error_line().")":""}'
+\| autocmd Bufleave <buffer>
+\ let g:airline_section_error= ''|
+\ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#whitespace#check(),0)}'
 
 " key setting
 autocmd FileType python,go,c,cpp,java
@@ -835,15 +855,15 @@ let g:which_key_map.d = {'name':'+dox'}
 let g:which_key_map.e = {'name':'+edit'}
 let g:which_key_map.e.v = {'name':'+vimrc'}
 let g:which_key_map.e.b = {'name':'+whitespace'}
-let g:which_key_map.f = {'name':'+find&fzf'}
+let g:which_key_map.f = {'name':'+find/fzf'}
 let g:which_key_map.f.z = {'name':'+fzf'}
 let g:which_key_map.f.z.g = {'name':'+fzf git'}
 let g:which_key_map.i = {'name':'+switchfile'}
 let g:which_key_map.l = {'name':'+lsp'}
 let g:which_key_map.l.e={'name':'+Error'}
-let g:which_key_map.l.p={'name':'+Peek&preview'}
+let g:which_key_map.l.p={'name':'+Peek/preview'}
 let g:which_key_map.l.r={'name':'+Reference'}
-let g:which_key_map.l.s={'name':'+Symbol&Sync'}
+let g:which_key_map.l.s={'name':'+Symbol/Sync'}
 let g:which_key_map.q = {'name':'+quickfix'}
 let g:which_key_map.p = {'name':'+program'}
 let g:which_key_map.p.a = {'name':'+Async'}
@@ -853,6 +873,7 @@ let g:which_key_map.v = {'name':'+wiki'}
 let g:which_key_map.m = {'name':'+mark'}
 let g:which_key_map.M = {'name':'+markdown'}
 let g:which_key_map.r = {'name':'+ctrlp'}
+let g:which_key_map.S = {'name':'+session'}
 let g:which_key_map.s = {'name':'+slime'}
 let g:which_key_map[' ']= {'name':'+easyMotion'}
 
