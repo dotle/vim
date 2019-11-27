@@ -117,14 +117,16 @@ filetype plugin indent on    " required
 " NERDTree
 " ------------------------------------------------------------------
 "F2开启和关闭树"
-map <F2> :NERDTreeToggle<CR>
+nnoremap <silent><F2> :NERDTreeToggle<CR>
+inoremap <silent><F2> <ESC>:NERDTreeToggle<CR>
 nmap ge :NERDTreeToggle<CR>
-map <leader>en :NERDTree<CR>
+nnoremap <silent><Leader>tf :NERDTreeToggle<CR>
+nnoremap <silent><Leader>ef :NERDTreeFind<CR>
 let NERDTreeChDirMode=2
 "显示书签"
 let NERDTreeShowBookmarks=1
 "设置忽略文件类型"
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$','\.git','\.svn']
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$','\.git','\.svn','\.root','\.vs']
 "窗口大小"
 let NERDTreeWinSize=25
 
@@ -142,7 +144,7 @@ let g:autopep8_disable_show_diff=1
 "----------------------------
 autocmd User Startified setlocal cursorline
 
-let g:startify_session_persistence = 1
+let g:startify_session_persistence = 0
 
 nmap <leader>Sl :SLoad<cr>
 nmap <leader>Ss :SSave<cr>
@@ -153,9 +155,13 @@ nmap <leader>Sc :SClose<cr>
 "AirlineTheme设置"
 "----------------------------
 let g:airline_theme='dark_minimal'
-nmap <leader>el :AirlineToggle<cr>
+nmap <leader>tl :AirlineToggle<cr>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+" let g:airline#extensions#tabline#show_buffers = 1
+" let g:airline#extensions#tabline#alt_sep = 1
 "--------------------------------------------------------------------------------
 "easy mothing
 "--------------------------------------------------------------------------------
@@ -190,7 +196,7 @@ map <leader>dc a /* */<LEFT><LEFT><LEFT>
 " tagbar
 " --------------------------------------------------
 "设置关闭和打开tagbar窗口的快捷键
-nnoremap <leader>tb :TagbarToggle<CR>
+nnoremap <leader>tt :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 let g:tagbar_width = 25
 
@@ -332,20 +338,20 @@ let g:fzf_action = {
  let g:fzf_layout = { 'down': '~40%' }
 
 " Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+" let g:fzf_colors =
+" \ { 'fg':      ['fg', 'Normal'],
+"   \ 'bg':      ['bg', 'Normal'],
+"   \ 'hl':      ['fg', 'Comment'],
+"   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+"   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+"   \ 'hl+':     ['fg', 'Statement'],
+"   \ 'info':    ['fg', 'PreProc'],
+"   \ 'border':  ['fg', 'Ignore'],
+"   \ 'prompt':  ['fg', 'Conditional'],
+"   \ 'pointer': ['fg', 'Exception'],
+"   \ 'marker':  ['fg', 'Keyword'],
+"   \ 'spinner': ['fg', 'Label'],
+"   \ 'header':  ['fg', 'Comment'] }
 
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
@@ -447,17 +453,17 @@ nmap <leader>ee <Plug>(EasyAlign)
 """"""""""""""""""""""""""""""
 " miniBufexplorer Config
 """"""""""""""""""""""""""""""
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapCTabSwitchWindows = 1
-"let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
+"let g:miniBufExplMapWindowNavArrows = 1
+"let g:miniBufExplMapWindowNavVim = 1
+"let g:miniBufExplMapCTabSwitchWindows = 1
+""let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplModSelTarget = 1
 
-"解决FileExplorer窗口变小问题
-let g:miniBufExplForceSyntaxEnable = 1
-let g:miniBufExplorerMoreThanOne=0
+""解决FileExplorer窗口变小问题
+"let g:miniBufExplForceSyntaxEnable = 1
+"let g:miniBufExplorerMoreThanOne=0
 
-nmap <leader>er :MBEToggle<cr>
+"nmap <leader>er :MBEToggle<cr>
 " -----------------------------------------------------------------
 "  mark
 "  ----------------------------------------------------------------
@@ -466,8 +472,10 @@ vmap <leader>mm <Plug>MarkSet
 nmap <leader>mr <Plug>MarkRegex
 vmap <leader>mr <Plug>MarkRegex
 nmap <leader>mn <Plug>MarkClear
-
-
+nmap <unique> <silent> <Leader>m* <Plug>MarkSearchCurrentNext
+nmap <unique> <silent> <Leader>m# <Plug>MarkSearchCurrentPrev
+nmap <unique> <silent> <Leader>m/ <Plug>MarkSearchAnyNext
+nmap <unique> <silent> <Leader>m? <Plug>MarkSearchAnyPrev
 " -----------------------------------------------------------------
 "  markdown-preview
 "  ----------------------------------------------------------------
@@ -495,7 +503,7 @@ let g:vimwiki_map_prefix = '<Leader>v'
 let g:better_whitespace_enabled=1
 nmap <leader>ebe :EnableWhitespace<CR>
 nmap <leader>ebd :DisableWhitespace<CR>
-nmap <leader>ebt :ToggleWhitespace<CR>
+nmap <leader>tb :ToggleWhitespace<CR>
 nmap <leader>ebs :StripWhitespace<CR>
 let g:better_whitespace_filetypes_blacklist=['text', 'markdown', 'vimwiki',
             \'diff', 'gitcommit', 'unite', 'qf', 'help', 'markdown','Dockerfile']
@@ -520,7 +528,7 @@ map <leader>ec :Calendar<cr>
 " -----------------------------------------------------------------
 " MRU
 " -----------------------------------------------------------------
-map  <leader>em :MRU<cr>
+" map  <leader>em :MRU<cr>
 
 " -----------------------------------------------------------------
 " async
@@ -533,12 +541,12 @@ map <leader>pas :AsyncStop<cr>
 " -----------------------------------------------------------------
 " undotree
 " -----------------------------------------------------------------
-nnoremap <leader>eu :UndotreeToggle<cr>
+nnoremap <leader>tu :UndotreeToggle<cr>
 " ------------------------------------------------------------------
 " preview windows
 " ------------------------------------------------------------------
-noremap <leader>tp :PreviewSignature!<cr>
-nmap <leader>qw :PreviewClose<cr>
+noremap <leader>pp :PreviewSignature!<cr>
+nmap <leader>qd :PreviewClose<cr>
 " -----------------------------------------------------------------
 " vim-slime
 " -----------------------------------------------------------------
@@ -549,13 +557,13 @@ if(has("win32") || has("win64") || has("win95") || has("win16"))
 else
     let g:slime_vimterminal_cmd = "bash"
 endif
-nmap <leader>sc <plug>SlimeConfig
-nmap <leader>sp <plug>SlimeParagraphSend
-xmap <leader>ss <plug>SlimeRegionSend
-nmap <leader>ss :SlimeSend<cr>
-nmap <leader>sl :SlimeSendCurrentLine<cr>
-nmap <leader>s1 :SlimeSend1
-nmap <leader>s0 :SlimeSend0
+nmap <leader>'c <plug>SlimeConfig
+nmap <leader>'p <plug>SlimeParagraphSend
+xmap <leader>'s <plug>SlimeRegionSend
+nmap <leader>'s :SlimeSend<cr>
+nmap <leader>'l :SlimeSendCurrentLine<cr>
+nmap <leader>'1 :SlimeSend1
+nmap <leader>'0 :SlimeSend0
 " let g:slime_python_ipython = 1
 
 " -----------------------------------------------------------------
@@ -646,29 +654,29 @@ autocmd FileType python,go,c,cpp,java
 " key setting
 autocmd FileType python,go,c,cpp,java
 \ nmap <leader>l* :LspStatus<cr>|
-\ nmap <buffer> <leader>lc  :LspCodeAction<cr>|
-\ nmap <buffer> <leader>lg  :LspDocumentDiagnostics<cr>|
-\ nmap <buffer> <leader>lD  :LspDeclaration<cr>|
-\ nmap <buffer> <leader>ld  :LspDefinition<cr>|
-\ nmap <buffer> <leader>lf  :LspDocumentFold<cr>|
+\ nmap <buffer> <leader>la  :LspCodeAction<cr>|
+\ nmap <buffer> <leader>lD  :LspDocumentDiagnostics<cr>|
+\ nmap <buffer> <leader>lgD  :LspDeclaration<cr>|
+\ nmap <buffer> <leader>lgd  :LspDefinition<cr>|
+\ nmap <buffer> <leader>lF  :LspDocumentFold<cr>|
 \ nmap <buffer> <leader>lsf  :LspDocumentFoldSync<cr>|
-\ nmap <buffer> <leader>lF  :LspDocumentFormat<cr>|
+\ nmap <buffer> <leader>lf  :LspDocumentFormat<cr>|
 \ nmap <buffer> <leader>lsF  :LspDocumentFormatSync<cr>|
 \ vmap <buffer> <leader>lf  :LspDocumentRangeFormat<cr>|
 \ nmap <buffer> <leader>lsd  :LspDocumentSymbol<cr>|
 \ nmap <buffer> <leader>lh  :LspHover<cr>|
 \ nmap <buffer> <leader>len  :LspNextError<cr>|
-\ nmap <buffer> <leader>lrn  :LspNextReference<cr>|
+\ nmap <buffer> <leader>lRn  :LspNextReference<cr>|
 \ nmap <buffer> <leader>lpD  :LspPeekDeclaration<cr>|
 \ nmap <buffer> <leader>lpd  :LspPeekDefinition<cr>|
 \ nmap <buffer> <leader>lpi  :LspPeekImplementation<cr>|
 \ nmap <buffer> <leader>lpt  :LspPeekTypeDefinition<cr>|
 \ nmap <buffer> <leader>lep  :LspPreviousError<cr>|
-\ nmap <buffer> <leader>lrp  :LspPreviousReference<cr>|
-\ nmap <buffer> <leader>li  :LspImplementation<cr>|
-\ nmap <buffer> <leader>lrf  :LspReferences<cr>|
+\ nmap <buffer> <leader>lRp  :LspPreviousReference<cr>|
+\ nmap <buffer> <leader>lgi  :LspImplementation<cr>|
+\ nmap <buffer> <leader>lr  :LspReferences<cr>|
 \ nmap <buffer> <leader>ln  :LspRename<cr>|
-\ nmap <buffer> <leader>lt  :LspTypeDefinition<cr>|
+\ nmap <buffer> <leader>lgt  :LspTypeDefinition<cr>|
 \ nmap <buffer> <leader>lsw  :LspWorkspaceSymbol<cr>|
 \ nmap <buffer> <leader>lpc  <plug>(lsp-preview-close)|
 \ nmap <buffer> <leader>lpf  <plug>(lsp-preview-focus)
@@ -716,7 +724,7 @@ nmap <leader>ap <Plug>(ale_previous_wrap)
 nmap <leader>an <Plug>(ale_next_wrap)
 "<Leader>s触发/关闭语法检查
 nmap <Leader>at :ALEToggle<CR>
-nmap <Leader>as :ALEToggleBuffer<CR>
+nmap <Leader>aT :ALEToggleBuffer<CR>
 "<Leader>d查看错误或警告的详细信息
 nmap <Leader>ad :ALEDetail<CR>
 "java 中文乱码
@@ -788,23 +796,24 @@ augroup omnisharp_commands
     autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
 
     " The following commands are contextual, based on the cursor position.
-    autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>psi :OmniSharpFindImplementations<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>psb :OmniSharpFindSymbol<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>psu :OmniSharpFindUsages<CR>
+    autocmd FileType cs nnoremap <buffer> <leader>sd :OmniSharpGotoDefinition<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>si :OmniSharpFindImplementations<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>sb :OmniSharpFindSymbol<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>su :OmniSharpFindUsages<CR>
 
     " Finds members in the current buffer
-    autocmd FileType cs nnoremap <buffer> <Leader>psm :OmniSharpFindMembers<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>sm :OmniSharpFindMembers<CR>
 
-    autocmd FileType cs nnoremap <buffer> <Leader>psx :OmniSharpFixUsings<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>pst :OmniSharpTypeLookup<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>psd :OmniSharpDocumentation<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>sx :OmniSharpFixUsings<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>st :OmniSharpTypeLookup<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>sD :OmniSharpDocumentation<CR>
+    autocmd FileType cs nnoremap <buffer> <leader>ss :OmniSharpSignatureHelp<CR>
     autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
     autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
 
     " Navigate up and down by method/property/field
-    autocmd FileType cs nnoremap <buffer> <leader>[[ :OmniSharpNavigateUp<CR>
-    autocmd FileType cs nnoremap <buffer> <leader>]] :OmniSharpNavigateDown<CR>
+    autocmd FileType cs nnoremap <buffer> <leader>s[[ :OmniSharpNavigateUp<CR>
+    autocmd FileType cs nnoremap <buffer> <leader>s]] :OmniSharpNavigateDown<CR>
 
     " Find all code errors/warnings for the current solution and populate the quickfix window
     autocmd FileType cs nnoremap <buffer> <Leader>psc :OmniSharpGlobalCodeCheck<CR>
@@ -843,6 +852,7 @@ set timeoutlen=300
 "   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 let g:which_key_map =  {}
+let g:which_key_map["'"] = {'name':'+slime'}
 let g:which_key_map.a = {'name':'+ALE'}
 let g:which_key_map.c = {'name':'+gscope'}
 let g:which_key_map.d = {'name':'+dox'}
@@ -854,25 +864,34 @@ let g:which_key_map.f = {'name':'+fzf'}
 let g:which_key_map.f.g = {'name':'+fzf/git'}
 let g:which_key_map.i = {'name':'+switchfile'}
 let g:which_key_map.l = {'name':'+lsp'}
-let g:which_key_map.l.e={'name':'+Error'}
-let g:which_key_map.l.p={'name':'+Peek/preview'}
-let g:which_key_map.l.r={'name':'+Reference'}
-let g:which_key_map.l.s={'name':'+Symbol/Sync'}
-let g:which_key_map.q = {'name':'+quickfix'}
+let g:which_key_map.l.e={'name':'+error'}
+let g:which_key_map.l.g={'name':'+goto'}
+let g:which_key_map.l.p={'name':'+peek/preview'}
+let g:which_key_map.l.R={'name':'+reference-jump'}
+let g:which_key_map.l.s={'name':'+symbol/sync'}
+let g:which_key_map.q = {'name':'+quickfix/preview'}
 let g:which_key_map.p = {'name':'+program'}
 let g:which_key_map.p.a = {'name':'+Async'}
-let g:which_key_map.p.s={'name':'+OmniSharp'}
-let g:which_key_map.t = {'name':'+tag'}
-let g:which_key_map.v = {'name':'+wiki'}
+let g:which_key_map.t = {'name':'+tag/toggle'}
+let g:which_key_map.v = {'name':'+wiki/vista'}
 let g:which_key_map.m = {'name':'+mark'}
 let g:which_key_map.M = {'name':'+markdown'}
 let g:which_key_map.r = {'name':'+ctrlp'}
 let g:which_key_map.S = {'name':'+session'}
-let g:which_key_map.s = {'name':'+slime'}
+let g:which_key_map.s = {'name':'+OmniSharp'}
 let g:which_key_map[' ']= {'name':'+easyMotion'}
 
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
+      \ '1' :  'buffer1'        ,
+      \ '2' :  'buffer2',
+      \ '3' :  'buffer3'        ,
+      \ '4' :  'buffer4'        ,
+      \ '5' :  'buffer5'        ,
+      \ '6' :  'buffer6'        ,
+      \ '7' :  'buffer7'        ,
+      \ '8' :  'buffer8'        ,
+      \ '9' :  'buffer9'        ,
       \ 'a' : ['ba'        , 'delete-all-buffer']   ,
       \ 'd' : ['bd'        , 'delete-buffer']   ,
       \ 'f' : ['bfirst'    , 'first-buffer']    ,
@@ -880,6 +899,8 @@ let g:which_key_map.b = {
       \ 'l' : ['blast'     , 'last-buffer']     ,
       \ 'n' : ['bnext'     , 'next-buffer']     ,
       \ 'p' : ['bprevious' , 'previous-buffer'] ,
+      \ 'b' : ['Buffers'   , 'fzf-buffer'  ] ,
+      \ '?' : ['Buffers'   , 'fzf-buffer'   ],
       \ }
 let g:which_key_map.g = {
       \ 'name' : '+git/version-control' ,
@@ -902,25 +923,31 @@ let g:which_key_map.g = {
 
 let g:which_key_map['w'] = {
       \ 'name' : '+windows' ,
-      \ 'c' : ['<C-W>c'     , 'delete-window']         ,
+      \ 'w' : ['<C-W>w'     , 'other-window']          ,
+      \ 'd' : ['<C-W>c'     , 'delete-window']         ,
       \ '-' : ['<C-W>s'     , 'split-window-below']    ,
       \ '|' : ['<C-W>v'     , 'split-window-right']    ,
       \ '2' : ['<C-W>v'     , 'layout-double-columns'] ,
+      \ 'o' : ['only'       , 'close-all-windows-except-current'] ,
       \ 'h' : ['<C-W>h'     , 'window-left']           ,
       \ 'j' : ['<C-W>j'     , 'window-below']          ,
       \ 'l' : ['<C-W>l'     , 'window-right']          ,
       \ 'k' : ['<C-W>k'     , 'window-up']             ,
-      \ 'H' : ['<C-W>H'     , 'move-window-left']    ,
-      \ 'J' : ['<C-W>J'     , 'move-window-down']   ,
-      \ 'K' : ['<C-W>K'     , 'move-window-right']   ,
-      \ 'L' : ['<C-W>L'     , 'move-window-left']   ,
-      \ '>' : ['<C-W>5>'    , 'expand-window-left']   ,
-      \ '<' : ['<C-W>5<'    , 'expand-window-right']   ,
+      \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
+      \ 'J' : ['resize +5'  , 'expand-window-below']   ,
+      \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
+      \ 'K' : ['resize -5'  , 'expand-window-up']      ,
       \ '=' : ['<C-W>='     , 'balance-window']        ,
-      \ 'b' : ['<C-W>s'     , 'split-window-below']    ,
-      \ 'v' : ['<C-W>v'     , 'split-window-right']    ,
+      \ 's' : ['<C-W>s'     , 'split-window-below']    ,
+      \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
+      \ '?' : ['Windows'    , 'fzf-window']            ,
       \ }
 
+let g:which_key_map['x'] = {
+      \ 'name' : '+text'           ,
+      \ 'a' : ['<Plug>(EasyAlign)' , 'easy-align']                 ,
+      \ 'd' : ['StripWhitespace'   , 'delete-trailing-whitespace'] ,
+      \ }
 try
 	call which_key#register('<Space>', "g:which_key_map")
 	nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
