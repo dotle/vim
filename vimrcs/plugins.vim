@@ -156,6 +156,7 @@ nmap <leader>Sc :SClose<cr>
 "----------------------------
 let g:airline_theme='dark_minimal'
 nmap <leader>tl :AirlineToggle<cr>
+nmap <leader>ar :AirlineRefresh<cr>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
@@ -710,7 +711,7 @@ let g:ale_lint_delay = 500
 let g:ale_echo_msg_format = '[%linter%] %code: %%s'
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
-let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#enabled = 0
 
 let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
 let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
