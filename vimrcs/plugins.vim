@@ -158,11 +158,12 @@ let g:airline_theme='dark_minimal'
 nmap <leader>tl :AirlineToggle<cr>
 nmap <leader>ar :AirlineRefresh<cr>
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-
-" let g:airline#extensions#tabline#show_buffers = 1
-" let g:airline#extensions#tabline#alt_sep = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1 " buffer 编号
+let g:airline#extensions#tabline#formatter = 'unique_tail' " 仅显示名称
+let g:airline#extensions#tabline#show_buffers = 1 "buffer 显示在一个tab忠
+let g:airline#extensions#tabline#show_tabs = 0 " 不显示tab
+let g:airline#extensions#whitespace#enabled = 0 "不显示空白
+" let g:airline#extensions#tabline#alt_sep = 0  " 分隔符
 "--------------------------------------------------------------------------------
 "easy mothing
 "--------------------------------------------------------------------------------
@@ -644,13 +645,12 @@ set statusline+=%{NearestMethodOrFunction()}
 
 autocmd! FileType python,go,c,cpp,java
 autocmd FileType python,go,c,cpp,java
-\ setlocal omnifunc=lsp#complete|
-\| autocmd BufEnter <buffer>
-\ let g:airline_section_warning = 'W:%{lsp#get_buffer_diagnostics_counts()["warning"]}'|
-\ let g:airline_section_error = 'E:%{lsp#get_buffer_diagnostics_counts()["error"]}%{lsp#get_buffer_first_error_line()? "(L".lsp#get_buffer_first_error_line().")":""}'
-\| autocmd Bufleave <buffer>
-\ let g:airline_section_error= ''|
-\ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#whitespace#check(),0)}'
+\ setlocal omnifunc=lsp#complete
+
+"仅导入一次，显示lsp的warning和error
+autocmd VimEnter *
+\ let g:airline_section_warning = g:airline_section_warning.' lspW:%{lsp#get_buffer_diagnostics_counts()["warning"]}'|
+\ let g:airline_section_error = g:airline_section_error.' lspE:%{lsp#get_buffer_diagnostics_counts()["error"]}%{lsp#get_buffer_first_error_line()? "(L".lsp#get_buffer_first_error_line().")":""}'
 
 " key setting
 autocmd FileType python,go,c,cpp,java
@@ -711,7 +711,7 @@ let g:ale_lint_delay = 500
 let g:ale_echo_msg_format = '[%linter%] %code: %%s'
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
-let g:airline#extensions#ale#enabled = 0
+let g:airline#extensions#ale#enabled = 1
 
 let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
 let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
