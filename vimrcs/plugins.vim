@@ -649,8 +649,15 @@ autocmd FileType python,go,c,cpp,java
 
 "仅导入一次，显示lsp的warning和error
 autocmd VimEnter *
-\ let g:airline_section_warning = g:airline_section_warning.' lspW:%{lsp#get_buffer_diagnostics_counts()["warning"]}'|
-\ let g:airline_section_error = g:airline_section_error.' lspE:%{lsp#get_buffer_diagnostics_counts()["error"]}%{lsp#get_buffer_first_error_line()? "(L".lsp#get_buffer_first_error_line().")":""}'
+\ let g:airline_section_warning = g:airline_section_warning.
+\'%{lsp#get_buffer_diagnostics_counts()["warning"]?
+\"▸W:".lsp#get_buffer_diagnostics_counts()["warning"]:""}'|
+\ let g:airline_section_error = g:airline_section_error.
+\'%{lsp#get_buffer_diagnostics_counts()["error"]?
+\"▸E:".lsp#get_buffer_diagnostics_counts()["error"]:""}
+\%{lsp#get_buffer_first_error_line()?
+\"(L".lsp#get_buffer_first_error_line().")":""}'
+" △▽○◇□☆▷◁♤♡♢♧☼☺☏•▲▼●◆■★▶◀♠♥♦♣☀☻☎‥▪•*☉⊙⊕Θ◎❤¤✪の⊿☜☞⊱⋛⋌⋚⊰⊹⌒®©¢℡™ª㈱卍卐♂♀※∷#№&@◤◣◢◥▨▤▧▥▩▥▧▤▨▦☋☍☌▬〓≡▓▒░㊣↔↑→↘↙←↖╋┃┠┨┷┿┯┯┕━━┼┐アイケセテニタサヂデゲギルミヘュッ、夬乛乚亅厃々丂⺷⺻⺳⺪⺧⺋⺈⺄⺁兀〩ㄅㄇㄉㄋㄌㄔㄓㄒㄑㄐㄏㄎㄍㄟㄠㄡㄢㄣㄤㄩㄨㄧㄦㄥΝνξΞΠΟοπρΡΣΤΥΦΧΨΩωψχφυτσÅÆÇÈÉÊËêéèçæå±＜＞﹥＝≧≌∽≮≯⌒⊥∠㏑∏￡㎎ml♂￥
 
 " key setting
 autocmd FileType python,go,c,cpp,java
