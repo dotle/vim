@@ -501,10 +501,10 @@ let g:vimwiki_map_prefix = '<Leader>v'
 "  better white space
 "  ----------------------------------------------------------------
 let g:better_whitespace_enabled=1
-nmap <leader>fwe :EnableWhitespace<CR>
-nmap <leader>fwd :DisableWhitespace<CR>
+nmap <leader>xwe :EnableWhitespace<CR>
+nmap <leader>xwd :DisableWhitespace<CR>
 nmap <leader>tw :ToggleWhitespace<CR>
-nmap <leader>fws :StripWhitespace<CR>
+nmap <leader>xws :StripWhitespace<CR>
 let g:better_whitespace_filetypes_blacklist=['text', 'markdown', 'vimwiki',
             \'diff', 'gitcommit', 'unite', 'qf', 'help', 'markdown','Dockerfile']
 " -----------------------------------------------------------------
@@ -753,12 +753,6 @@ let g:ale_cpp_cppcheck_options = ''
  \   'cs': ['OmniSharp'],
  \}
 
-" let g:ale_linters = {
-" \   'javascript': ['eslint'],
-" \   'css':        ['stylelint'],
-" \   'bash':       ['shellcheck'],
-" \   'cs': ['OmniSharp'],
-" \}
 " autocmd BufWritePre *.cpp,*.c !cppcheck %
 "------------------------------------------------------------------
 "  Omnisharp
@@ -865,7 +859,6 @@ let g:which_key_map.a    = {'name':'+ALE'}
 let g:which_key_map.c    = {'name':'+gscope'}
 let g:which_key_map.f    = {'name':'+files'}
 let g:which_key_map.f.v  = {'name':'+vimrcs'}
-let g:which_key_map.f.w  = {'name':'+whiteSpace'}
 let g:which_key_map.l    = {'name':'+lsp'}
 let g:which_key_map.l.e  = {'name':'+error'}
 let g:which_key_map.l.g  = {'name':'+goto'}
@@ -947,9 +940,9 @@ let g:which_key_map['w'] = {
       \ 'l' : ['<C-W>l'     , 'window-right']          ,
       \ 'k' : ['<C-W>k'     , 'window-up']             ,
       \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
-      \ 'J' : [':resize +5'  , 'expand-window-below']   ,
+      \ 'J' : [':resize +5' , 'expand-window-below']   ,
       \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
-      \ 'K' : [':resize -5'  , 'expand-window-up']      ,
+      \ 'K' : [':resize -5' , 'expand-window-up']      ,
       \ '=' : ['<C-W>='     , 'balance-window']        ,
       \ 's' : ['<C-W>s'     , 'split-window-below']    ,
       \ 'v' : ['<C-W>v'     , 'split-window-right']    ,
@@ -963,7 +956,11 @@ let g:which_key_map['x'] = {
       \ 'name' : '+text'           ,
       \ 'a' : ['<Plug>(EasyAlign)' , 'easy-align']                 ,
       \ 'd' : ['StripWhitespace'   , 'delete-trailing-whitespace'] ,
+      \ 'w' : {
+        \'name'  :  '+WhiteSpace'
+        \},
       \ }
+
 try
 	call which_key#register('<Space>', "g:which_key_map")
 	nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
