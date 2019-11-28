@@ -168,12 +168,12 @@ let g:airline#extensions#whitespace#enabled = 0 "不显示空白
 "--------------------------------------------------------------------------------
 let g:EasyMotion_smartcase = 1
 map <Leader><leader>h <Plug>(easymotion-linebackward)
-map <Leader><Leader>j <Plug>(easymotion-j)
-map <Leader><Leader>k <Plug>(easymotion-k)
+" map <Leader><Leader>j <Plug>(easymotion-j)
+" map <Leader><Leader>k <Plug>(easymotion-k)
 map <Leader><leader>l <Plug>(easymotion-lineforward)
-" 重复上一次操作, 类似repeat插件, 很强大
+" " 重复上一次操作, 类似repeat插件, 很强大
 map <Leader><leader>. <Plug>(easymotion-repeat)
-
+" map <Leader><leader> <Plug>(easymotion-prefix)
 " ------------------------------------------------------------------
 "   super tab
 " ------------------------------------------------------------------
@@ -188,10 +188,9 @@ let g:DoxygenToolkit_briefTag_funcName="yes"
 " let g:DoxygenToolkit_briefTag_pre="@Synopsis "
 let g:DoxygenToolkit_paramTag_pre="@param[in] "
 let g:doxygen_enhanced_color=1
-map <leader>da :DoxAuthor<CR>
-map <leader>df :Dox<CR>
-map <leader>db :DoxBlock<CR>
-map <leader>dc a /* */<LEFT><LEFT><LEFT>
+map <leader>;Da :DoxAuthor<CR>
+map <leader>;Df :Dox<CR>
+map <leader>;Db :DoxBlock<CR>
 
 " ----------------------------------------
 " tagbar
@@ -323,7 +322,7 @@ nmap <leader>zC :BCommits<CR>
 " Commands
 nmap <leader>zD :Commands<CR>
 " Normal mode mappings
-nmap <leader>zM :Maps<CR>
+nmap <leader>? :Maps<CR>
 " Help tags [1]
 nmap <leader>z? :Helptags<CR>
 " File types
@@ -858,16 +857,15 @@ set timeoutlen=300
 " autocmd  FileType which_key set laststatus=0 noshowmode noruler
 "   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
-let g:which_key_map =  {}
+let g:which_key_map      = {}
 let g:which_key_map[' '] = {'name':'+easyMotion'}
-let g:which_key_map["'"] = {'name':'+slime'}
+let g:which_key_map["'"] = {'name':'+slime/terminal'}
+let g:which_key_map["?"] = {'name':'+Maps'}
 let g:which_key_map.a    = {'name':'+ALE'}
 let g:which_key_map.c    = {'name':'+gscope'}
-let g:which_key_map.d    = {'name':'+dox'}
 let g:which_key_map.f    = {'name':'+files'}
 let g:which_key_map.f.v  = {'name':'+vimrcs'}
 let g:which_key_map.f.w  = {'name':'+whiteSpace'}
-" let g:which_key_map.i    = {'name':'+switchfile'}
 let g:which_key_map.l    = {'name':'+lsp'}
 let g:which_key_map.l.e  = {'name':'+error'}
 let g:which_key_map.l.g  = {'name':'+goto'}
@@ -888,21 +886,24 @@ let g:which_key_map.z.g  = {'name':'+fzf/git'}
 
 let g:which_key_map[";"] = {
         \'name': '+tools',
-        \'x':    '10->16',
-        \'X':    '16->10'
+        \'D': {
+          \'name': '+Doxygen'
+          \},
+        \'x':    'toBinary',
+        \'X':    'toString'
         \}
 
 let g:which_key_map.b = {
-      \ 'name' : '+buffer' ,
-      \ '1' :  'buffer1'        ,
-      \ '2' :  'buffer2',
-      \ '3' :  'buffer3'        ,
-      \ '4' :  'buffer4'        ,
-      \ '5' :  'buffer5'        ,
-      \ '6' :  'buffer6'        ,
-      \ '7' :  'buffer7'        ,
-      \ '8' :  'buffer8'        ,
-      \ '9' :  'buffer9'        ,
+      \ 'name': '+buffer',
+      \ '1':    'buffer1',
+      \ '2':    'buffer2',
+      \ '3':    'buffer3',
+      \ '4':    'buffer4',
+      \ '5':    'buffer5',
+      \ '6':    'buffer6',
+      \ '7':    'buffer7',
+      \ '8':    'buffer8',
+      \ '9':    'buffer9',
       \ 'a' : ['ba'        , 'delete-all-buffer']   ,
       \ 'd' : ['bd'        , 'delete-buffer']   ,
       \ 'f' : ['bfirst'    , 'first-buffer']    ,
