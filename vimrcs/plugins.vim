@@ -50,9 +50,8 @@ Plug  'tell-k/vim-autopep8' "automatically formats Python code to conform to the
 Plug  'godlygeek/tabular'  " 输入tabular /, 则以，为分隔符
 Plug  'plasticboy/vim-markdown' "markdown 支持
 Plug  'iamcco/markdown-preview.vim'  " need python support
-Plug  'vim-scripts/a.vim'   "头文件跳转  :A or <leader>is  <leader>ih
+" Plug  'vim-scripts/a.vim'   "头文件跳转  :A or <leader>is  <leader>ih
 Plug  'vim-scripts/indentpython.vim' "帮助python格式化代码缩进。
-" Plug  'w0rp/ale'
 Plug  'dense-analysis/ale'    "ale git 名修改
 Plug  'nvie/vim-flake8' "python 标准检查插件
 Plug  'majutsushi/tagbar'   "tagbar
@@ -70,7 +69,7 @@ Plug  'OmniSharp/omnisharp-vim'     " c#支持
 " Fast navigation
 "-----------------
 Plug  'easymotion/vim-easymotion'  "快速移动 使用<leader><leader>开头
-Plug  'derekwyatt/vim-fswitch' "头文件和文件切换 <leader>eg
+Plug  'derekwyatt/vim-fswitch' "头文件和文件切换 <leader>fg
 "--------------
 " IDE features
 "--------------
@@ -79,7 +78,7 @@ Plug  'mhinz/vim-signify'
 Plug  'bling/vim-airline' "状态栏
 Plug  'vim-airline/vim-airline-themes'
 " Plug  'fholgado/minibufexpl.vim'  "minibuf
-Plug  'scrooloose/nerdtree' "文件树查看 <leader>en F2
+Plug  'scrooloose/nerdtree' "文件树查看 <leader>ft F2
 Plug  'terryma/vim-multiple-cursors'  "多光标操作 选中之后c-n  全选中c-n 则为选中头  vip为全选
 Plug  'tpope/vim-surround'       "surround cs ds....
 Plug  'mbbill/undotree'         "undo  操作
@@ -120,8 +119,8 @@ filetype plugin indent on    " required
 nnoremap <silent><F2> :NERDTreeToggle<CR>
 inoremap <silent><F2> <ESC>:NERDTreeToggle<CR>
 nmap ge :NERDTreeToggle<CR>
-nnoremap <silent><Leader>tf :NERDTreeToggle<CR>
-nnoremap <silent><Leader>ef :NERDTreeFind<CR>
+nnoremap <silent><Leader>ft :NERDTreeToggle<CR>
+nnoremap <silent><Leader>fd :NERDTreeFind<CR>
 let NERDTreeChDirMode=2
 "显示书签"
 let NERDTreeShowBookmarks=1
@@ -260,8 +259,8 @@ let g:echodoc#enable_at_startup = 1
 " ctrlp
 """"""""""""""""""""""""""""""
 nnoremap <leader>rt :CtrlPBufTag<CR>
-nmap  <leader>rr :CtrlPRoot<CR>
-nmap  <leader>rm :CtrlPMRUFiles<cr>
+nmap  <leader>rR :CtrlPRoot<CR>
+nmap  <leader>rr :CtrlPMRUFiles<cr>
 nmap  <leader>rc :CtrlPChange<cr>
 nmap  <leader>ru :CtrlPUndo<cr>
 nmap  <leader>rl :CtrlPLine<cr>
@@ -272,7 +271,7 @@ nmap  <leader>rb :CtrlPBuffer<cr>
 " ----------------------------------------
 " ctrlp-funky
 " --------------------------------------------------
-nnoremap <Leader>rf :CtrlPFunky<Cr>
+nnoremap <Leader>tf :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
 nnoremap <Leader>rF :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
@@ -280,55 +279,55 @@ nnoremap <Leader>rF :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 """"""""""""""""""""""""""""""
 " FZF
 """"""""""""""""""""""""""""""
-nmap  <leader>fv :Vista finder<CR>
-nmap  <leader>fz :FZF<cr>
-" " nmap <leader>fzf :Files [PATH]`    " Files (similar to  `:FZF` )
+nmap  <leader>tv :Vista finder<CR>
+nmap  <leader>f? :FZF<cr>
+nmap <leader>zz :Files
 " Git files ( `git ls-files` )
-nmap <leader>fgf :GFiles<CR>
+nmap <leader>zgf :GFiles<CR>
 " Git files ( `git status` )
-nmap <leader>fgF :GFiles?<CR>
+nmap <leader>zgF :GFiles?<CR>
 " Open buffers
-nmap <leader>fb :Buffers<CR>
+nmap <leader>zb :Buffers<CR>
 " Color schemes
-nmap <leader>fS :Colors<CR>
+nmap <leader>zS :Colors<CR>
 " {ag}{6} search result ( `ALT-A`  to select all,  `ALT-D`  to deselect all)
-nmap <leader>fa :Ag<CR>
+nmap <leader>ag :Ag<CR>
 " {rg}{7} search result ( `ALT-A`  to select all,  `ALT-D`  to deselect all)
-nmap <leader>fr :Rg<CR>
+nmap <leader>rg :Rg<CR>
 " Lines in loaded buffers
-nmap <leader>fL :Lines<CR>
+nmap <leader>fB :Lines<CR>
 " Lines in the current buffer
-nmap <leader>fl :BLines<CR>
+nmap <leader>fb :BLines<CR>
 " Tags in the project ( `ctags -R` )
-nmap <leader>fT :Tags<CR>
+nmap <leader>tB :Tags<CR>
 " Tags in the current buffer
-nmap <leader>ft :BTags<CR>
+nmap <leader>tb :BTags<CR>
 " Marks
-nmap <leader>fm :Marks<CR>
+nmap <leader>zm :Marks<CR>
 " Windows
-nmap <leader>fw :Windows<CR>
+nmap <leader>zw :Windows<CR>
 "  `locate`  command output
-nmap <leader>fo :Locate
+nmap <leader>zo :Locate
 "  `v:oldfiles`  and open buffers
-nmap <leader>fh :History<CR>
+nmap <leader>fr :History<CR>
 " Command history
-nmap <leader>fH :History:<CR>
+nmap <leader>zd :History:<CR>
 " Search history
-nmap <leader>fs :History/<CR>
+nmap <leader>zs :History/<CR>
 " Snippets ({UltiSnips}{8})
-nmap <leader>fp :Snippets<CR>
+nmap <leader>zp :Snippets<CR>
 " Git commits (requires {fugitive.vim}{9})
-nmap <leader>fC :Commits<CR>
+nmap <leader>zc :Commits<CR>
 " Git commits for the current buffer
-nmap <leader>fc :BCommits<CR>
+nmap <leader>zC :BCommits<CR>
 " Commands
-nmap <leader>fd :Commands<CR>
+nmap <leader>zD :Commands<CR>
 " Normal mode mappings
-nmap <leader>fM :Maps<CR>
+nmap <leader>zM :Maps<CR>
 " Help tags [1]
-nmap <leader>f? :Helptags<CR>
+nmap <leader>z? :Helptags<CR>
 " File types
-nmap <leader>fy :Filetypes<CR>
+nmap <leader>zy :Filetypes<CR>
 " This is the default extra key bindings
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -447,10 +446,10 @@ let g:vista#renderer#icons = {
 " easy-align
 """"""""""""""""""""""""""""""
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap <leader>ee <Plug>(EasyAlign)
+xmap <leader>xa <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap <leader>ee <Plug>(EasyAlign)
+nmap <leader>xa <Plug>(EasyAlign)
 
 """"""""""""""""""""""""""""""
 " miniBufexplorer Config
@@ -503,10 +502,10 @@ let g:vimwiki_map_prefix = '<Leader>v'
 "  better white space
 "  ----------------------------------------------------------------
 let g:better_whitespace_enabled=1
-nmap <leader>ebe :EnableWhitespace<CR>
-nmap <leader>ebd :DisableWhitespace<CR>
-nmap <leader>tb :ToggleWhitespace<CR>
-nmap <leader>ebs :StripWhitespace<CR>
+nmap <leader>fwe :EnableWhitespace<CR>
+nmap <leader>fwd :DisableWhitespace<CR>
+nmap <leader>tw :ToggleWhitespace<CR>
+nmap <leader>fws :StripWhitespace<CR>
 let g:better_whitespace_filetypes_blacklist=['text', 'markdown', 'vimwiki',
             \'diff', 'gitcommit', 'unite', 'qf', 'help', 'markdown','Dockerfile']
 " -----------------------------------------------------------------
@@ -519,13 +518,13 @@ nmap <leader>gC :Gcommit .<CR>
 " -----------------------------------------------------------------
 " source and header switch
 " -----------------------------------------------------------------
-nmap <leader>eg :FSHere <CR>
+nmap <leader>fg :FSHere <CR>
 
 " -----------------------------------------------------------------
 " Calendar
 " -----------------------------------------------------------------
 map  <F8> :Calendar<cr>
-map <leader>ec :Calendar<cr>
+map <leader>;c :Calendar<cr>
 
 " -----------------------------------------------------------------
 " MRU
@@ -548,7 +547,7 @@ nnoremap <leader>tu :UndotreeToggle<cr>
 " preview windows
 " ------------------------------------------------------------------
 noremap <leader>pp :PreviewSignature!<cr>
-nmap <leader>qd :PreviewClose<cr>
+nmap <leader>wqd :PreviewClose<cr>
 " -----------------------------------------------------------------
 " vim-slime
 " -----------------------------------------------------------------
@@ -640,7 +639,7 @@ let g:lsp_signs_priority_map = {
         \'clangd_LspInformation': 11
         \}
 
-set statusline+=%{NearestMethodOrFunction()}
+" set statusline+=%{NearestMethodOrFunction()}
 "inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 
 autocmd! FileType python,go,c,cpp,java
@@ -666,9 +665,9 @@ autocmd FileType python,go,c,cpp,java
 \ nmap <buffer> <leader>lD  :LspDocumentDiagnostics<cr>|
 \ nmap <buffer> <leader>lgD  :LspDeclaration<cr>|
 \ nmap <buffer> <leader>lgd  :LspDefinition<cr>|
-\ nmap <buffer> <leader>lF  :LspDocumentFold<cr>|
+\ nmap <buffer> <leader>lf  :LspDocumentFold<cr>|
 \ nmap <buffer> <leader>lsf  :LspDocumentFoldSync<cr>|
-\ nmap <buffer> <leader>lf  :LspDocumentFormat<cr>|
+\ nmap <buffer> <leader>lF  :LspDocumentFormat<cr>|
 \ nmap <buffer> <leader>lsF  :LspDocumentFormatSync<cr>|
 \ vmap <buffer> <leader>lf  :LspDocumentRangeFormat<cr>|
 \ nmap <buffer> <leader>lsd  :LspDocumentSymbol<cr>|
@@ -824,18 +823,18 @@ augroup omnisharp_commands
     autocmd FileType cs nnoremap <buffer> <leader>s]] :OmniSharpNavigateDown<CR>
 
     " Find all code errors/warnings for the current solution and populate the quickfix window
-    autocmd FileType cs nnoremap <buffer> <Leader>psc :OmniSharpGlobalCodeCheck<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>psr :OmniSharpRename<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>sc :OmniSharpGlobalCodeCheck<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>sr :OmniSharpRename<CR>
 
     " Start the omnisharp server for the current solution
-    autocmd FileType cs nnoremap <buffer> <Leader>pss :OmniSharpStartServer<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>psp :OmniSharpStopServer<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>sS :OmniSharpStartServer<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>sp :OmniSharpStopServer<CR>
 augroup END
 
 " Contextual code actions (uses fzf, CtrlP or unite.vim when available)
-nnoremap <Leader>psg :OmniSharpGetCodeActions<CR>
+nnoremap <Leader>sg :OmniSharpGetCodeActions<CR>
 " Run code actions with text selected in visual mode to extract method
-xnoremap <Leader>psg :call OmniSharp#GetCodeActions('visual')<CR>
+xnoremap <Leader>sg :call OmniSharp#GetCodeActions('visual')<CR>
 
 " Rename with dialog
 " nnoremap <Leader>nm :OmniSharpRename<CR>
@@ -843,7 +842,7 @@ xnoremap <Leader>psg :call OmniSharp#GetCodeActions('visual')<CR>
 " Rename without dialog - with cursor on the symbol to rename: `:Rename newname`
 command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
 
-nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
+nnoremap <Leader>sf :OmniSharpCodeFormat<CR>
 
 let g:OmniSharp_selector_ui = 'ctrlp'  " Use ctrlp.vim
 " Enable snippet completion
@@ -860,34 +859,38 @@ set timeoutlen=300
 "   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 let g:which_key_map =  {}
+let g:which_key_map[' '] = {'name':'+easyMotion'}
 let g:which_key_map["'"] = {'name':'+slime'}
-let g:which_key_map.a = {'name':'+ALE'}
-let g:which_key_map.c = {'name':'+gscope'}
-let g:which_key_map.d = {'name':'+dox'}
-let g:which_key_map.e = {'name':'+edit'}
-let g:which_key_map.e.v = {'name':'+vimrc'}
-let g:which_key_map.e.b = {'name':'+whitespace'}
-let g:which_key_map.f = {'name':'+find/fzf'}
-let g:which_key_map.f = {'name':'+fzf'}
-let g:which_key_map.f.g = {'name':'+fzf/git'}
-let g:which_key_map.i = {'name':'+switchfile'}
-let g:which_key_map.l = {'name':'+lsp'}
-let g:which_key_map.l.e={'name':'+error'}
-let g:which_key_map.l.g={'name':'+goto'}
-let g:which_key_map.l.p={'name':'+peek/preview'}
-let g:which_key_map.l.R={'name':'+reference-jump'}
-let g:which_key_map.l.s={'name':'+symbol/sync'}
-let g:which_key_map.q = {'name':'+quickfix/preview'}
-let g:which_key_map.p = {'name':'+program'}
-let g:which_key_map.p.a = {'name':'+Async'}
-let g:which_key_map.t = {'name':'+tag/toggle'}
-let g:which_key_map.v = {'name':'+wiki/vista'}
-let g:which_key_map.m = {'name':'+mark'}
-let g:which_key_map.M = {'name':'+markdown'}
-let g:which_key_map.r = {'name':'+ctrlp'}
-let g:which_key_map.S = {'name':'+session'}
-let g:which_key_map.s = {'name':'+OmniSharp'}
-let g:which_key_map[' ']= {'name':'+easyMotion'}
+let g:which_key_map.a    = {'name':'+ALE'}
+let g:which_key_map.c    = {'name':'+gscope'}
+let g:which_key_map.d    = {'name':'+dox'}
+let g:which_key_map.f    = {'name':'+files'}
+let g:which_key_map.f.v  = {'name':'+vimrcs'}
+let g:which_key_map.f.w  = {'name':'+whiteSpace'}
+" let g:which_key_map.i    = {'name':'+switchfile'}
+let g:which_key_map.l    = {'name':'+lsp'}
+let g:which_key_map.l.e  = {'name':'+error'}
+let g:which_key_map.l.g  = {'name':'+goto'}
+let g:which_key_map.l.p  = {'name':'+peek/preview'}
+let g:which_key_map.l.R  = {'name':'+reference-jump'}
+let g:which_key_map.l.s  = {'name':'+symbol/sync'}
+let g:which_key_map.p    = {'name':'+program'}
+let g:which_key_map.p.a  = {'name':'+Async'}
+let g:which_key_map.t    = {'name':'+tag/toggle'}
+let g:which_key_map.v    = {'name':'+wiki/vista'}
+let g:which_key_map.m    = {'name':'+mark'}
+let g:which_key_map.M    = {'name':'+markdown'}
+let g:which_key_map.r    = {'name':'+ctrlp'}
+let g:which_key_map.S    = {'name':'+session/search'}
+let g:which_key_map.s    = {'name':'+OmniSharp'}
+let g:which_key_map.z    = {'name':'+fzf'}
+let g:which_key_map.z.g  = {'name':'+fzf/git'}
+
+let g:which_key_map[";"] = {
+        \'name': '+tools',
+        \'x':    '10->16',
+        \'X':    '16->10'
+        \}
 
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
@@ -910,6 +913,7 @@ let g:which_key_map.b = {
       \ 'b' : ['Buffers'   , 'fzf-buffer'  ] ,
       \ '?' : ['Buffers'   , 'fzf-buffer'   ],
       \ }
+
 let g:which_key_map.g = {
       \ 'name' : '+git/version-control' ,
       \ 'a' : 'git-add-current-file',
@@ -942,13 +946,16 @@ let g:which_key_map['w'] = {
       \ 'l' : ['<C-W>l'     , 'window-right']          ,
       \ 'k' : ['<C-W>k'     , 'window-up']             ,
       \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
-      \ 'J' : ['resize +5'  , 'expand-window-below']   ,
+      \ 'J' : [':resize +5'  , 'expand-window-below']   ,
       \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
-      \ 'K' : ['resize -5'  , 'expand-window-up']      ,
+      \ 'K' : [':resize -5'  , 'expand-window-up']      ,
       \ '=' : ['<C-W>='     , 'balance-window']        ,
       \ 's' : ['<C-W>s'     , 'split-window-below']    ,
-      \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
+      \ 'v' : ['<C-W>v'     , 'split-window-right']    ,
       \ '?' : ['Windows'    , 'fzf-window']            ,
+      \ 'q' : {
+          \'name':'+quickfix/preview',
+          \}
       \ }
 
 let g:which_key_map['x'] = {
