@@ -98,8 +98,12 @@ endfunction
 nmap <leader>fs :w!<cr>
 nmap <leader>fa :wall<cr>
 nmap <leader>fh :nohlsearch<CR>
+
 map <leader>;x :%!xxd -g 1<cr>
 map <leader>;X :%!xxd -r<cr>
+map <leader>;m :set mouse=a<cr>
+map <leader>;M :set mouse=vi<cr>
+
 nmap <leader>'t :terminal<cr>
 map  <leader>Sf :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c **/*.vim<cr>:copen<cr>
 map  <leader>SF :vim // **/*.*<left><left><left><left><left><left><left><left>

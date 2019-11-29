@@ -847,7 +847,9 @@ let g:OmniSharp_want_snippet=0
 "------------------------------------------------------------------
 set timeoutlen=300
 " gvim 下float windows 不好用 nvim 可用
-let g:which_key_use_floating_win = 0
+let g:which_key_use_floating_win = 1
+" 目前mouse mode与float_window冲突暂时去掉 可通过<leader>;m ;M切换
+set mouse=vi
 
 " 仅在非float windows下起作用
 if (g:which_key_use_floating_win == 0)
@@ -888,7 +890,9 @@ let g:which_key_map[";"] = {
           \'name': '+Doxygen'
           \},
         \'x':    'toBinary',
-        \'X':    'toString'
+        \'X':    'toString',
+        \'m':    'mouse mode = a',
+        \'M':    'mouse mode = vi',
         \}
 
 let g:which_key_map.b = {
