@@ -973,11 +973,12 @@ let g:which_key_map.m    = {'name':'+mark'}
 let g:which_key_map.M    = {'name':'+markdown'}
 
 let g:which_key_map.p    = {
-        \'name':'+program',
+        \'name': '+program',
         \'a':{
             \'name':'+Async',
             \},
-        \'s':'search-in-project'
+        \'g': 'goto-projcet-root',
+        \'s': 'search-in-project',
         \}
 
 let g:which_key_map.r    = {'name':'+ctrlp/Rg'}
