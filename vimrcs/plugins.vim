@@ -91,6 +91,7 @@ Plug  'tacahiroy/ctrlp-funky'      " func支持
 Plug  'liuchengxu/vista.vim'
 Plug  'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug  'junegunn/fzf.vim'
+Plug  'airblade/vim-rooter'
 "----------------------------------------
 " Syntax/Indent for language enhancement
 "----------------------------------------
@@ -163,6 +164,7 @@ let g:airline#extensions#tabline#show_buffers = 1 "buffer 显示在一个tab忠
 let g:airline#extensions#tabline#show_tabs = 0 " 不显示tab
 let g:airline#extensions#whitespace#enabled = 0 "不显示空白
 " let g:airline#extensions#tabline#alt_sep = 0  " 分隔符
+
 "--------------------------------------------------------------------------------
 "easy mothing
 "--------------------------------------------------------------------------------
@@ -174,6 +176,7 @@ map <Leader><leader>l <Plug>(easymotion-lineforward)
 " " 重复上一次操作, 类似repeat插件, 很强大
 map <Leader><leader>. <Plug>(easymotion-repeat)
 " map <Leader><leader> <Plug>(easymotion-prefix)
+
 " ------------------------------------------------------------------
 "   super tab
 " ------------------------------------------------------------------
@@ -188,9 +191,9 @@ let g:DoxygenToolkit_briefTag_funcName="yes"
 " let g:DoxygenToolkit_briefTag_pre="@Synopsis "
 let g:DoxygenToolkit_paramTag_pre="@param[in] "
 let g:doxygen_enhanced_color=1
-map <leader>;Da :DoxAuthor<CR>
-map <leader>;Df :Dox<CR>
-map <leader>;Db :DoxBlock<CR>
+map ,da :DoxAuthor<CR>
+map ,df :Dox<CR>
+map ,db :DoxBlock<CR>
 
 " ----------------------------------------
 " tagbar
@@ -271,28 +274,40 @@ nmap  <leader>rb :CtrlPBuffer<cr>
 " ctrlp-funky
 " --------------------------------------------------
 nnoremap <Leader>tf :CtrlPFunky<Cr>
+nnoremap ,ff :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
 nnoremap <Leader>rF :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-
+nnoremap ,fF :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 """"""""""""""""""""""""""""""
 " FZF
 """"""""""""""""""""""""""""""
+" fzf.vim doesn't enable preview feature by default.
+command! -bang -nargs=* Ag
+          \ echo "\r" | call fzf#vim#ag(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+command! -bang -nargs=? -complete=dir Files
+\ echo "\r\r" | call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
 nmap  <leader>tv :Vista finder<CR>
 nmap  <leader>f? :FZF<cr>
-nmap <leader>zz :Files
+nmap <leader>ff :Files<cr>
 " Git files ( `git ls-files` )
-nmap <leader>zgf :GFiles<CR>
+nmap ,fgf :GFiles<CR>
 " Git files ( `git status` )
-nmap <leader>zgF :GFiles?<CR>
+nmap ,fgF :GFiles?<CR>
 " Open buffers
-nmap <leader>zb :Buffers<CR>
+nmap ,fb :Buffers<CR>
 " Color schemes
-nmap <leader>zS :Colors<CR>
+nmap ,fS :Colors<CR>
 " {ag}{6} search result ( `ALT-A`  to select all,  `ALT-D`  to deselect all)
 nmap <leader>ag :Ag<CR>
 " {rg}{7} search result ( `ALT-A`  to select all,  `ALT-D`  to deselect all)
 nmap <leader>rg :Rg<CR>
+nmap <leader>rG :Rg <c-r><c-w><CR>
+
+nmap ,ss :Rg<CR>
+nmap ,sw :Rg <c-r><c-w><CR>
 " Lines in loaded buffers
 nmap <leader>fB :Lines<CR>
 " Lines in the current buffer
@@ -302,31 +317,31 @@ nmap <leader>tB :Tags<CR>
 " Tags in the current buffer
 nmap <leader>tb :BTags<CR>
 " Marks
-nmap <leader>zm :Marks<CR>
+nmap ,fm :Marks<CR>
 " Windows
-nmap <leader>zw :Windows<CR>
+nmap ,fw :Windows<CR>
 "  `locate`  command output
-nmap <leader>zo :Locate
+nmap ,fo :Locate
 "  `v:oldfiles`  and open buffers
 nmap <leader>fr :History<CR>
 " Command history
-nmap <leader>zd :History:<CR>
+nmap ,fc :History:<CR>
 " Search history
-nmap <leader>zs :History/<CR>
 " Snippets ({UltiSnips}{8})
-nmap <leader>zp :Snippets<CR>
+nmap ,fp :Snippets<CR>
 " Git commits (requires {fugitive.vim}{9})
-nmap <leader>zc :Commits<CR>
+nmap ,fT :Commits<CR>
 " Git commits for the current buffer
-nmap <leader>zC :BCommits<CR>
+nmap ,ft :BCommits<CR>
 " Commands
-nmap <leader>zD :Commands<CR>
+" nmap <leader>zD :Commands<CR>
+nmap ,fC :Commands<CR>
 " Normal mode mappings
 nmap <leader>? :Maps<CR>
 " Help tags [1]
-nmap <leader>z? :Helptags<CR>
+nmap ,f? :Helptags<CR>
 " File types
-nmap <leader>zy :Filetypes<CR>
+nmap ,fy :Filetypes<CR>
 " This is the default extra key bindings
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -380,6 +395,15 @@ if executable('fzf')
     " Advanced customization using autoload functions
     " inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 endif
+
+" ----------------------------------------
+" vim-rooter
+" ----------------------------------------
+let g:rooter_patterns = ['.vs/','Rakefile', '.git/','.root/']
+let g:rooter_manual_only = 1
+nmap <leader>pg :Rooter<cr>
+nmap <leader>ps :Rooter <cr>
+    \:Rg<CR>
 
 " ----------------------------------------
 " vista.vim
@@ -841,7 +865,6 @@ let g:OmniSharp_selector_ui = 'ctrlp'  " Use ctrlp.vim
 " Enable snippet completion
 let g:OmniSharp_want_snippet=0
 
-
 "------------------------------------------------------------------
 "  which key
 "------------------------------------------------------------------
@@ -859,41 +882,21 @@ if (g:which_key_use_floating_win == 0)
 endif
 
 let g:which_key_map      = {}
+
 let g:which_key_map[' '] = {'name':'+easyMotion'}
+
 let g:which_key_map["'"] = {'name':'+slime/terminal'}
+
 let g:which_key_map["?"] = {'name':'+Maps'}
-let g:which_key_map.a    = {'name':'+ALE'}
-let g:which_key_map.c    = {'name':'+gscope'}
-let g:which_key_map.f    = {'name':'+files'}
-let g:which_key_map.f.v  = {'name':'+vimrcs'}
-let g:which_key_map.l    = {'name':'+lsp'}
-let g:which_key_map.l.e  = {'name':'+error'}
-let g:which_key_map.l.g  = {'name':'+goto'}
-let g:which_key_map.l.p  = {'name':'+peek/preview'}
-let g:which_key_map.l.R  = {'name':'+reference-jump'}
-let g:which_key_map.l.s  = {'name':'+symbol/sync'}
-let g:which_key_map.p    = {'name':'+program'}
-let g:which_key_map.p.a  = {'name':'+Async'}
-let g:which_key_map.t    = {'name':'+tag/toggle'}
-let g:which_key_map.v    = {'name':'+wiki/vista'}
-let g:which_key_map.m    = {'name':'+mark'}
-let g:which_key_map.M    = {'name':'+markdown'}
-let g:which_key_map.r    = {'name':'+ctrlp'}
-let g:which_key_map.S    = {'name':'+session/search'}
-let g:which_key_map.s    = {'name':'+OmniSharp'}
-let g:which_key_map.z    = {'name':'+fzf'}
-let g:which_key_map.z.g  = {'name':'+fzf/git'}
 
 let g:which_key_map[";"] = {
         \'name': '+tools',
-        \'D': {
-          \'name': '+Doxygen'
-          \},
         \'x':    'toBinary',
         \'X':    'toString',
         \'m':    'mouse mode = a',
         \'M':    'mouse mode = vi',
         \}
+let g:which_key_map.a    = {'name':'+ALE'}
 
 let g:which_key_map.b = {
       \ 'name': '+buffer',
@@ -917,6 +920,16 @@ let g:which_key_map.b = {
       \ '?' : ['Buffers'   , 'fzf-buffer'   ],
       \ }
 
+let g:which_key_map.c    = {'name':'+gscope'}
+
+let g:which_key_map.f    = {
+        \'name':     '+files',
+        \'b':        'find-current-buffer',
+        \'v': {
+            \'name': '+vimrcs',
+            \},
+        \}
+
 let g:which_key_map.g = {
       \ 'name' : '+git/version-control' ,
       \ 'a' : 'git-add-current-file',
@@ -935,6 +948,47 @@ let g:which_key_map.g = {
       \ 'P' : ['Gpull'                  , 'fugitive-pull']              ,
       \ 'y' : ['Goyo'                   , 'goyo-mode']         ,
  \}
+
+let g:which_key_map.l    = {
+        \'name': '+lsp',
+        \'e':{
+            \'name': '+error',
+            \},
+        \'g':{
+            \'name': '+goto',
+            \},
+        \'p':{
+            \'name': '+peek/preview',
+            \},
+        \'R':{
+            \'name': '+reference-jump',
+            \},
+        \'s':{
+            \'name': '+symbol/sync',
+            \},
+        \}
+
+let g:which_key_map.m    = {'name':'+mark'}
+
+let g:which_key_map.M    = {'name':'+markdown'}
+
+let g:which_key_map.p    = {
+        \'name':'+program',
+        \'a':{
+            \'name':'+Async',
+            \},
+        \'s':'search-in-project'
+        \}
+
+let g:which_key_map.r    = {'name':'+ctrlp/Rg'}
+
+let g:which_key_map.S    = {'name':'+session'}
+
+let g:which_key_map.s    = {'name':'+OmniSharp'}
+
+let g:which_key_map.t    = {'name':'+tag/toggle'}
+
+let g:which_key_map.v    = {'name':'+wiki/vista'}
 
 let g:which_key_map['w'] = {
       \ 'name' : '+windows' ,
@@ -970,9 +1024,32 @@ let g:which_key_map['x'] = {
         \},
       \ }
 
+let g:which_key_assist = {}
+
+let g:which_key_assist.d  = {'name':'+Doxygen'}
+
+let g:which_key_assist.f    = {
+        \'name':'+fzf/Function',
+        \'g':{
+            \'name':'+fzf/git',
+            \},
+        \'f':'functions-in-current-buffer',
+        \'F':'function-current-word',
+        \}
+
+let g:which_key_assist.s  = {
+        \'name':'+search',
+        \'s':'find-via-rg',
+        \'w':'find-cword-via-rg',
+        \}
+
 try
 	call which_key#register('<Space>', "g:which_key_map")
 	nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 	vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+
+	call which_key#register(',', "g:which_key_assist")
+	nnoremap <silent> , :<c-u>WhichKey ','<CR>
+	vnoremap <silent> , :<c-u>WhichKeyVisual ','<CR>
 catch
 endtry

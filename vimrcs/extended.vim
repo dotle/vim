@@ -105,8 +105,8 @@ map <leader>;m :set mouse=a<cr>
 map <leader>;M :set mouse=vi<cr>
 
 nmap <leader>'t :terminal<cr>
-map  <leader>Sf :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c **/*.vim<cr>:copen<cr>
-map  <leader>SF :vim // **/*.*<left><left><left><left><left><left><left><left>
+map  ,sf :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c **/*.vim **/*.cs<cr>:copen<cr>
+map  ,sF :vim // **/*.*<left><left><left><left><left><left><left><left>
 map  <C-F5> :vim /<c-r><c-w>/ **/*.cpp **/*.h **/*.py **/*.c<cr>:copen<cr>
 " When pressing <leader>ed switch to the directory of the open buffer
 " cros to cd
