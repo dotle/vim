@@ -658,8 +658,8 @@ autocmd VimEnter *
 " △▽○◇□☆▷◁♤♡♢♧☼☺☏•▲▼●◆■★▶◀♠♥♦♣☀☻☎‥▪•*☉⊙⊕Θ◎❤¤✪の⊿☜☞⊱⋛⋌⋚⊰⊹⌒®©¢℡™ª㈱卍卐♂♀※∷#№&@◤◣◢◥▨▤▧▥▩▥▧▤▨▦☋☍☌▬〓≡▓▒░㊣↔↑→↘↙←↖╋┃┠┨┷┿┯┯┕━━┼┐アイケセテニタサヂデゲギルミヘュッ、夬乛乚亅厃々丂⺷⺻⺳⺪⺧⺋⺈⺄⺁兀〩ㄅㄇㄉㄋㄌㄔㄓㄒㄑㄐㄏㄎㄍㄟㄠㄡㄢㄣㄤㄩㄨㄧㄦㄥΝνξΞΠΟοπρΡΣΤΥΦΧΨΩωψχφυτσÅÆÇÈÉÊËêéèçæå±＜＞﹥＝≧≌∽≮≯⌒⊥∠㏑∏￡㎎ml♂￥
 
 " key setting
+nmap <leader>l* :LspStatus<cr>
 autocmd FileType python,go,c,cpp,java
-\ nmap <leader>l* :LspStatus<cr>|
 \ nmap <buffer> <leader>la  :LspCodeAction<cr>|
 \ nmap <buffer> <leader>lD  :LspDocumentDiagnostics<cr>|
 \ nmap <buffer> <leader>lgD  :LspDeclaration<cr>|
@@ -846,10 +846,15 @@ let g:OmniSharp_want_snippet=0
 "  which key
 "------------------------------------------------------------------
 set timeoutlen=300
-" 与新版本vim有冲突，导致状态栏小时
-" autocmd! FileType which_key
-" autocmd  FileType which_key set laststatus=0 noshowmode noruler
-"   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+" gvim 下float windows 不好用 nvim 可用
+let g:which_key_use_floating_win = 0
+
+" 仅在非float windows下起作用
+if (g:which_key_use_floating_win == 0)
+    autocmd! FileType which_key
+    autocmd  FileType which_key set laststatus=0 noshowmode noruler
+                \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+endif
 
 let g:which_key_map      = {}
 let g:which_key_map[' '] = {'name':'+easyMotion'}
