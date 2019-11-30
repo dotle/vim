@@ -39,7 +39,7 @@ Plug  'honza/vim-snippets'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-syntax'
-Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java','python','cs','go'] }
+Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java','python','cs','go','text'] }
 Plug 'sgur/vim-textobj-parameter'
 
 "----------------------
@@ -306,8 +306,8 @@ nmap <leader>ag :Ag<CR>
 nmap <leader>rg :Rg<CR>
 nmap <leader>rG :Rg <c-r><c-w><CR>
 
-nmap ,ss :Rg<CR>
-nmap ,sw :Rg <c-r><c-w><CR>
+nmap ,fs :Rg<CR>
+nmap ,fw :Rg <c-r><c-w><CR>
 " Lines in loaded buffers
 nmap <leader>fB :Lines<CR>
 " Lines in the current buffer
@@ -319,7 +319,7 @@ nmap <leader>tb :BTags<CR>
 " Marks
 nmap ,fm :Marks<CR>
 " Windows
-nmap ,fw :Windows<CR>
+nmap ,fW :Windows<CR>
 "  `locate`  command output
 nmap ,fo :Locate
 "  `v:oldfiles`  and open buffers
@@ -553,6 +553,17 @@ map <leader>;c :Calendar<cr>
 " MRU
 " -----------------------------------------------------------------
 " map  <leader>em :MRU<cr>
+
+" -----------------------------------------------------------------
+" ultisnips
+" -----------------------------------------------------------------
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " -----------------------------------------------------------------
 " async
