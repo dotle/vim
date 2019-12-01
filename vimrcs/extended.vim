@@ -160,6 +160,8 @@ map <leader>b7 :b7<cr>
 map <leader>b8 :b8<cr>
 map <leader>b9 :b9<cr>
 
+nmap LB ^
+nmap LE $
 "*********************************************
 " gui terminal
 " ********************************************
