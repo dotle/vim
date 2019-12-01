@@ -306,7 +306,7 @@ nmap <leader>ag :Ag<CR>
 nmap <leader>rg :Rg<CR>
 nmap <leader>rG :Rg <c-r><c-w><CR>
 
-nmap ,fs :Rg<CR>
+nmap ,fr :Rg<CR>
 nmap ,fw :Rg <c-r><c-w><CR>
 " Lines in loaded buffers
 nmap <leader>fB :Lines<CR>
@@ -1047,12 +1047,12 @@ let g:which_key_assist.f    = {
             \},
         \'f':'functions-in-current-buffer',
         \'F':'function-current-word',
+        \'r':'find-via-rg',
+        \'w':'find-cword-via-rg',
         \}
 
 let g:which_key_assist.s  = {
         \'name':'+search',
-        \'s':'find-via-rg',
-        \'w':'find-cword-via-rg',
         \}
 
 try
