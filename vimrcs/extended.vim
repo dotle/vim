@@ -120,7 +120,7 @@ nnoremap <silent> <F4> :A<CR>
 " Close the current buffer
 map <leader>bd :Bclose<cr>
 " Close all the buffers
-map <leader>ba :bd%<cr>
+map <leader>ba :%bdelete<cr>
 nmap <leader>bu :unhide<cr>
 
 map<leader>fve :e! $VIMRUNTIME/../_vimrc<cr>
