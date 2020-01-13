@@ -144,7 +144,7 @@ let g:autopep8_disable_show_diff=1
 "----------------------------
 autocmd User Startified setlocal cursorline
 
-let g:startify_session_persistence = 0
+let g:startify_session_persistence = 1
 
 nmap <leader>Sl :SLoad<cr>
 nmap <leader>Ss :SSave<cr>
@@ -307,7 +307,7 @@ nmap <leader>rg :Rg<CR>
 nmap <leader>rG :Rg <c-r><c-w><CR>
 
 nmap ,fr :Rg<CR>
-nmap ,fw :Rg <c-r><c-w><CR>
+nmap ,fR :Rg <c-r><c-w><CR>
 " Lines in loaded buffers
 nmap <leader>fB :Lines<CR>
 " Lines in the current buffer
@@ -920,7 +920,7 @@ let g:which_key_map.b = {
       \ '7':    'buffer7',
       \ '8':    'buffer8',
       \ '9':    'buffer9',
-      \ 'a' : ['ba'        , 'delete-all-buffer']   ,
+      \ 'a' :   'delete-all-buffer',
       \ 'd' : ['bd'        , 'delete-buffer']   ,
       \ 'f' : ['bfirst'    , 'first-buffer']    ,
       \ 'h' : ['Startify'  , 'home-buffer']     ,
@@ -1048,7 +1048,7 @@ let g:which_key_assist.f    = {
         \'f':'functions-in-current-buffer',
         \'F':'function-current-word',
         \'r':'find-via-rg',
-        \'w':'find-cword-via-rg',
+        \'R':'find-cword-via-rg',
         \}
 
 let g:which_key_assist.s  = {
