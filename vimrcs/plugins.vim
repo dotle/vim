@@ -936,8 +936,13 @@ let g:which_key_map.c    = {'name':'+gscope'}
 let g:which_key_map.f    = {
         \'name':     '+files',
         \'b':        'find-current-buffer',
-        \'v': {
+        \'v':        {
             \'name': '+vimrcs',
+            \'b':    'basic.vim',
+            \'e':    'vimrc',
+            \'p':    'plugins.vim',
+            \'r':    'README.md',
+            \'x':    'extended.vim',
             \},
         \}
 
