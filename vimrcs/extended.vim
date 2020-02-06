@@ -121,7 +121,7 @@ nnoremap <silent> <F4> :A<CR>
 map <leader>bd :Bclose<cr>
 " Close all the buffers
 map <leader>ba :%bdelete<cr>
-nmap <leader>bu :unhide<cr>
+" nmap <leader>bu :unhide<cr>
 
 map<leader>fve :e! $VIMRUNTIME/../_vimrc<cr>
 map<leader>fvb :e! $VIMRUNTIME/../vimrcs/basic.vim<cr>

@@ -120,7 +120,7 @@ filetype plugin indent on    " required
 nnoremap <silent><F2> :NERDTreeToggle<CR>
 inoremap <silent><F2> <ESC>:NERDTreeToggle<CR>
 nmap ge :NERDTreeToggle<CR>
-nnoremap <silent><Leader>ft :NERDTreeToggle<CR>
+nnoremap <silent><Leader>tn :NERDTreeToggle<CR>
 nnoremap <silent><Leader>fd :NERDTreeFind<CR>
 let NERDTreeChDirMode=2
 "显示书签"
@@ -144,7 +144,7 @@ let g:autopep8_disable_show_diff=1
 "----------------------------
 autocmd User Startified setlocal cursorline
 
-let g:startify_session_persistence = 1
+let g:startify_session_persistence = 0
 
 nmap <leader>Sl :SLoad<cr>
 nmap <leader>Ss :SSave<cr>
@@ -264,10 +264,12 @@ nnoremap <leader>rt :CtrlPBufTag<CR>
 nmap  <leader>rR :CtrlPRoot<CR>
 nmap  <leader>rr :CtrlPMRUFiles<cr>
 nmap  <leader>rc :CtrlPChange<cr>
+nmap  <leader>rC :CtrlPChangeAll<cr>
 nmap  <leader>ru :CtrlPUndo<cr>
 nmap  <leader>rl :CtrlPLine<cr>
+nmap  <leader>rL :CtrlPLine
 nmap  <leader>rs :CtrlPRTS<cr>
-nmap  <leader>ra :CtrlPBufTagAll<cr>
+nmap  <leader>rT :CtrlPBufTagAll<cr>
 nmap  <leader>rb :CtrlPBuffer<cr>
 
 " ----------------------------------------
@@ -276,7 +278,7 @@ nmap  <leader>rb :CtrlPBuffer<cr>
 nnoremap <Leader>tf :CtrlPFunky<Cr>
 nnoremap ,ff :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
-nnoremap <Leader>rF :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+nnoremap <Leader>tF :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 nnoremap ,fF :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 """"""""""""""""""""""""""""""
@@ -495,7 +497,7 @@ nmap <leader>mm <Plug>MarkSet
 vmap <leader>mm <Plug>MarkSet
 nmap <leader>mr <Plug>MarkRegex
 vmap <leader>mr <Plug>MarkRegex
-nmap <leader>mn <Plug>MarkClear
+nmap <leader>mc <Plug>MarkClear
 nmap <unique> <silent> <Leader>m* <Plug>MarkSearchCurrentNext
 nmap <unique> <silent> <Leader>m# <Plug>MarkSearchCurrentPrev
 nmap <unique> <silent> <Leader>m/ <Plug>MarkSearchAnyNext
@@ -547,8 +549,9 @@ nmap <leader>fg :FSHere <CR>
 " Calendar
 " -----------------------------------------------------------------
 map  <F8> :Calendar<cr>
-map <leader>;c :Calendar<cr>
-
+" map <leader>;cc :Calendar<cr>
+nmap <unique> <Leader>;cl <Plug>CalendarV
+nmap <unique> <Leader>;cL <Plug>CalendarH
 " -----------------------------------------------------------------
 " MRU
 " -----------------------------------------------------------------
@@ -901,12 +904,19 @@ let g:which_key_map["'"] = {'name':'+slime/terminal'}
 let g:which_key_map["?"] = {'name':'+Maps'}
 
 let g:which_key_map[";"] = {
-        \'name': '+tools',
-        \'x':    'toBinary',
-        \'X':    'toString',
-        \'m':    'mouse mode = a',
-        \'M':    'mouse mode = vi',
-        \}
+      \'name': '+tools',
+      \'c':        {
+          \'name': '+calendar',
+          \'c':    'Calendar',
+          \'l':    'CalendarV',
+          \'L':    'CalendarH',
+          \},
+      \'d':    'current dir',
+      \'x':    'toBinary',
+      \'X':    'toString',
+      \'m':    'mouse mode = a',
+      \'M':    'mouse mode = vi',
+      \}
 let g:which_key_map.a    = {'name':'+ALE'}
 
 let g:which_key_map.b = {
@@ -929,22 +939,38 @@ let g:which_key_map.b = {
       \ 'p' : ['bprevious' , 'previous-buffer'] ,
       \ 'b' : ['Buffers'   , 'fzf-buffer'  ] ,
       \ '?' : ['Buffers'   , 'fzf-buffer'   ],
+      \ 'u' : ['unhide'    , 'open-one-window-for-each-loaded-buffer'   ],
       \ }
 
-let g:which_key_map.c    = {'name':'+gscope'}
+let g:which_key_map.c    = {
+      \'name': '+gscope',
+      \'s': 'Find this symbol',
+      \'g': 'Find this definition',
+      \'d': 'Find functions called by this function',
+      \'c': 'Find functions calling this function',
+      \'t': 'Find this text string',
+      \'e': 'Find this egrep pattern',
+      \'f': 'Find this file',
+      \'i': 'Find files #including this file',
+      \'a': 'Find places where this symbol is assigned a value',
+      \'z': 'Find ctags',
+      \}
 
 let g:which_key_map.f    = {
-        \'name':     '+files',
-        \'b':        'find-current-buffer',
-        \'v':        {
-            \'name': '+vimrcs',
-            \'b':    'basic.vim',
-            \'e':    'vimrc',
-            \'p':    'plugins.vim',
-            \'r':    'README.md',
-            \'x':    'extended.vim',
-            \},
-        \}
+      \'name':     '+files',
+      \'a':        'save-all-buffers',
+      \'b':        'find-current-buffer',
+      \'g':        'switch-campanion-files',
+      \'s':        'save-current-buffer',
+      \'v':        {
+          \'name': '+vimrcs',
+          \'b':    'basic.vim',
+          \'e':    'vimrc',
+          \'p':    'plugins.vim',
+          \'r':    'README.md',
+          \'x':    'extended.vim',
+          \},
+      \}
 
 let g:which_key_map.g = {
       \ 'name' : '+git/version-control' ,
@@ -963,49 +989,96 @@ let g:which_key_map.g = {
       \ 'p' : ['Gpush'                  , 'fugitive-push']              ,
       \ 'P' : ['Gpull'                  , 'fugitive-pull']              ,
       \ 'y' : ['Goyo'                   , 'goyo-mode']         ,
- \}
+      \}
 
 let g:which_key_map.l    = {
-        \'name': '+lsp',
-        \'e':{
-            \'name': '+error',
-            \},
-        \'g':{
-            \'name': '+goto',
-            \},
-        \'p':{
-            \'name': '+peek/preview',
-            \},
-        \'R':{
-            \'name': '+reference-jump',
-            \},
-        \'s':{
-            \'name': '+symbol/sync',
-            \},
-        \}
+      \'name': '+lsp',
+      \'e':{
+          \'name': '+error',
+          \},
+      \'g':{
+          \'name': '+goto',
+          \},
+      \'p':{
+          \'name': '+peek/preview',
+          \},
+      \'R':{
+          \'name': '+reference-jump',
+          \},
+      \'s':{
+          \'name': '+symbol/sync',
+          \},
+      \}
 
-let g:which_key_map.m    = {'name':'+mark'}
+let g:which_key_map.m    = {
+      \'name':     '+mark',
+      \'#':        'mark-search-current-pre',
+      \'*':        'mark-search-current-next',
+      \'/':        'mark-search-any-next',
+      \'?':        'mark-search-any-pre',
+      \'c':        'mark-clear',
+      \'m':        'mark-set',
+      \'r':        'mark-set-with-regular-expression',
+      \}
 
-let g:which_key_map.M    = {'name':'+markdown'}
+let g:which_key_map.M    = {
+      \ 'name':'+markdown',
+      \ 'p': 'markdown-preview',
+      \ 's': 'stop-markdown-preview',
+      \}
 
 let g:which_key_map.p    = {
-        \'name': '+program',
-        \'a':{
-            \'name':'+Async',
-            \},
-        \'g': 'goto-projcet-root',
-        \'s': 'search-in-project',
-        \}
+      \'name': '+program',
+      \'a':{
+          \'name':'+Async',
+          \'p': 'async-run-python',
+          \'s': 'async-stop',
+          \},
+      \'c': 'compile',
+      \'f': 'astyle-current-file',
+      \'g': 'goto-projcet-root',
+      \'l': 'link',
+      \'p': 'preview-signature',
+      \'r': 'run',
+      \'s': 'search-in-project',
+      \'v': 'source-vim-file',
+      \}
 
-let g:which_key_map.r    = {'name':'+ctrlp/Rg'}
+let g:which_key_map.r    = {
+      \ 'name' : '+ctrlp/rg' ,
+      \ 'b': 'search-buffers',
+      \ 'c': 'search-change-in-current-buffer',
+      \ 'C': 'search-change-in-all-buffer',
+      \ 'g': 'find-via-rg',
+      \ 'G': 'find-cword-via-rg',
+      \ 'l': 'search-line-in-listed-buffers',
+      \ 'L': 'search-line-in-special-buffers',
+      \ 'r': 'most-recently-used-file-mode',
+      \ 'R': 'open-ctrlp-with-mode-r',
+      \ 's': 'search-files-in-runtimepath',
+      \ 't': 'search-tag-in-current-buffer',
+      \ 'T': 'search-tag-in-all-buffers',
+      \ 'u': 'browse-undo-history',
+      \ }
 
 let g:which_key_map.S    = {'name':'+session'}
 
 let g:which_key_map.s    = {'name':'+OmniSharp'}
 
-let g:which_key_map.t    = {'name':'+tag/toggle'}
+let g:which_key_map.t    = {
+      \ 'name' : '+tag/toggle' ,
+      \ 'b': 'search-tags-in-current-buffer',
+      \ 'B': 'search-tags-in-project',
+      \ 'c': 'run-ctags-R',
+      \ 'f': 'search-functions',
+      \ 'F': 'search-function-with-cword',
+      \ 'g': 'show-tag-in-preview-window',
+      \ 'v': 'search-tag-via-vista',
+      \ }
 
-let g:which_key_map.v    = {'name':'+wiki/vista'}
+let g:which_key_map.v    = {
+      \ 'name' : '+wiki/vista' ,
+      \}
 
 let g:which_key_map['w'] = {
       \ 'name' : '+windows' ,
@@ -1029,6 +1102,9 @@ let g:which_key_map['w'] = {
       \ '?' : ['Windows'    , 'fzf-window']            ,
       \ 'q' : {
           \'name':'+quickfix/preview',
+          \'c': 'close-quickfix-window',
+          \'d': 'close-preview-window',
+          \'o': 'open-quickifix-window-below',
           \}
       \ }
 
@@ -1058,6 +1134,8 @@ let g:which_key_assist.f    = {
 
 let g:which_key_assist.s  = {
         \'name':'+search',
+        \'f':'find-cword-in-source',
+        \'F':'find-in-current-dir',
         \}
 
 try
