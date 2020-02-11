@@ -502,6 +502,13 @@ nmap <unique> <silent> <Leader>m* <Plug>MarkSearchCurrentNext
 nmap <unique> <silent> <Leader>m# <Plug>MarkSearchCurrentPrev
 nmap <unique> <silent> <Leader>m/ <Plug>MarkSearchAnyNext
 nmap <unique> <silent> <Leader>m? <Plug>MarkSearchAnyPrev
+
+
+" -----------------------------------------------------------------
+"  vim-markdown
+"  ----------------------------------------------------------------
+map <leader>Mt :Toc<cr>
+
 " -----------------------------------------------------------------
 "  markdown-preview
 "  ----------------------------------------------------------------
@@ -911,7 +918,7 @@ let g:which_key_map[";"] = {
           \'l':    'CalendarV',
           \'L':    'CalendarH',
           \},
-      \'d':    'current dir',
+      \'d':    'goto-current-dir',
       \'x':    'toBinary',
       \'X':    'toString',
       \'m':    'mouse mode = a',
