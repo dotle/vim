@@ -529,6 +529,7 @@ let g:vimwiki_use_mouse = 1
 source $VIMRUNTIME/../wiki-list.vim
 " change wiki prefix to v
 let g:vimwiki_map_prefix = '<Leader>v'
+map <Leader>vl <Plug>VimwikiToggleListItem
 
 " -----------------------------------------------------------------
 "  better white space
