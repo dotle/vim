@@ -1119,6 +1119,7 @@ let g:which_key_map['w'] = {
 let g:which_key_map['x'] = {
       \ 'name' : '+text'           ,
       \ 'a' : ['<Plug>(EasyAlign)' , 'easy-align']                 ,
+      \ 'c' : 'count-words-bytes',
       \ 'd' : ['StripWhitespace'   , 'delete-trailing-whitespace'] ,
       \ 'w' : {
         \'name'  :  '+WhiteSpace'
