@@ -1,7 +1,7 @@
 " config vimwiki path "
 
 
-let g:vimwiki_list = [{'path': 'D:/CloudStation/01.doc/vimwiki/01.work'},
+let g:vimwiki_list = [{'path': 'D:/01.doc/vimwiki/01.work'},
 \{'path':'D:/01.doc/vimwiki/02.meeting'},
 \{'path':'D:/01.doc/vimwiki/03.home'},
 \{'path':'D:/01.doc/vimwiki/NULL'},
