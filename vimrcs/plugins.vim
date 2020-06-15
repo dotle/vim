@@ -526,7 +526,8 @@ map <leader>Ms <Plug>StopMarkdownPreview
 "  ----------------------------------------------------------------
 " vimwiki
 let g:vimwiki_use_mouse = 1
-source $VIMRUNTIME/../wiki-list.vim
+source $VIMRUNTIME/../vimrcs/wiki-list-default.vim
+let g:vimwiki_file_exts = 'c, cpp, wav, txt, h, hpp, zip, sh, awk, ps, pdf,md,doc,docx,xls,xlsx'
 " change wiki prefix to v
 let g:vimwiki_map_prefix = '<Leader>v'
 map <Leader>vl <Plug>VimwikiToggleListItem
