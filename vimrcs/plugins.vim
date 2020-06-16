@@ -49,8 +49,8 @@ Plug  'Yggdroot/indentLine' "缩进对其线
 Plug  'tell-k/vim-autopep8' "automatically formats Python code to conform to the PEP 8 style guide
 Plug  'godlygeek/tabular'  " 输入tabular /, 则以，为分隔符
 Plug  'plasticboy/vim-markdown' "markdown 支持
-Plug  'iamcco/markdown-preview.vim'  " need python support
-" Plug  'vim-scripts/a.vim'   "头文件跳转  :A or <leader>is  <leader>ih
+" Plug  'iamcco/markdown-preview.vim'  " need python support
+Plug  'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug  'vim-scripts/indentpython.vim' "帮助python格式化代码缩进。
 Plug  'dense-analysis/ale'    "ale git 名修改
 Plug  'nvie/vim-flake8' "python 标准检查插件
@@ -507,20 +507,20 @@ nmap <unique> <silent> <Leader>m? <Plug>MarkSearchAnyPrev
 " -----------------------------------------------------------------
 "  vim-markdown
 "  ----------------------------------------------------------------
-map <leader>Mt :Toc<cr>
+map <leader>Mc :Toc<cr>
 
 " -----------------------------------------------------------------
 "  markdown-preview
 "  ----------------------------------------------------------------
 " need python support
 if executable('chrome')
-    let g:mkdp_path_to_chrome = "chrome"
+    let g:mkdp_browser = "chrome"
 elseif executable('firefox')
-    let g:mkdp_path_to_chrome = "firefox"
+    let g:mkdp_browser = "firefox"
 endif
 map <leader>Mp <Plug>MarkdownPreview
 map <leader>Ms <Plug>StopMarkdownPreview
-
+map <leader>Mt <Plug>MarkdownPreviewToggle
 " -----------------------------------------------------------------
 "  vimwiki
 "  ----------------------------------------------------------------
