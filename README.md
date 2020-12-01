@@ -17,7 +17,6 @@
 1. cmd
 ```
  md c:\vim
- cd c:\vim
  git clone https://github.com/dotle/vim.git
 ```
 2. copy **Vimtools** Dirctory. Add Path.
