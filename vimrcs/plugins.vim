@@ -531,7 +531,7 @@ let g:vimwiki_file_exts = 'c, cpp, wav, txt, h, hpp, zip, sh, awk, ps, pdf,md,do
 " change wiki prefix to v
 let g:vimwiki_map_prefix = '<Leader>v'
 map <Leader>vl <Plug>VimwikiToggleListItem
-" 避免markdown被识别成vimwiki类型
+" 避免markdown被识别成vimwiki类型 20201201
 let g:vimwiki_ext2syntax = {}
 " -----------------------------------------------------------------
 "  better white space
